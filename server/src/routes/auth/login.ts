@@ -1,7 +1,9 @@
 import express from "express";
 
-class LOGIN {
+class Login {
   async post(req: express.Request, res: express.Response) {
+    let { email, password } = req.body;
+
     res.status(200);
     return res.send("test");
   }
@@ -11,4 +13,4 @@ class LOGIN {
   }
 }
 
-module.exports = new LOGIN();
+export default Login;

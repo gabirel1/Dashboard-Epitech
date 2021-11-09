@@ -14,11 +14,8 @@ function addRoute(endpoint: string, service: any) {
     routes.push({method: 'OPTIONS', path: endpoint, func: () => {}});
 }
 
-addRoute('/login', require('./routes/auth/login'));
+addRoute('/auth/login', require('./routes/auth/login'));
+addRoute('/auth/token', require('./routes/auth/token'));
 
 // export routes as a typescript module
 export default routes;
-
-// module.exports = routes;
-
-// // export routes as a module
