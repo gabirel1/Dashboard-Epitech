@@ -1,0 +1,34 @@
+<div class="container justify-content-center">
+  <div class="row">
+    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto form">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"
+        class="rounded mt-5 p-4 shadow ng-untouched ng-pristine ng-valid">
+        <div class="row mb-3">
+          <h3 class="mt-2">Bienvenue sur Dashboard</h3>
+        </div>
+        <div class="form-group"><label for="login">Adresse e-mail</label>
+          <input formControlName="login" autocomplete="login" id="login" aria-describedby="login" placeholder=""
+            class="form-control ng-untouched ng-pristine ng-valid" [class]="loginInvalid ? 'is-invalid' : ''">
+        </div>
+        <div class="form-group has-danger mt-3"><label for="password">Mot de passe</label>
+          <input formControlName="password" autocomplete="password" [class]="loginInvalid ? 'is-invalid' : ''"
+            id="password" aria-describedby="password" type="password"
+            class="form-control ng-untouched ng-pristine ng-valid">
+          <div class="invalid-feedback">Login ou mot de passe invalide</div>
+        </div>
+        <div class="form-group mt-3" *ngIf="registerMode"><label for="password_confirm">Confirmer le mot de passe</label>
+          <input autocomplete="password" id="password_confirm" aria-describedby="password_confirm"
+            type="password_confirm" class="form-control ng-untouched ng-pristine ng-valid">
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-link" (click)="registerModeToogle()"
+            *ngIf="!registerMode">S'inscrire</button>
+          <button type="button" class="btn btn-link" (click)="registerModeToogle()" *ngIf="registerMode">Retour</button>
+        </div>
+        <div class="text-center"><button type="submit"
+            class="btn btn-primary mt-3 btn-block">{{registerMode ? 'Créer mon compte' : 'Se connecter'}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
