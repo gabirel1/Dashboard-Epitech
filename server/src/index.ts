@@ -1,24 +1,27 @@
 require("dotenv").config();
 
-const express = require("express");
-const cors = require("cors");
+import * as dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+
+dotenv.config();
 const app = express();
 
 const server = require("http").Server(app);
 
-const routes = require("./routes");
+import routes from "./routes";
 
 app.use(cors());
 app.use(express.json());
 app.use(require("./request_handler"));
 
-process.env.PORT = process.env.PORT || 3000;
+process.env.PORT = process.env.PORT || '8080';
 
 server.listen(process.env.PORT, () => {
   console.log("Server listening on port " + process.env.PORT);
 });
 
-routes.forEach((route) => {
+routes.forEach((route: any) => {
   switch (route.method) {
     case "GET":
       app.get(route.path, route.func);

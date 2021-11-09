@@ -1,11 +1,11 @@
-version: "1"
+version: "2.2"
 services:
   server:
     build:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "8080:8080"
     container_name: server
     volumes:
       - ./server:/usr/src/app/server

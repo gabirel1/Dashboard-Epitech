@@ -6,6 +6,8 @@ COPY package*.json ./
 
 RUN npm i nodemon -g
 
+RUN npm i ts-node -g
+
 RUN npm install
 
 EXPOSE 3000

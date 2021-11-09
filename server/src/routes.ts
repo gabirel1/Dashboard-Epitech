@@ -1,6 +1,6 @@
-const routes = [];
+const routes: { method: string; path: string; func: any; }[] = [];
 
-function addRoute(endpoint, service) {
+function addRoute(endpoint: string, service: any) {
     if (service.get)
         routes.push({method: 'GET', path: endpoint, func: service.get});
     if (service.post)
@@ -16,4 +16,9 @@ function addRoute(endpoint, service) {
 
 addRoute('/login', require('./routes/auth/login'));
 
-module.exports = routes;
+// export routes as a typescript module
+export default routes;
+
+// module.exports = routes;
+
+// // export routes as a module
