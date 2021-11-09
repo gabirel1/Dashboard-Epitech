@@ -1,0 +1,22 @@
+version: "1"
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    container_name: server
+    volumes:
+      - ./server:/usr/src/app/server
+      - /usr/src/app/server/node_modules
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    container_name: client
+    volumes:
+      - ./client:/usr/src/app/client
+      - /usr/src/app/client/node_modules
