@@ -20,3 +20,12 @@ services:
     volumes:
       - ./client:/usr/src/app/client
       - /usr/src/app/client/node_modules
+  database:
+    image: mysql:5.7
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - 3307:3306
+    volumes:
+      - ./database:/var/lib/mysql
+      - ./database/setup.sql:/docker-entrypoint-initdb.d/setup.sql
