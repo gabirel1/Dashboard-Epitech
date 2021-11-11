@@ -7,6 +7,10 @@ services:
     ports:
       - "8080:8080"
     container_name: server
+    depends_on: 
+      - database
+    links: 
+      - database
     volumes:
       - ./server:/usr/src/app/server
       - /usr/src/app/server/node_modules
@@ -17,15 +21,23 @@ services:
     ports:
       - "4200:4200"
     container_name: client
+    depends_on: 
+      - server
+    links: 
+      - server
     volumes:
       - ./client:/usr/src/app/client
       - /usr/src/app/client/node_modules
   database:
     image: mysql:5.7
-    restart: unless-stopped
-    env_file: ./.env
+    restart: always
+    container_name: database
+    env_file:
+      - .env
     ports:
-      - 3307:3306
+      - '3306:3306'
+    expose:
+      - '3306'
     volumes:
-      - ./database:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql
       - ./database/setup.sql:/docker-entrypoint-initdb.d/setup.sql
