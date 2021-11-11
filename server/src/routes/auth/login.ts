@@ -13,4 +13,4 @@ class Login {
   }
 }
 
-export default Login;
+module.exports = new Login();
