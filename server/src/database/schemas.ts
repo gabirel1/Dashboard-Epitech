@@ -8,6 +8,7 @@ export interface OauthInformations {
 export interface User extends OauthInformations {
     id: number,
     mail: string,
+    username: string,
     password?: string,
     token: string,
 };
