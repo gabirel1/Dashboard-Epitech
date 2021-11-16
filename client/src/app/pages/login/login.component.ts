@@ -23,9 +23,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.dataService.checkLogin().then(() => {
-    //   window.location.href = "/dashboard";
-    // });
+    this.dataService.checkLogin().subscribe({
+      next: () => {
+        window.location.href = "/dashboard";
+      },
+    });
   }
 
   onSubmit() {
