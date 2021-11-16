@@ -7,7 +7,11 @@ import { db } from '../../database/database';
 
 class Token {
     async get(req: express.Request, res: express.Response) {
-        const { token } = req.body;
+        let token: string = req.headers.authorization;
+        if (!token) {
+            return res.status(401).json({ valid: false, message: "token not found" });
+        }
+        token = token.split(" ")[0];
         checkToken(token, (err: any, result: any) => {
             if (err || result === [] || result === null || result === undefined || result.length === 0) {
                 console.debug(result);
@@ -25,7 +29,13 @@ class Token {
         // return res.status(200).send("testllll");
     }
     async post(req: express.Request, res: express.Response) {
-        const { token, username } = req.body;
+        const { username } = req.body;
+        let token: string = req.headers.authorization;
+        if (!token) {
+            return res.status(401).json({ valid: false, message: "token not found" });
+        }
+        token = token.split(" ")[0];
+
         generateNewToken(token, username, (err: any, result: any) => {
             if (err) {
                 console.debug(err);
