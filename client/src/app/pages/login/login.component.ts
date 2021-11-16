@@ -17,30 +17,42 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.loginForm = this.formBuilder.group({
-      login: "",
+      mail: "",
       password: "",
     });
   }
 
   ngOnInit() {
-    this.dataService.checkLogin().then(() => {
-      window.location.href = "/dashboard";
-    });
+    // this.dataService.checkLogin().then(() => {
+    //   window.location.href = "/dashboard";
+    // });
   }
 
   onSubmit() {
-    this.dataService
-      .sendPostRequest("auth/register", this.loginForm.value)
-      .subscribe({
-        next: () => {
-          this.dataService.checkLogin().then(() => {
+    if (this.registerMode) {
+      this.dataService
+        .sendPostRequest("auth/register", this.loginForm.value)
+        .subscribe({
+          next: () => {
+            window.location.href = "/login";
+          },
+          error: () => {
+            this.loginInvalid = true;
+          },
+        });
+    } else {
+      this.dataService
+        .sendPostRequest("auth/login", this.loginForm.value)
+        .subscribe({
+          next: (data) => {
+            this.dataService.saveToken(data.token);
             window.location.href = "/dashboard";
-          });
-        },
-        error: () => {
-          this.loginInvalid = true;
-        },
-      });
+          },
+          error: () => {
+            this.loginInvalid = true;
+          },
+        });
+    }
   }
 
   registerModeToogle() {
