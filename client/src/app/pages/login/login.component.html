@@ -16,7 +16,8 @@
             class="form-control ng-untouched ng-pristine ng-valid">
           <div class="invalid-feedback">Login ou mot de passe invalide</div>
         </div>
-        <div class="form-group mt-3" *ngIf="registerMode"><label for="password_confirm">Confirmer le mot de passe</label>
+        <div class="form-group mt-3" *ngIf="registerMode"><label for="password_confirm">Confirmer le mot de
+            passe</label>
           <input autocomplete="password" id="password_confirm" aria-describedby="password_confirm"
             type="password_confirm" class="form-control ng-untouched ng-pristine ng-valid">
         </div>
@@ -25,8 +26,13 @@
             *ngIf="!registerMode">S'inscrire</button>
           <button type="button" class="btn btn-link" (click)="registerModeToogle()" *ngIf="registerMode">Retour</button>
         </div>
-        <div class="text-center"><button type="submit"
-            class="btn btn-primary mt-3 btn-block">{{registerMode ? 'Créer mon compte' : 'Se connecter'}}</button>
+        <div class="row">
+          <div class="text-center mt-3"><button type="submit"
+              class="btn btn-primary btn-block">{{registerMode ? 'Créer mon compte' : 'Se connecter'}}</button>
+            <button (click)="loginWithGoogle()" class="btn btn-secondary ms-3">
+              Login with Google
+            </button>
+          </div>
         </div>
       </form>
     </div>

@@ -11,7 +11,7 @@ class Token {
         if (!token) {
             return res.status(401).json({ valid: false, message: "token not found" });
         }
-        token = token.split(" ")[0];
+        token = token.split(" ")[1];
         checkToken(token, (err: any, result: any) => {
             if (err || result === [] || result === null || result === undefined || result.length === 0) {
                 console.debug(result);
@@ -35,7 +35,7 @@ class Token {
         if (!token) {
             return res.status(401).json({ valid: false, message: "token not found" });
         }
-        token = token.split(" ")[0];
+        token = token.split(" ")[1];
 
         generateNewToken(token, username, (err: any, result: any) => {
             if (err) {

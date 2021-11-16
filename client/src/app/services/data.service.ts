@@ -18,6 +18,7 @@ export class DataService {
   private authToken = "";
 
   public sendGetRequest(endpoint: string, args: any = {}): Observable<any> {
+    this.authToken = this.cookieService.get("dashboard_session");
     let argsStr = "";
     if (args) {
       for (const k in args) {
@@ -35,18 +36,21 @@ export class DataService {
   }
 
   public sendPostRequest(endpoint: string, args: any = {}): Observable<any> {
+    this.authToken = this.cookieService.get("dashboard_session");
     return this.httpClient.post(this.REST_API_SERVER + "/" + endpoint, args, {
       headers: new HttpHeaders().set("Authorization", `token ${this.authToken}`),
     });
   }
 
   public sendPutRequest(endpoint: string, args: any = {}): Observable<any> {
+    this.authToken = this.cookieService.get("dashboard_session");
     return this.httpClient.put(this.REST_API_SERVER + "/" + endpoint, args, {
       headers: new HttpHeaders().set("Authorization", `token ${this.authToken}`),
     });
   }
 
   public sendPatchRequest(endpoint: string, args: any = {}): Observable<any> {
+    this.authToken = this.cookieService.get("dashboard_session");
     return this.httpClient.patch(this.REST_API_SERVER + "/" + endpoint, args, {
       headers: new HttpHeaders().set("Authorization", `token ${this.authToken}`),
     });
@@ -56,8 +60,8 @@ export class DataService {
     return this.authToken;
   }
 
-  async checkLogin(autologin?: string): Promise<any> {
-    // return 
+  checkLogin(): Observable<any> {
+    return this.sendGetRequest('auth/token');
   }
 
   saveToken(token: string): void {
