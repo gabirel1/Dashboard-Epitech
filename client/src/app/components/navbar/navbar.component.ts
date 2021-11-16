@@ -1,3 +1,4 @@
+import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.dataService.logout();
   }
 
 }

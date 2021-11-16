@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { GoogleLoginProvider, SocialAuthService } from "angularx-social-login";
 import { DataService } from "src/app/services/data.service";
 
 @Component({
@@ -14,7 +16,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private socialAuthService: SocialAuthService
   ) {
     this.loginForm = this.formBuilder.group({
       mail: "",
@@ -60,5 +64,10 @@ export class LoginComponent implements OnInit {
   registerModeToogle() {
     this.registerMode = !this.registerMode;
     this.loginForm.reset();
+  }
+
+  loginWithGoogle() {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+    .then(() => this.router.navigate(['dashboard']));
   }
 }
