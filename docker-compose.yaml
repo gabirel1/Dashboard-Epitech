@@ -1,37 +1,37 @@
 version: "3"
 services:
-  server:
+  dashboard-server:
     build:
       context: ./server
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    container_name: server
+    container_name: dashboard-server
     depends_on: 
-      - database
+      - dashboard-database
     links: 
-      - database
+      - dashboard-database
     volumes:
       - ./server:/usr/src/app/server
       - /usr/src/app/server/node_modules
-  client:
+  dashboard-client:
     build:
       context: ./client
       dockerfile: Dockerfile
     ports:
       - "4200:4200"
-    container_name: client
+    container_name: dashboard-client
     depends_on: 
-      - server
+      - dashboard-server
     links: 
-      - server
+      - dashboard-server
     volumes:
       - ./client:/usr/src/app/client
       - /usr/src/app/client/node_modules
-  database:
+  dashboard-database:
     image: mysql:5.7
     restart: always
-    container_name: database
+    container_name: dashboard-database
     env_file:
       - .env
     ports:
