@@ -15,6 +15,7 @@ function addRoute(endpoint: string, service: any) {
 }
 
 addRoute('/auth/login', require('./routes/auth/login'));
+addRoute('/auth/register', require('./routes/auth/register'));
 addRoute('/auth/token', require('./routes/auth/token'));
 
 // export routes as a typescript module

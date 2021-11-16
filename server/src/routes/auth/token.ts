@@ -28,6 +28,7 @@ class Token {
         });
         // return res.status(200).send("testllll");
     }
+
     async post(req: express.Request, res: express.Response) {
         const { username } = req.body;
         let token: string = req.headers.authorization;
