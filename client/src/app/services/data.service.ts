@@ -29,29 +29,26 @@ export class DataService {
     return this.httpClient.get(
       this.REST_API_SERVER + "/" + endpoint + argsStr,
       {
-        headers: new HttpHeaders().set("Authorization", this.authToken),
+        headers: new HttpHeaders().set("Authorization", `token ${this.authToken}`),
       }
     );
   }
 
   public sendPostRequest(endpoint: string, args: any = {}): Observable<any> {
-    args["token"] = this.authToken;
     return this.httpClient.post(this.REST_API_SERVER + "/" + endpoint, args, {
-      headers: new HttpHeaders().set("Authorization", this.authToken),
+      headers: new HttpHeaders().set("Authorization", `token ${this.authToken}`),
     });
   }
 
   public sendPutRequest(endpoint: string, args: any = {}): Observable<any> {
-    args["token"] = this.authToken;
     return this.httpClient.put(this.REST_API_SERVER + "/" + endpoint, args, {
-      headers: new HttpHeaders().set("Authorization", this.authToken),
+      headers: new HttpHeaders().set("Authorization", `token ${this.authToken}`),
     });
   }
 
   public sendPatchRequest(endpoint: string, args: any = {}): Observable<any> {
-    args["token"] = this.authToken;
     return this.httpClient.patch(this.REST_API_SERVER + "/" + endpoint, args, {
-      headers: new HttpHeaders().set("Authorization", this.authToken),
+      headers: new HttpHeaders().set("Authorization", `token ${this.authToken}`),
     });
   }
 
@@ -60,22 +57,7 @@ export class DataService {
   }
 
   async checkLogin(autologin?: string): Promise<any> {
-    return new Promise((res, rej) => {
-      const session = autologin
-        ? autologin
-        : this.authToken != ""
-        ? this.authToken
-        : this.cookieService.get("dashboard_session");
-      this.authToken = session;
-      this.sendPostRequest("auth", {}).subscribe(
-        (data: any) => {
-          res(data);
-        },
-        (err) => {
-          rej(err);
-        }
-      );
-    });
+    // return 
   }
 
   saveToken(token: string): void {
