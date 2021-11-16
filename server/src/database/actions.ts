@@ -77,12 +77,18 @@ export const getUser = (mail: string, password: string, callback: Function) => {
 
     db.query(queryString2, (err: any, result: any) => {
         if (err) {
+            console.debug("isError == true");
             isError = true;
+        } else {
+            if (result.affectedRows === 0) {
+                console.debug("isError == true");
+                isError = true;
+            }
         }
     });
     db.query(queryString, (err: any, result: any) => {
-        if (err || isError) {
-            callback(err);
+        if (err || isError == true) {
+            callback((err) ? err : "internal server error");
         } else {
             console.debug(result);
             callback(null, { "expiresIn": expiresIn, token: token, result });
