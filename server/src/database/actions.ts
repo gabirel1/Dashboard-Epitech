@@ -72,9 +72,16 @@ export const getUser = (mail: string, password: string, callback: Function) => {
     const queryString2: string = " UPDATE users SET token = '" + token + "', token_created_at = '"
                                 + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE mail = '" + mail
                                 + "' AND password = '" + password + "';";
-    db.query(queryString2, (err: any, result: any) => {});
-    db.query(queryString, (err: any, result: any) => {
+
+    let isError: boolean = false;
+
+    db.query(queryString2, (err: any, result: any) => {
         if (err) {
+            isError = true;
+        }
+    });
+    db.query(queryString, (err: any, result: any) => {
+        if (err || isError) {
             callback(err);
         } else {
             console.debug(result);
