@@ -96,6 +96,44 @@ export const getUser = (mail: string, password: string, callback: Function) => {
     });
 }
 
+export const getUserGoogle = (mail: string, username: string, callback: Function) => {
+    const expiresIn: number = Number(process.env.EXPIRE_TIME) || 60 * 60;
+    const payload = {
+        mail: mail,
+    };
+    const token: string = jwt.sign(
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: expiresIn }
+    );
+    const queryString: string = "SELECT * FROM users WHERE google_mail = '" + mail + "' AND username = '" + username + "' LIMIT 1;";
+    const queryString2: string = " UPDATE users SET token = '" + token + "', token_created_at = '"
+                                + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE google_mail = '" + mail
+                                + "' AND username = '" + username + "';";
+
+    let isError: boolean = false;
+
+    db.query(queryString2, (err: any, result: any) => {
+        if (err) {
+            console.debug("isError == true");
+            isError = true;
+        } else {
+            if (result.affectedRows === 0) {
+                console.debug("isError == true");
+                isError = true;
+            }
+        }
+    });
+    db.query(queryString, (err: any, result: any) => {
+        if (err || isError == true) {
+            callback((err) ? err : "internal server error");
+        } else {
+            console.debug(result);
+            callback(null, { "expiresIn": expiresIn, token: token, result });
+        }
+    });
+}
+
 export const checkToken = (token: string, callback: Function) => {
     const queryString: string = "SELECT * FROM users WHERE token = '" + token + "' LIMIT 1;";
     db.query(queryString, (err: any, result: any) => {

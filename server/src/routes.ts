@@ -14,7 +14,7 @@ function addRoute(endpoint: string, service: any) {
     routes.push({method: 'OPTIONS', path: endpoint, func: () => {}});
 }
 
-addRoute('/auth/login/', require('./routes/auth/login'));
+addRoute('/auth/login/:type', require('./routes/auth/login'));
 addRoute('/auth/register/:type', require('./routes/auth/register'));
 addRoute('/auth/token', require('./routes/auth/token'));
 
