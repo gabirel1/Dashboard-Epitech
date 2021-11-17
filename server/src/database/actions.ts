@@ -134,6 +134,29 @@ export const getUserGoogle = (mail: string, username: string, callback: Function
     });
 }
 
+export const addOauthLogins = (token:string, mail: string, username: string, type: string, callback: Function): void => {
+    let queryString: string = "";
+
+    switch (type) {
+        case "google_user":
+            queryString = "UPDATE users SET google_mail = '" + mail + "' WHERE username = '"
+                            + username + "' AND token = '" + token + "';";
+        case "apple_user":
+            queryString = "UPDATE users SET apple_mail = '" + mail + "' WHERE username = '"
+            + username + "' AND token = '" + token + "';";
+        case "facebook_user":
+            queryString = "UPDATE users SET facebook_mail = '" + mail + "' WHERE username = '"
+            + username + "' AND token = '" + token + "';";
+    }
+    db.query(queryString, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    });
+}
+
 export const checkToken = (token: string, callback: Function) => {
     const queryString: string = "SELECT * FROM users WHERE token = '" + token + "' LIMIT 1;";
     db.query(queryString, (err: any, result: any) => {
@@ -146,7 +169,7 @@ export const checkToken = (token: string, callback: Function) => {
     });
 }
 
-export const generateNewToken = (oldToken: string, username: string, callback: Function) => {
+export const generateNewToken = (oldToken: string, username: string, callback: Function): void => {
     const expiresIn: number = Number(process.env.EXPIRE_TIME) || 60 * 60;
     const payload = {
         username: username,
