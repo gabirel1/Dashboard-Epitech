@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
-import { GoogleLoginProvider, SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider, MicrosoftLoginProvider, SocialAuthService } from "angularx-social-login";
 import { DataService } from "src/app/services/data.service";
 
 @Component({
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.registerMode) {
       this.dataService
-        .sendPostRequest("auth/register", this.loginForm.value)
+        .sendPostRequest("auth/register/plain_user", this.loginForm.value)
         .subscribe({
           next: () => {
             window.location.href = "/login";
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         });
     } else {
       this.dataService
-        .sendPostRequest("auth/login", this.loginForm.value)
+        .sendPostRequest("auth/login/plain_user", this.loginForm.value)
         .subscribe({
           next: (data) => {
             this.dataService.saveToken(data.token);
@@ -66,8 +66,51 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset();
   }
 
-  loginWithGoogle() {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
-    .then(() => this.router.navigate(['dashboard']));
+  async loginWithGoogle() {
+    const userResponse = await this.socialAuthService.signIn(
+      GoogleLoginProvider.PROVIDER_ID
+    );
+    this.dataService
+      .sendPostRequest("auth/register/google_user", {
+        access_token: userResponse.response.access_token,
+      })
+      .subscribe({
+        next: (data) => {
+          this.dataService.saveToken(data.token);
+          window.location.href = "/dashboard";
+        },
+      });
+  }
+
+  async loginWithMicrosoft() {
+    const userResponse = await this.socialAuthService.signIn(
+      MicrosoftLoginProvider.PROVIDER_ID
+    );
+    this.dataService
+      .sendPostRequest("auth/register/microsoft_user", {
+        access_token: userResponse.response.accessToken,
+      })
+      .subscribe({
+        next: (data) => {
+          this.dataService.saveToken(data.token);
+          window.location.href = "/dashboard";
+        },
+      });
+  }
+
+  async loginWithFacebook() {
+    const userResponse = await this.socialAuthService.signIn(
+      FacebookLoginProvider.PROVIDER_ID
+    );
+    this.dataService
+      .sendPostRequest("auth/register/facebook_user", {
+        access_token: userResponse.authToken,
+      })
+      .subscribe({
+        next: (data) => {
+          this.dataService.saveToken(data.token);
+          window.location.href = "/dashboard";
+        },
+      });
   }
 }

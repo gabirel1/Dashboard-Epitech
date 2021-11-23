@@ -18,7 +18,7 @@
         </div>
         <div class="form-group mt-3" *ngIf="registerMode"><label for="password_confirm">Confirmer le mot de
             passe</label>
-          <input autocomplete="password" id="password_confirm" aria-describedby="password_confirm"
+          <input autocomplete="password" id="password_confirm" type="password" aria-describedby="password_confirm"
             type="password_confirm" class="form-control ng-untouched ng-pristine ng-valid">
         </div>
         <div class="d-flex justify-content-end">
@@ -29,10 +29,19 @@
         <div class="row">
           <div class="text-center mt-3"><button type="submit"
               class="btn btn-primary btn-block">{{registerMode ? 'Créer mon compte' : 'Se connecter'}}</button>
-            <button (click)="loginWithGoogle()" class="btn btn-secondary ms-3">
-              Login with Google
-            </button>
           </div>
+        </div>
+        <div class="row mt-3">
+          <hr>
+          <button (click)="loginWithGoogle()" class="btn btn-secondary">
+            <i class="fas fa-google me-2"></i>Login with Google
+          </button>
+          <button (click)="loginWithMicrosoft()" class="btn btn-secondary mt-3">
+            <i class="fas fa-microsoft me-2"></i>Login with Microsoft
+          </button>
+          <button (click)="loginWithFacebook()" class="btn btn-secondary mt-3">
+            <i class="fas fa-facebook me-2"></i>Login with Facebook
+          </button>
         </div>
       </form>
     </div>
