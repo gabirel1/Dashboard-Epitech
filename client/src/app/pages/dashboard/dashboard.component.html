@@ -1,3 +1,9 @@
-<div *ngIf="socialAuthServive.authState | async as socialUser">
-  <p>Hello, {{socialUser.name}}!</p>
+<div cdkDropListGroup class="wrapper d-flex">
+  <app-side-nav></app-side-nav>
+  <div class="container-fluid mt-3">
+    <div cdkDropList id="dashboard" #dashboard="cdkDropList" (cdkDropListDropped)="drop($event)"
+      [cdkDropListData]="widgets" class="row">
+      <app-widget-card [widget]="widget" *ngFor="let widget of widgets" class="col-3" cdkDrag></app-widget-card>
+    </div>
+  </div>
 </div>

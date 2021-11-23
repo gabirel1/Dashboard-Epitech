@@ -1,0 +1,8 @@
+<div class="card text-white shadow" style="max-width: 20rem;" *ngIf="widget">
+  <div class="card-header bg-primary">{{widget.name}}</div>
+  <div class="card-body">
+    <ng-container [ngSwitch]="widget.componentName">
+      <app-weather-temperature *ngSwitchCase="'app-weather-temperature'"></app-weather-temperature>
+    </ng-container>
+  </div>
+</div>

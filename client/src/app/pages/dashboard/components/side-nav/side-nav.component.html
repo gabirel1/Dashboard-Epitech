@@ -1,0 +1,21 @@
+<nav id="sidebar" class="navbar-dark bg-primary" [ngClass]="{'hidden': sideNavService.isNavBarHidden()}">
+  <div class="row">
+    <div class="col-1 offset-8">
+      <button class="btn text-white" (click)="sideNavService.toogleNavBar()">
+        <h1>{{sideNavService.isNavBarHidden() ? '»' : '«'}}</h1>
+      </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="!sideNavService.isNavBarHidden()">
+    <ul>
+      <li *ngFor="let service of servicesService.getServices()" cdkDropList [cdkDropListEnterPredicate]="evenPredicate" [cdkDropListData]="service.widgets">
+        <span class="service-title">{{service.name}}</span>
+        <div class="m-3">
+          <div *ngFor="let widget of service.widgets" cdkDrag>
+            <app-widget-card [widget]="widget"></app-widget-card>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

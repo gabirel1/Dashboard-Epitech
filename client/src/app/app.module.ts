@@ -1,3 +1,5 @@
+import { WeatherTemperatureComponent } from './components/widgets/weather/weather-temperature/weather-temperature.component';
+import { SideNavComponent } from './pages/dashboard/components/side-nav/side-nav.component';
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { HttpClientModule } from "@angular/common/http";
 import { LoginComponent } from "./pages/login/login.component";
@@ -14,6 +16,8 @@ import {
   SocialLoginModule,
   FacebookLoginProvider,
 } from "angularx-social-login";
+import { WidgetCardComponent } from './pages/dashboard/components/widget-card/widget-card.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,9 @@ import {
     LoginComponent,
     NavbarComponent,
     DashboardComponent,
+    SideNavComponent,
+    WidgetCardComponent,
+    WeatherTemperatureComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +36,7 @@ import {
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule,
+    DragDropModule
   ],
   providers: [
     {
