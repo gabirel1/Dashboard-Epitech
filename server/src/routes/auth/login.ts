@@ -1,5 +1,4 @@
 import express from "express";
-import { addUser, getUser } from "../../database/actions";
 import { loginUser, loginGoogle } from "./loginActions";
 
 class Login {

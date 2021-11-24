@@ -1,5 +1,4 @@
 import { db } from './database';
-import { User } from './schemas';
 import moment from 'moment';
 import jwt from 'jsonwebtoken';
 
