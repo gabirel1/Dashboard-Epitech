@@ -16,6 +16,11 @@ export class ServicesService {
         {
           name: "Température",
           componentName: "app-weather-temperature",
+          widgetState: {
+            parameters: {
+              city: "Paris",
+            },
+          }
         },
       ],
     },

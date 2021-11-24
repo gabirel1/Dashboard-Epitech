@@ -1,11 +1,7 @@
 import { Widget } from "./interfaces/services";
 import { DataService } from "src/app/services/data.service";
 import { Component, OnInit } from "@angular/core";
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from "@angular/cdk/drag-drop";
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: "app-dashboard",
@@ -15,12 +11,7 @@ import {
 export class DashboardComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
-  public widgets: Widget[] = [
-    {
-      name: "Widget 1",
-      componentName: "app-weather-temperature",
-    },
-  ];
+  public widgets: Widget[] = [];
 
   ngOnInit() {
     this.dataService.checkLogin().subscribe({
@@ -40,7 +31,7 @@ export class DashboardComponent implements OnInit {
       );
     } else {
       const item = event.previousContainer.data[event.previousIndex];
-      event.container.data.push(item);
+      event.container.data.push({ ...item });
     }
   }
 }

@@ -1,0 +1,18 @@
+.card {
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card-body {
+    -webkit-backface-visibility: hidden;
+    /* Safari */
+    backface-visibility: hidden;
+}
+
+.editCardContent {
+    transform: rotateY(180deg);
+}
+
+.editCard {
+    transform: rotateY(180deg);
+}
