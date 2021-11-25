@@ -34,10 +34,10 @@ export const getUsers = async (infos: UserInformations, callback: Function) => {
 
         db.query(query, (err: any, result: any) => {
             if (err) {
-                console.debug(err);
+                console.debug("[getUser] err ", err);
                 callback(err);
             } else {
-                console.debug(result);
+                console.debug("[getUser] success ", result);
                 callback(null, result);
             }
         });

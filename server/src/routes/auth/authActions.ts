@@ -2,56 +2,74 @@ import express from 'express';
 import { UserInformations } from '../../database/interfaces';
 import { addUsers, getUsers, updateUserAuthToken } from '../../database/databaseActions';
 import jwt from 'jsonwebtoken';
+import axios, { AxiosResponse } from 'axios';
+import { json } from 'stream/consumers';
 
 export const handleOAuthUsers = async (req: express.Request, res: express.Response) => {
     const type: string = req.params.type;
-    const { givenToken } = req.body;
+    const { access_token } = req.body;
     let user: { type: string, userJson: any } = { type: '', userJson: {} };
-    let response: Response;
+    let response: AxiosResponse;
 
     switch (type) {
         case 'google_user':
-            response = await fetch('https://www.googleapis.com/oauth2/v1/userinfo?alt=json', {
-                headers: {
-                    Authorization: `Bearer ${givenToken}`
-                },
+            // response = await fetch('https://www.googleapis.com/oauth2/v1/userinfo?alt=json', {
+            //     headers: {
+            //         Authorization: `Bearer ${access_token}`
+            //     },
+            //     method: 'GET',
+            //     mode: 'no-cors',
+            // });
+            console.log('bearer token == ', access_token);
+            response = await axios({
                 method: 'GET',
-                mode: 'no-cors',
+                url: 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json',
+                headers: {
+                    'Authorization': `Bearer ${access_token}`
+                },
+                // mode: 'no-cors',
             });
-            let googleUser = await response.json();
+            console.debug("response == ", response.data);
+            let googleUser = response.data;
             user = { type: 'google_user', userJson: googleUser };
             break;
         case 'facebook_user':
-            response = await fetch('https://www.googleapis.com/oauth2/v1/userinfo?alt=json', {
-                headers: {
-                    Authorization: `Bearer ${givenToken}`
-                },
+            response = await axios({
                 method: 'GET',
-                mode: 'no-cors',
+                url: 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json',
+                headers: {
+                    'Authorization': `Bearer ${access_token}`
+                },
+                data: json,
+                // mode: 'no-cors',
             });
-            let facebookUser = await response.json();
+            let facebookUser = response.data;
             user = { type: 'facebook_user', userJson: facebookUser };
             break;
         case 'apple_user':
-            response = await fetch('https://www.googleapis.com/oauth2/v1/userinfo?alt=json', {
-                headers: {
-                    Authorization: `Bearer ${givenToken}`
-                },
+            response = await axios({
                 method: 'GET',
-                mode: 'no-cors',
+                url: 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json',
+                headers: {
+                    'Authorization': `Bearer ${access_token}`
+                },
+                data: json,
+                // mode: 'no-cors',
             });
-            let appleUser = await response.json();
+            let appleUser = response.data;
             user = { type: 'apple_user', userJson: appleUser };
             break;
         case 'office_user':
-            response = await fetch('https://www.googleapis.com/oauth2/v1/userinfo?alt=json', {
-                headers: {
-                    Authorization: `Bearer ${givenToken}`
-                },
+            response = await axios({
                 method: 'GET',
-                mode: 'no-cors',
+                url: 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json',
+                headers: {
+                    'Authorization': `Bearer ${access_token}`
+                },
+                data: json,
+                // mode: 'no-cors',
             });
-            let officeUser = await response.json();
+            let officeUser = response.data;
             user = { type: 'office_user', userJson: officeUser };
             break;
         default:
@@ -61,19 +79,19 @@ export const handleOAuthUsers = async (req: express.Request, res: express.Respon
     const infos: UserInformations = {
         mail: undefined,
         google_mail: (user.type === 'google_user') ? user.userJson.email : undefined,
-        google_token: (user.type === 'google_user') ? givenToken : undefined,
+        google_token: (user.type === 'google_user') ? access_token : undefined,
         facebook_mail: (user.type === 'facebook_user') ? user.userJson.email : undefined,
-        facebook_token: (user.type === 'facebook_user') ? givenToken : undefined,
+        facebook_token: (user.type === 'facebook_user') ? access_token : undefined,
         apple_mail: (user.type === 'apple_user') ? user.userJson.email : undefined,
-        apple_token: (user.type === 'apple_user') ? givenToken : undefined,
+        apple_token: (user.type === 'apple_user') ? access_token : undefined,
         office_mail: (user.type === 'office_user') ? user.userJson.email : undefined,
-        office_token: (user.type === 'office_user') ? givenToken : undefined,
+        office_token: (user.type === 'office_user') ? access_token : undefined,
         username: undefined,
         password: undefined,
     };
 
     const result = await handleOAuthUsersAction(infos);
-
+    console.log('ahahah result === ', result);
     if (result.error === true) {
         return res.status(400).json({
             error: result.error,
@@ -102,34 +120,41 @@ export const handleOAuthUsers = async (req: express.Request, res: express.Respon
     return res.status(200).json({ error: false, message: "user created", result: result.result });
 }
 
-export const handleOAuthUsersAction = async (infos: UserInformations) => {
-    const user = await checkUserExists(infos);
-
-    if (user === []) {
-        await addUsers(infos, (err: any, result: any) => {
-            if (err) {
-                console.debug('[handleOAuthUsersAction] | error[addUsers] = ', err);
-                return { error: true, message: "username or email already exists" };
-            } else {
-                console.debug('[handleOAuthUsersAction] | result[addUsers] = ', result);
-                return { error: false, message: "user created", result: result };
-            }
-        });
-    } else {
-        console.debug('[handleOAuthUsersAction] | user = ', user);
-        return { error: false, message: "user already exists", result: user };
-    }
+export const handleOAuthUsersAction = async (infos: UserInformations): Promise<{ error: boolean, message: string, result?: any }> => {
+    return new Promise(async (resolve, reject) => {
+        const user = await checkUserExists(infos);
+        console.log('user === ', user);
+        if (user == [] || user == undefined) {
+            console.log('salut ahahahahhaha gros con');
+        }
+        if (user == [] || user == undefined) {
+            await addUsers(infos, (err: any, result: any) => {
+                if (err) {
+                    console.debug('[handleOAuthUsersAction] | error[addUsers] = ', err);
+                    resolve({ error: true, message: "username or email already exists" });
+                } else {
+                    console.debug('[handleOAuthUsersAction] | result[addUsers] = ', result);
+                    resolve({ error: false, message: "user created", result: result });
+                }
+            });
+        } else {
+            console.debug('[handleOAuthUsersAction] | user = ', user);
+            resolve({ error: false, message: "user already exists", result: user });
+        }
+    });
 };
 
 const checkUserExists = async (infos: UserInformations): Promise<any> => {
-    getUsers(infos, (err: any, result: any) => {
-        if (err) {
-            console.debug('[checkUserExists] | error[getUsers] = ', err);
-            return [];
-        } else {
-            console.debug('result1', result);
-            console.debug('result1[0]', result[0]);
-            return (result![0]) ? result[0] : [];
-        }
+    return new Promise(async (resolve, reject) => {
+        await getUsers(infos, (err: any, result: any) => {
+            if (err) {
+                console.debug('[checkUserExists] | error[getUsers] = ', err);
+                resolve ([]);
+            } else {
+                console.debug('result1', result);
+                console.debug('result1[0]', result[0]);
+                resolve((result![0]) ? result[0] : []);
+            }
+        });
     });
 };
