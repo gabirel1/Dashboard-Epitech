@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
   apple_token VARCHAR(255),
   office_mail VARCHAR(255) UNIQUE,
   office_token VARCHAR(255),
-  username VARCHAR(255) NOT NULL UNIQUE,
+  username VARCHAR(255) UNIQUE,
   password VARCHAR(255),
   token VARCHAR(255),
   token_created_at DATETIME,

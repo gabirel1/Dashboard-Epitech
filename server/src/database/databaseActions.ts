@@ -1,4 +1,5 @@
 import { info } from 'console';
+import moment from 'moment';
 import { db } from './database';
 import { UserInformations } from './interfaces';
 
@@ -51,35 +52,80 @@ export const addUsers = async (infos: UserInformations, callback: Function) => {
 
     try {
         if (infos.mail !== undefined) {
-            query += "mail, username, password) VALUES ('"
-                    + infos.mail + "', '" + infos.username
-                    + "', '" + infos.password + "');";
+            query += "mail, password) VALUES ('"
+                    + infos.mail + "', '" + infos.username + "');";
             wasFound = true;
         }
         if (infos.google_mail !== undefined && wasFound === false) {
-            query += "google_mail, username) VALUES ('"
-                    + infos.google_mail + "', '" + infos.username + "');";
+            query += "google_mail, google_token) VALUES ('"
+                    + infos.google_mail + "', '" + infos.google_token + "');";
             wasFound = true;
         }
         if (infos.facebook_mail !== undefined && wasFound === false) {
-            query += "facebook_mail, username) VALUES ('"
-                    + infos.facebook_mail + "', '" + infos.username + "');";
+            query += "facebook_mail, facebook_token) VALUES ('"
+                    + infos.facebook_mail + "', '" + infos.facebook_token + "');";
             wasFound = true;
         }
         if (infos.apple_mail !== undefined && wasFound === false) {
-            query += "apple_mail, username) VALUES ('"
-                    + infos.apple_mail + "', '" + infos.username + "');";
+            query += "apple_mail, apple_token) VALUES ('"
+                    + infos.apple_mail + "', '" + infos.apple_token + "');";
             wasFound = true;
         }
         if (infos.office_mail !== undefined && wasFound === false) {
-            query += "office_mail, username) VALUES ('"
-                    + infos.office_mail + "', '" + infos.username + "');";
+            query += "office_mail, office_token) VALUES ('"
+                    + infos.office_mail + "', '" + infos.office_token + "');";
             wasFound = true;
         }
 
         console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    } catch (err) {
+        callback(err);
+    }
+}
+
+export const updateUserAuthToken = async (infos: UserInformations, jwtToken: string, callback: Function) => {
+    let query: string = "UPDATE users SET ";
+    let wasFound: boolean = false;
+
+    try {
+        if (infos.mail !== undefined) {
+            query += "token = '" + jwtToken + "', token_created_at = '"
+                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE mail = '" + infos.mail + "';"; 
+            wasFound = true;
+        }
+        if (infos.google_mail !== undefined && wasFound === false) {
+            query += "token = '" + jwtToken + "', token_created_at = '"
+                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE google_mail = '" + infos.google_mail + "';";
+            wasFound = true;
+        }
+        if (infos.facebook_mail !== undefined && wasFound === false) {
+            query += "token = '" + jwtToken + "', token_created_at = '"
+                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE facebook_mail = '" + infos.facebook_mail + "';";
+            wasFound = true;
+        }
+        if (infos.apple_mail !== undefined && wasFound === false) {
+            query += "token = '" + jwtToken + "', token_created_at = '"
+                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE apple_mail = '" + infos.apple_mail + "';";
+            wasFound = true;
+        }
+        if (infos.office_mail !== undefined && wasFound === false) {
+            query += "token = '" + jwtToken + "', token_created_at = '"
+                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE office_mail = '" + infos.office_mail + "';";
+            wasFound = true;
+        }
+
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err || result.affectedRows === 0) {
                 console.debug(err);
                 callback(err);
             } else {

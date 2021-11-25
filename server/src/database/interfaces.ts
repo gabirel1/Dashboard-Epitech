@@ -16,9 +16,13 @@ export interface User extends OauthInformations {
 export interface UserInformations {
     mail?: string,
     google_mail?: string,
+    google_token?: string,
     facebook_mail?: string,
+    facebook_token?: string,
     apple_mail?: string,
+    apple_token?: string,
     office_mail?: string,
+    office_token?: string,
     username?: string,
     password?: string,
 };
