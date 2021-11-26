@@ -1,9 +1,9 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import moment from 'moment';
+import { updateInfos } from '../../database/databaseActions';
 import { addUser, checkToken, generateNewToken, getUser } from '../../database/actions';
-
-import { db } from '../../database/database';
+import Utils from '../../utils/utils';
 
 class Token {
     async get(req: express.Request, res: express.Response) {
@@ -26,26 +26,35 @@ class Token {
                 return res.status(401).json({ valid: false, message: "token expired" });
             }
         });
-        // return res.status(200).send("testllll");
     }
 
     async post(req: express.Request, res: express.Response) {
-        const { username } = req.body;
         let token: string = req.headers.authorization;
         if (!token) {
             return res.status(401).json({ valid: false, message: "token not found" });
         }
+        console.debug("token = ", token);
         token = token.split(" ")[1];
+        console.debug("token2 = ", token);
 
-        generateNewToken(token, username, (err: any, result: any) => {
+        const expiresIn: number = Number(process.env.EXPIRE_TIME) || 60 * 60;
+        const payload = {
+            randomString: Utils.getRandomString(8),
+        };
+        const newToken: string = jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+            { expiresIn: expiresIn }
+        );
+        await updateInfos(['token', 'token_created_at'], [newToken, moment().format('YYYY-MM-DD HH:mm:ss')], 'token', token, (err: any, result: any) => {
             if (err) {
                 console.debug(err);
                 return res.status(500).json({ valid: false, message: "internal server error" });
             } else {
-                if (result.result.affectedRows === 0) {
+                if (result.affectedRows === 0) {
                     return res.status(401).json({ valid: false, message: "token invalid or not found" });
                 } else {
-                    return res.status(200).json({ valid: true, message: "token valid", expiresIn: result.expiresIn, token: result.token, result: result.result });
+                    return res.status(200).json({ valid: true, message: "token valid", expiresIn: expiresIn, token: newToken, result: result.result });
                 }
             }
         });

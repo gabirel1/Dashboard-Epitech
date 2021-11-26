@@ -14,11 +14,10 @@ function addRoute(endpoint: string, service: any) {
     routes.push({method: 'OPTIONS', path: endpoint, func: () => {}});
 }
 
-addRoute('/auth/login/:type', require('./routes/auth/login'));
-addRoute('/auth/register/:type', require('./routes/auth/register'));
+addRoute('/auth/login/', require('./routes/auth/login'));
+addRoute('/auth/register/', require('./routes/auth/register'));
 addRoute('/profile/update/:type', require('./routes/profile/profile'));
 addRoute('/auth/token', require('./routes/auth/token'));
-addRoute('/test', require('./database/test'));
 addRoute('/auth/OAuth/:type', require('./routes/auth/OAuth'));
 
 // export routes as a typescript module

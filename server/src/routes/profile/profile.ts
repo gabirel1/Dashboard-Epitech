@@ -1,6 +1,7 @@
 import express from "express";
 import { addOauthLogins } from "../../database/actions";
 import jwt from "jsonwebtoken";
+import { updateUserInformations } from "./profileActions";
 
 class Profile {
     async patch(req: express.Request, res: express.Response) {
@@ -17,14 +18,8 @@ class Profile {
             }
         });
 
-        addOauthLogins(token, mail, username, type, (err, result) => {
-            if (err) {
-                return res.status(500).json({ valid: false, message: err });
-            }
-            return res.status(200).json({ valid: true, message: "success" });
-        });
+        await updateUserInformations(req, res);
     }
-
 }
 
 module.exports = new Profile();

@@ -9,8 +9,7 @@ export const getUsers = async (infos: UserInformations, callback: Function) => {
 
     try {
         if (infos.mail !== undefined) {
-            query += "mail = '" + infos.mail + "' AND username = '"
-                    + infos.username + "' AND password = '" + infos.password + "';";
+            query += "mail = '" + infos.mail + "' AND password = '" + infos.password + "';";
             wasFound = true;
         }
         if (infos.google_mail !== undefined && wasFound === false) {
@@ -41,6 +40,7 @@ export const getUsers = async (infos: UserInformations, callback: Function) => {
                 callback(null, result);
             }
         });
+
     } catch (err) {
         callback(err);
     }
@@ -53,27 +53,27 @@ export const addUsers = async (infos: UserInformations, callback: Function) => {
     try {
         if (infos.mail !== undefined) {
             query += "mail, password) VALUES ('"
-                    + infos.mail + "', '" + infos.username + "');";
+                + infos.mail + "', '" + infos.username + "');";
             wasFound = true;
         }
         if (infos.google_mail !== undefined && wasFound === false) {
             query += "google_mail, google_token) VALUES ('"
-                    + infos.google_mail + "', '" + infos.google_token + "');";
+                + infos.google_mail + "', '" + infos.google_token + "');";
             wasFound = true;
         }
         if (infos.facebook_mail !== undefined && wasFound === false) {
             query += "facebook_mail, facebook_token) VALUES ('"
-                    + infos.facebook_mail + "', '" + infos.facebook_token + "');";
+                + infos.facebook_mail + "', '" + infos.facebook_token + "');";
             wasFound = true;
         }
         if (infos.apple_mail !== undefined && wasFound === false) {
             query += "apple_mail, apple_token) VALUES ('"
-                    + infos.apple_mail + "', '" + infos.apple_token + "');";
+                + infos.apple_mail + "', '" + infos.apple_token + "');";
             wasFound = true;
         }
         if (infos.office_mail !== undefined && wasFound === false) {
             query += "office_mail, office_token) VALUES ('"
-                    + infos.office_mail + "', '" + infos.office_token + "');";
+                + infos.office_mail + "', '" + infos.office_token + "');";
             wasFound = true;
         }
 
@@ -99,27 +99,27 @@ export const updateUserAuthToken = async (infos: UserInformations, jwtToken: str
     try {
         if (infos.mail !== undefined) {
             query += "token = '" + jwtToken + "', token_created_at = '"
-                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE mail = '" + infos.mail + "';"; 
+                + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE mail = '" + infos.mail + "';";
             wasFound = true;
         }
         if (infos.google_mail !== undefined && wasFound === false) {
             query += "token = '" + jwtToken + "', token_created_at = '"
-                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE google_mail = '" + infos.google_mail + "';";
+                + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE google_mail = '" + infos.google_mail + "';";
             wasFound = true;
         }
         if (infos.facebook_mail !== undefined && wasFound === false) {
             query += "token = '" + jwtToken + "', token_created_at = '"
-                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE facebook_mail = '" + infos.facebook_mail + "';";
+                + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE facebook_mail = '" + infos.facebook_mail + "';";
             wasFound = true;
         }
         if (infos.apple_mail !== undefined && wasFound === false) {
             query += "token = '" + jwtToken + "', token_created_at = '"
-                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE apple_mail = '" + infos.apple_mail + "';";
+                + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE apple_mail = '" + infos.apple_mail + "';";
             wasFound = true;
         }
         if (infos.office_mail !== undefined && wasFound === false) {
             query += "token = '" + jwtToken + "', token_created_at = '"
-                    + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE office_mail = '" + infos.office_mail + "';";
+                + moment().format('YYYY-MM-DD HH:mm:ss') + "' WHERE office_mail = '" + infos.office_mail + "';";
             wasFound = true;
         }
 
@@ -137,3 +137,40 @@ export const updateUserAuthToken = async (infos: UserInformations, jwtToken: str
         callback(err);
     }
 }
+
+/**
+ * updates a row in the users table
+ * @param row 
+ * @param newValue 
+ * @param whereRow 
+ * @param whereValue 
+ * @param callback 
+ */
+export const updateInfos = async (
+    rows: Array<string>, newValues: Array<string>,
+    whereRow: string, whereValue: string, callback: Function) => {
+    let query: string = 'UPDATE users SET ';
+
+    for (let i = 0; i < rows.length; i++) {
+        if (i !== 0) {
+            query += ', ';
+        }
+        query += rows[i] + ' = ' + `'${newValues[i]}'`;
+    }
+    query += ' WHERE ' + whereRow + ' = ' + `'${whereValue}'` + ';';
+
+    try {
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    } catch (err) {
+        callback(err);
+    }
+};
