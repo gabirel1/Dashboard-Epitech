@@ -6,7 +6,6 @@ import { updateUserInformations } from "./profileActions";
 class Profile {
     async patch(req: express.Request, res: express.Response) {
         let token: string = req.headers.authorization;
-        const { username, mail, type } = req.body;
         if (!token) {
             return res.status(401).json({ valid: false, message: "token not found" });
         }

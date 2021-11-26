@@ -61,7 +61,7 @@ export const updateUserInformations = async (req: express.Request, res: express.
         };
 
         if (user.type === 'google_user') {
-            await updateInfos(['google_mail', 'google_token'], [user.userJson.email, access_token], existingInformation, existingInformationType, (err: Error, result: any) => {
+            await updateInfos(['google_mail', 'google_token'], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) => {
                 if (err) {
                     console.error("Error == ", err);
                     return res.status(500).json({ message: 'Internal server error' });
@@ -70,7 +70,7 @@ export const updateUserInformations = async (req: express.Request, res: express.
             });
         }
         if (user.type === 'office_user') {
-            await updateInfos(['office_mail', 'office_token'], [user.userJson.email, access_token], existingInformation, existingInformationType, (err: Error, result: any) => {
+            await updateInfos(['office_mail', 'office_token'], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) => {
                 if (err) {
                     console.error("Error == ", err);
                     return res.status(500).json({ message: 'Internal server error' });
@@ -79,7 +79,7 @@ export const updateUserInformations = async (req: express.Request, res: express.
             });
         }
         if (user.type === 'facebook_user') {
-            await updateInfos(['facebook_mail', 'facebook_token'], [user.userJson.email, access_token], existingInformation, existingInformationType, (err: Error, result: any) => {
+            await updateInfos(['facebook_mail', 'facebook_token'], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) => {
                 if (err) {
                     console.error("Error == ", err);
                     return res.status(500).json({ message: 'Internal server error' });
@@ -88,7 +88,7 @@ export const updateUserInformations = async (req: express.Request, res: express.
             });
         }
         if (user.type === 'plain_user') {
-            await updateInfos(['mail', 'password'], [user.userJson.mail, user.userJson.password], existingInformation, existingInformationType, (err: Error, result: any) => {
+            await updateInfos(['mail', 'password'], [user.userJson.mail, user.userJson.password], existingInformationType, existingInformation, (err: Error, result: any) => {
                 if (err) {
                     console.error("Error == ", err);
                     return res.status(500).json({ message: 'Internal server error' });
