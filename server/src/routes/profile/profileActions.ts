@@ -1,9 +1,6 @@
 import express from 'express';
-import { UserInformations } from '../../database/interfaces';
-import { addUsers, getUsers, updateInfos, updateUserAuthToken } from '../../database/databaseActions';
-import jwt from 'jsonwebtoken';
+import { updateInfos } from '../../database/databaseActions';
 import axios, { AxiosResponse } from 'axios';
-import { json } from 'stream/consumers';
 
 export const updateUserInformations = async (req: express.Request, res: express.Response) => {
     try {

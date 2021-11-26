@@ -1,5 +1,4 @@
 import express from "express";
-import { addOauthLogins } from "../../database/actions";
 import jwt from "jsonwebtoken";
 import { updateUserInformations } from "./profileActions";
 

@@ -2,8 +2,8 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import { updateInfos } from '../../database/databaseActions';
-import { addUser, checkToken, generateNewToken, getUser } from '../../database/actions';
 import Utils from '../../utils/utils';
+import { checkToken } from './tokenAction';
 
 class Token {
     async get(req: express.Request, res: express.Response) {
