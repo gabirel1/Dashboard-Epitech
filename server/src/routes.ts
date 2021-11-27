@@ -16,9 +16,10 @@ function addRoute(endpoint: string, service: any) {
 
 addRoute('/auth/login/', require('./routes/auth/login'));
 addRoute('/auth/register/', require('./routes/auth/register'));
-addRoute('/profile/update/:type', require('./routes/profile/profile'));
+addRoute('/profile/update/:type', require('./routes/profile/profileUpdate'));
 addRoute('/auth/token', require('./routes/auth/token'));
 addRoute('/auth/OAuth/:type', require('./routes/auth/OAuth'));
+addRoute('/about.json', require('./routes/about/about'));
+addRoute('/widgets/:type', require('./routes/widgets/widget'));
 
-// export routes as a typescript module
 export default routes;

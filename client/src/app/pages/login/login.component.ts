@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.registerMode) {
       this.dataService
-        .sendPostRequest("auth/register/plain_user", this.loginForm.value)
+        .sendPostRequest("auth/register/", this.loginForm.value)
         .subscribe({
           next: () => {
             window.location.href = "/login";
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         });
     } else {
       this.dataService
-        .sendPostRequest("auth/login/plain_user", this.loginForm.value)
+        .sendPostRequest("auth/login/", this.loginForm.value)
         .subscribe({
           next: (data) => {
             this.dataService.saveToken(data.token);

@@ -174,3 +174,22 @@ export const updateInfos = async (
         callback(err);
     }
 };
+
+export const getRow = async (row: string, value: string, callback: Function) => {
+    let query: string = "SELECT * FROM users WHERE " + row + " = '" + value + "' LIMIT 1;";
+
+    try {
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    } catch (err) {
+        callback(err);
+    }
+};
