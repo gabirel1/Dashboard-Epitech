@@ -10,11 +10,17 @@ class Profile {
         }
         token = token.split(" ")[1];
 
-        jwt.verify(token, process.env.JWT_SECRET, (err: any, decoded: any) => {
-            if (err) {
+        try {
+            const decoded: string | jwt.JwtPayload = jwt.verify(token, process.env.JWT_SECRET);
+    
+            if (!decoded) {
+                console.log("heeeeeeeeeeeeeeeeeeeeere");
                 return res.status(401).json({ valid: false, message: "token invalid" });
             }
-        });
+        } catch (error) {
+            console.log("heeeeeeeeeeeeeeeeeeeeere2");
+            return res.status(401).json({ valid: false, message: "token invalid" });
+        }
 
         await getRow('token', token, (err: any, result: any) => {
             if (err) {
