@@ -1,6 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import Currency from './currency';
+import Nasa from './nasa';
 import Temperature from './temperature';
 
 class Widget {
@@ -29,6 +30,10 @@ class Widget {
                 return await Currency.getExchangeRate(req, res);
             case 'city_temperature':
                 return await Temperature.getTemperature(req, res);
+            case 'city_weather':
+                return await Temperature.getWeather(req, res);
+            case 'apod':
+                return await Nasa.getNasaDayImage(req, res);
             default:
                 return res.status(404).json({ error: true, message: "widget not found" });
         }

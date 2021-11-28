@@ -4,7 +4,6 @@ import moment from "moment";
 class About {
   async get(req: express.Request, res: express.Response) {
     let ip: string = req.ip;
-    //clean ip
     ip = ip.split(':')[3];
     console.log('ip == ', ip);
 
@@ -21,6 +20,16 @@ class About {
               {
                 "name": "city_temperature",
                 "description": "Display temperature for a city",
+                "params": [
+                  {
+                    "name": "city",
+                    "type": "string",
+                  }
+                ]
+              },
+              {
+                "name": "city_weather",
+                "description": "Display weather for a city",
                 "params": [
                   {
                     "name": "city",
@@ -45,6 +54,26 @@ class About {
                     "type": "string",
                   }
                 ]
+              }
+            ]
+          },{
+            "name": "nasa",
+            "widgets": [
+              {
+                "name": "apod",
+                "description": "Display the Astronomy Picture of the Day",
+                "params": [
+                  {
+                    "name": "date",
+                    "type": "string",
+                  }
+                ]
+              }
+            ]
+          },{
+            "name": "intra_epitech",
+            "widgets": [
+              {
               }
             ]
           }
