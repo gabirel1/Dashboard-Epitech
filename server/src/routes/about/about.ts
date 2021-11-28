@@ -68,6 +68,20 @@ class About {
                     "type": "string",
                   }
                 ]
+              },
+              {
+                "name": "curiosity_image",
+                "description": "Display an image from a curiosity",
+                "params": [
+                  {
+                    "name": "date",
+                    "type": "string",
+                  },
+                  {
+                    "name": "camera",
+                    "type": "string",
+                  }
+                ]
               }
             ]
           },{

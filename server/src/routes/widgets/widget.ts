@@ -34,6 +34,8 @@ class Widget {
                 return await Temperature.getWeather(req, res);
             case 'apod':
                 return await Nasa.getNasaDayImage(req, res);
+            case 'curiosity_image':
+                return await Nasa.getNasaRoverImage(req, res);
             default:
                 return res.status(404).json({ error: true, message: "widget not found" });
         }
