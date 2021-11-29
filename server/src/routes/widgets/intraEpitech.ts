@@ -69,7 +69,37 @@ class IntraEpitech {
                 error: 'Internal server error'
             });
         }
+    }
 
+    async getNotifications(req: express.Request, res: express.Response) {
+        try {
+            const { autologin } = req.body;            
+            let autoLogin: string = autologin;
+            let url: string = "";
+
+            if (autologin) {
+                if (autoLogin.startsWith("https://intra.epitech.eu/")) {
+                    autoLogin = autoLogin.substring(25);
+                }
+            }
+            let response: AxiosResponse = await axios({
+                method: 'get',
+                url: `https://intra.epitech.eu/${autoLogin}/user?format=json`
+            });
+            const login: string = response.data['login'];
+
+            url = `https://intra.epitech.eu/${autoLogin}/user/${login}/notification/message?format=json`;
+            let response2: AxiosResponse = await axios({
+                method: 'get',
+                url: url,
+            });
+            return res.status(200).json(response2.data);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({
+                error: 'Internal server error'
+            });
+        }
     }
 }
 

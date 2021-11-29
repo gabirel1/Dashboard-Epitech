@@ -99,7 +99,21 @@ class About {
               },{
                 "name": "intra_epitech_partners",
                 "description": "Display the partners of an intra epitech user",
-                
+                "params": [
+                  {
+                    "name": "autologin",
+                    "type": "string",
+                  }
+                ]
+              },{
+                "name": "intra_epitech_notifications",
+                "description": "Display the notifications of an intra epitech user",
+                "params": [
+                  {
+                    "name": "autologin",
+                    "type": "string",
+                  }
+                ]
               }
             ]
           }
