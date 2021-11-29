@@ -126,12 +126,7 @@ class About {
           },{
             "name": "intra_epitech",
             "display_name": "Intra Epitech",
-            "params": [
-              {
-                "name": "api_key",
-                "type": "string",
-              }
-            ],
+            "params": [],
             "widgets": [
               {
                 "name": "intra_epitech_profile",
