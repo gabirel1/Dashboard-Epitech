@@ -16,4 +16,5 @@ export interface Service {
   display_name: string;
   name: string;
   widgets: Widget[];
+  params: { name: string; type: string }[];
 }

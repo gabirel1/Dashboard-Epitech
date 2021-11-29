@@ -51,6 +51,13 @@ export class ServicesService {
     return null;
   }
 
+  saveServiceParameter(serviceName: string, parameterName: string, value: any) {
+    const params = localStorage.getItem(serviceName);
+    const parsedParams = JSON.parse(params || "{}");
+    parsedParams[parameterName] = value;
+    localStorage.setItem(serviceName, JSON.stringify(parsedParams));
+  }
+
   isServiceEnabled(service: Service): boolean {
     const servicesEnabled = JSON.parse(
       localStorage.getItem("servicesEnabled") || "[]"

@@ -44,6 +44,22 @@ export class ProfileModalComponent implements OnInit {
     return this.servicesService.isServiceEnabled(service);
   }
 
+  onServiceParameterEdit(
+    event: any,
+    serviceName: string,
+    parameterName: string
+  ): void {
+    this.servicesService.saveServiceParameter(
+      serviceName,
+      parameterName,
+      event.target.value
+    );
+  }
+
+  getServiceParameter(serviceName: string, parameterName: string): string {
+    return this.servicesService.getServiceParameter(serviceName, parameterName);
+  }
+
   onServiceCheckboxChange(event: any, serviceName: string): void {
     const servicesEnabled = JSON.parse(
       localStorage.getItem("servicesEnabled") || "[]"

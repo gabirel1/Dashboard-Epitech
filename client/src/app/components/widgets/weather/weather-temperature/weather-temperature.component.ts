@@ -21,7 +21,6 @@ export async function weatherTemperatureRefresh(
   widget: Widget
 ): Promise<any> {
   const params = servicesService.prepareParamsForRequest(widget);
-
   dataService
     .sendPostRequest(`widgets/${widget.name}`, {
       api_key: servicesService.getServiceParameter(
@@ -33,7 +32,6 @@ export async function weatherTemperatureRefresh(
     .subscribe({
       next: (data) => {
         widget.widgetState.data = data;
-        console.log(data);
       },
     });
 }
