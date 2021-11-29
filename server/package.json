@@ -8,7 +8,9 @@
     "prestart": "npm run build",
     "start": "node .",
     "dev": "nodemon ./src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compodoc": "npx compodoc -p tsconfig.doc.json"
+
   },
   "author": "",
   "license": "ISC",
