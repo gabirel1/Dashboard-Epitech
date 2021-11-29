@@ -17,7 +17,9 @@ export class SideNavComponent implements OnInit {
     public servicesService: ServicesService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.servicesService.fetchServices();
+  }
 
   evenPredicate(item: CdkDrag<Widget>) {
     return false;

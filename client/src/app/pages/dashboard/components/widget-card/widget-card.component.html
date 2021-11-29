@@ -1,28 +1,27 @@
-<div class="card text-white shadow" style="max-width: 20rem;" *ngIf="widget"
+<div class="card text-white shadow" style="max-width: 20rem; min-height: 140px;" *ngIf="widget"
   [ngClass]="{'editCard': widget.widgetState.editMode}">
   <div *ngIf="!widget.widgetState.editMode">
-    <div class="card-header bg-primary d-flex justify-content-between">
-      <span>{{widget.name}}</span>
-      <a type="button" (click)="widget.widgetState.editMode = !widget.widgetState.editMode"><i
+    <div class="card-header d-flex justify-content-between" [class]="hideContent ? 'bg-secondary' : 'bg-primary'">
+      <span>{{widget.display_name}}</span>
+      <a type="button" *ngIf="!hideContent" (click)="widget.widgetState.editMode = !widget.widgetState.editMode"><i
           class="fas fa-edit"></i></a>
     </div>
-    <div class="card-body">
-      <ng-container [ngSwitch]="widget.componentName" *ngIf="!widget.widgetState.editMode">
-        <app-weather-temperature *ngSwitchCase="'app-weather-temperature'"></app-weather-temperature>
+    <div class="card-body" *ngIf="!hideContent">
+      <ng-container [ngSwitch]="widget.name" *ngIf="!widget.widgetState.editMode">
+        <app-weather-temperature [widget]="widget" #widgetComponent *ngSwitchCase="'city_temperature'"></app-weather-temperature>
       </ng-container>
     </div>
   </div>
 
   <div class="editCardContent" *ngIf="widget.widgetState.editMode">
     <div class="card-header bg-primary d-flex justify-content-between">
-      <span>Editer le widget {{widget.name}}</span>
-      <a type="button" (click)="widget.widgetState.editMode = !widget.widgetState.editMode"><i
+      <span>Edit {{widget.display_name}}</span>
+      <a type="button" (click)="validWidgetEditMode(widget)"><i
           class="fas fa-check"></i></a>
     </div>
     <div class="card-body">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" [(ngModel)]="widget.name">
+      <div class="form-group" *ngFor="let param of widget.widgetState.parameters">
+        <input type="text" class="form-control" id="name" [placeholder]="param.name" [(ngModel)]="param.value">
       </div>
     </div>
   </div>

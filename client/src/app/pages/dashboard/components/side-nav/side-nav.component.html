@@ -9,10 +9,10 @@
   <div class="row" *ngIf="!sideNavService.isNavBarHidden()">
     <ul>
       <li *ngFor="let service of servicesService.getServices()" cdkDropList [cdkDropListEnterPredicate]="evenPredicate" [cdkDropListData]="service.widgets">
-        <span class="service-title">{{service.name}}</span>
+        <span class="service-title">{{service.display_name}}</span>
         <div class="m-3">
-          <div *ngFor="let widget of service.widgets" cdkDrag>
-            <app-widget-card [widget]="widget"></app-widget-card>
+          <div *ngFor="let widget of service.widgets" cdkDrag class="mt-3">
+            <app-widget-card [hideContent]="true" [widget]="widget"></app-widget-card>
           </div>
         </div>
       </li>
