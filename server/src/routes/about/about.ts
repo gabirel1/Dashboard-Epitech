@@ -17,6 +17,7 @@ class About {
           {
             "name": "weather",
             "display_name": "Weather",
+            "api_url": "",
             "params": [
               {
                 "name": "api_key",
@@ -32,9 +33,6 @@ class About {
                   {
                     "name": "city",
                     "type": "string",
-                  },{
-                    "name": "api_key",
-                    "type": "string",
                   }
                 ]
               },
@@ -45,9 +43,6 @@ class About {
                 "params": [
                   {
                     "name": "city",
-                    "type": "string",
-                  },{
-                    "name": "api_key",
                     "type": "string",
                   }
                 ]
@@ -74,9 +69,6 @@ class About {
                   },{
                     "name": "to",
                     "type": "string",
-                  },{
-                    "name": "api_key",
-                    "type": "string",
                   }
                 ]
               }
@@ -99,9 +91,6 @@ class About {
                   {
                     "name": "date",
                     "type": "string",
-                  },{
-                    "name": "api_key",
-                    "type": "string",
                   }
                 ]
               },
@@ -115,9 +104,6 @@ class About {
                     "type": "string",
                   },{
                     "name": "camera",
-                    "type": "string",
-                  },{
-                    "name": "api_key",
                     "type": "string",
                   }
                 ]
