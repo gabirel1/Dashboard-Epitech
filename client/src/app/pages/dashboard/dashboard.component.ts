@@ -19,6 +19,11 @@ export class DashboardComponent implements OnInit {
         window.location.href = "/login";
       },
     });
+    this.widgets = JSON.parse(localStorage.getItem("widgets") || "[]");
+
+    setInterval(() => {
+      localStorage.setItem("widgets", JSON.stringify(this.widgets));
+    }, 5000);
   }
 
   drop(event: CdkDragDrop<Widget[]>) {
@@ -31,6 +36,10 @@ export class DashboardComponent implements OnInit {
       );
     } else {
       const item = event.previousContainer.data[event.previousIndex];
+      item.params = item.params.map((param) => ({
+        name: param.name,
+        type: param.type,
+      }));
       event.container.data.push({ ...item });
     }
   }

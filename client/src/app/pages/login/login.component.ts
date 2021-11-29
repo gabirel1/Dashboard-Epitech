@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
       GoogleLoginProvider.PROVIDER_ID
     );
     this.dataService
-      .sendPostRequest("auth/register/google_user", {
+      .sendPostRequest("auth/OAuth/google_user", {
         access_token: userResponse.response.access_token,
       })
       .subscribe({
@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
       MicrosoftLoginProvider.PROVIDER_ID
     );
     this.dataService
-      .sendPostRequest("auth/register/microsoft_user", {
+      .sendPostRequest("auth/OAuth/microsoft_user", {
         access_token: userResponse.response.accessToken,
       })
       .subscribe({
@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
       FacebookLoginProvider.PROVIDER_ID
     );
     this.dataService
-      .sendPostRequest("auth/register/facebook_user", {
+      .sendPostRequest("auth/OAuth/facebook_user", {
         access_token: userResponse.authToken,
       })
       .subscribe({

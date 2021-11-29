@@ -3,7 +3,9 @@
   <div class="container-fluid mt-3">
     <div cdkDropList id="dashboard" #dashboard="cdkDropList" (cdkDropListDropped)="drop($event)"
       [cdkDropListData]="widgets" class="row">
-      <app-widget-card [widget]="widget" *ngFor="let widget of widgets" class="col-3" cdkDrag></app-widget-card>
+      <div *ngFor="let widget of widgets" class="col-3 mb-3">
+        <app-widget-card [widget]="widget" cdkDrag></app-widget-card>
+      </div>
     </div>
   </div>
 </div>
