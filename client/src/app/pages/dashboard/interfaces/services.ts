@@ -2,7 +2,6 @@ export interface WidgetState {
   editMode?: boolean;
   parameters: any;
   data?: any;
-  // serviceName: string;
 }
 
 export interface Widget {
@@ -10,6 +9,7 @@ export interface Widget {
   name: string;
   params: { name: string; type: string }[];
   widgetState: WidgetState;
+  serviceName: string;
 }
 
 export interface Service {

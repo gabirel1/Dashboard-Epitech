@@ -10,6 +10,8 @@
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5;
+    max-height: 1vh;
+    overflow-y: auto;
 }
 
 #sidebar.hidden {

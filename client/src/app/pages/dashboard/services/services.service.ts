@@ -18,8 +18,12 @@ export class ServicesService {
   fetchServices() {
     this.dataService.sendGetRequest("about.json").subscribe({
       next: (data) => {
-        console.log(data);
         this._services = data.server.services;
+        this._services.forEach((service) => {
+          service.widgets.forEach((widget) => {
+            widget.serviceName = service.name;
+          });
+        });
       },
     });
   }
@@ -37,5 +41,20 @@ export class ServicesService {
 
   getWidgetFunc(widgetName: string) {
     return this._widgetsFuncs[widgetName as keyof typeof this._widgetsFuncs];
+  }
+
+  getServiceParameter(serviceName: string, parameterName: string) {
+    const params = localStorage.getItem(serviceName);
+    if (params) {
+      return JSON.parse(params)[parameterName];
+    }
+    return null;
+  }
+
+  isServiceEnabled(service: Service): boolean {
+    const servicesEnabled = JSON.parse(
+      localStorage.getItem("servicesEnabled") || "[]"
+    );
+    return servicesEnabled.includes(service.name);
   }
 }

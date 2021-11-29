@@ -1,3 +1,4 @@
+import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 import { WeatherTemperatureComponent } from './components/widgets/weather/weather-temperature/weather-temperature.component';
 import { SideNavComponent } from './pages/dashboard/components/side-nav/side-nav.component';
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
@@ -25,6 +26,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     LoginComponent,
     NavbarComponent,
     DashboardComponent,
+    ProfileModalComponent,
     SideNavComponent,
     WidgetCardComponent,
     WeatherTemperatureComponent

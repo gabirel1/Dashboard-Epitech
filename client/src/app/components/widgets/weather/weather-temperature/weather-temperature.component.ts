@@ -24,7 +24,10 @@ export async function weatherTemperatureRefresh(
 
   dataService
     .sendPostRequest(`widgets/${widget.name}`, {
-      api_key: "7fcb07bf16dd0a0bb6ac7b6495d591a1",
+      api_key: servicesService.getServiceParameter(
+        widget.serviceName,
+        "api_key"
+      ),
       ...params,
     })
     .subscribe({
