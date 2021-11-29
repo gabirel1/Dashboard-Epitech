@@ -16,9 +16,11 @@ class About {
         "services": [
           {
             "name": "weather",
+            "display_name": "Weather",
             "widgets": [
               {
                 "name": "city_temperature",
+                "display_name": "City temperature",
                 "description": "Display temperature for a city",
                 "params": [
                   {
@@ -29,6 +31,7 @@ class About {
               },
               {
                 "name": "city_weather",
+                "display_name": "City weather",
                 "description": "Display weather for a city",
                 "params": [
                   {
@@ -40,9 +43,11 @@ class About {
             ]
           },{
             "name": "currency",
+            "display_name": "Currency Converter",
             "widgets": [
               {
                 "name": "currency_converter",
+                "display_name": "Currency Converter",
                 "description": "Display the exchange rate of a currency",
                 "params": [
                   {
@@ -58,9 +63,11 @@ class About {
             ]
           },{
             "name": "nasa",
+            "display_name": "NASA",
             "widgets": [
               {
                 "name": "apod",
+                "display_name": "Astronomy Picture of the Day",
                 "description": "Display the Astronomy Picture of the Day",
                 "params": [
                   {
@@ -71,6 +78,7 @@ class About {
               },
               {
                 "name": "curiosity_image",
+                "display_name": "Curiosity Rover Image",
                 "description": "Display an image from a curiosity",
                 "params": [
                   {
@@ -86,9 +94,11 @@ class About {
             ]
           },{
             "name": "intra_epitech",
+            "display_name": "Intra Epitech",
             "widgets": [
               {
                 "name": "intra_epitech_profile",
+                "display_name": "Profile",
                 "description": "Display the profile of an intra epitech user",
                 "params": [
                   {
@@ -98,6 +108,7 @@ class About {
                 ]
               },{
                 "name": "intra_epitech_partners",
+                "display_name": "Partners",
                 "description": "Display the partners of an intra epitech user",
                 "params": [
                   {
@@ -107,6 +118,7 @@ class About {
                 ]
               },{
                 "name": "intra_epitech_notifications",
+                "display_name": "Notifications",
                 "description": "Display the notifications of an intra epitech user",
                 "params": [
                   {
@@ -115,11 +127,25 @@ class About {
                   }
                 ]
               },{
+                "name": "intra_epitech_grades",
+                "display_name": "Grades",
+                "description": "Display the grades of an intra epitech user",
+                "params": [
+                  {
+                    "name": "autologin",
+                    "type": "string",
+                  }
+                ]
+              },{
                 "name": "intra_epitech_doors",
+                "display_name": "Open doors",
                 "description": "Open the door in epitech montpellier",
                 "params": [
                   {
                     "name": "autologin",
+                    "type": "string",
+                  },{
+                    "name": "door_name",
                     "type": "string",
                   }
                 ]

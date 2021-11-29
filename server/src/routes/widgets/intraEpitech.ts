@@ -102,6 +102,35 @@ class IntraEpitech {
         }
     }
 
+    async getGrades(req: express.Request, res: express.Response) {
+        try {
+            const { autologin } = req.body;
+            let autoLogin: string = autologin;
+            let url: string = "";
+
+            if (autoLogin.startsWith("https://intra.epitech.eu/")) {
+                autoLogin = autoLogin.substring(25);
+            }
+            url = `https://intra.epitech.eu/${autoLogin}/user?format=json`;
+            let response: AxiosResponse = await axios({
+                method: 'get',
+                url: url
+            });
+            const login: string = response.data['login'];
+            url = `https://intra.epitech.eu/${autoLogin}/user/${login}/notes?format=json`;
+            let response2: AxiosResponse = await axios({
+                method: 'get',
+                url: url,
+            });
+            return res.status(200).json(response2.data['modules']);            
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({
+                error: 'Internal server error'
+            });
+        }
+    }
+
     async openDoor(req: express.Request, res: express.Response) {
         try {
             const { autologin, door_name } = req.body;
