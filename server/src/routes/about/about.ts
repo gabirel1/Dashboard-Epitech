@@ -96,6 +96,10 @@ class About {
                     "type": "string",
                   }
                 ]
+              },{
+                "name": "intra_epitech_partners",
+                "description": "Display the partners of an intra epitech user",
+                
               }
             ]
           }

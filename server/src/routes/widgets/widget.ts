@@ -39,6 +39,8 @@ class Widget {
                 return await Nasa.getNasaRoverImage(req, res);
             case 'intra_epitech_profile':
                 return await IntraEpitech.getProfile(req, res);
+            case 'intra_epitech_partners':
+                return await IntraEpitech.getPartners(req, res);
             default:
                 return res.status(404).json({ error: true, message: "widget not found" });
         }
