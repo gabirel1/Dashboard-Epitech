@@ -1,18 +1,3 @@
-export interface OauthInformations {
-    test?: string,
-    googleMail?: string,
-    officeMail?: string,
-    appleMail?: string,
-};
-
-export interface User extends OauthInformations {
-    id: number,
-    mail: string,
-    username: string,
-    password?: string,
-    token: string,
-};
-
 export interface UserInformations {
     mail?: string,
     google_mail?: string,
@@ -25,4 +10,16 @@ export interface UserInformations {
     office_token?: string,
     username?: string,
     password?: string,
+};
+
+export interface IntraEpitechUser {
+    login: string,
+    firstname: string,
+    lastname: string,
+    profilePicture: string,
+    promo: string,
+    location: string,
+    semesterCode: string,
+    credits: number,
+    gpa: number,
 };

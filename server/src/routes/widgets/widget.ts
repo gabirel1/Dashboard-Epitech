@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import Currency from './currency';
 import Nasa from './nasa';
 import Temperature from './temperature';
+import IntraEpitech from './intraEpitech';
 
 class Widget {
     async post(req: express.Request, res: express.Response) {
@@ -36,6 +37,8 @@ class Widget {
                 return await Nasa.getNasaDayImage(req, res);
             case 'curiosity_image':
                 return await Nasa.getNasaRoverImage(req, res);
+            case 'intra_epitech_profile':
+                return await IntraEpitech.getProfile(req, res);
             default:
                 return res.status(404).json({ error: true, message: "widget not found" });
         }

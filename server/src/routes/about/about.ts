@@ -88,6 +88,14 @@ class About {
             "name": "intra_epitech",
             "widgets": [
               {
+                "name": "intra_epitech_profile",
+                "description": "Display the profile of an intra epitech user",
+                "params": [
+                  {
+                    "name": "autologin",
+                    "type": "string",
+                  }
+                ]
               }
             ]
           }
