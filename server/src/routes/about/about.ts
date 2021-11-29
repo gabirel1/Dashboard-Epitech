@@ -17,6 +17,12 @@ class About {
           {
             "name": "weather",
             "display_name": "Weather",
+            "params": [
+              {
+                "name": "api_key",
+                "type": "string",
+              }
+            ],
             "widgets": [
               {
                 "name": "city_temperature",
@@ -50,6 +56,12 @@ class About {
           },{
             "name": "currency",
             "display_name": "Currency Converter",
+            "params": [
+              {
+                "name": "api_key",
+                "type": "string",
+              }
+            ],
             "widgets": [
               {
                 "name": "currency_converter",
@@ -72,6 +84,12 @@ class About {
           },{
             "name": "nasa",
             "display_name": "NASA",
+            "params": [
+              {
+                "name": "api_key",
+                "type": "string",
+              }
+            ],
             "widgets": [
               {
                 "name": "apod",
@@ -108,6 +126,12 @@ class About {
           },{
             "name": "intra_epitech",
             "display_name": "Intra Epitech",
+            "params": [
+              {
+                "name": "api_key",
+                "type": "string",
+              }
+            ],
             "widgets": [
               {
                 "name": "intra_epitech_profile",
