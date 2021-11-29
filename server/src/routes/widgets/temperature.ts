@@ -4,9 +4,9 @@ import axios, { AxiosResponse } from 'axios';
 class Temperature {
     async getTemperature(req: express.Request, res: express.Response) {
         try {
-            const { city } = req.body;
-            const apikey: string = process.env.WEATHER_API_KEY;
-            const url: string = `http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=fr&units=metric&appid=${apikey}`;
+            const { city, api_key } = req.body;
+            // const apikey: string = process.env.WEATHER_API_KEY;
+            const url: string = `http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=fr&units=metric&appid=${api_key}`;
 
             let response: AxiosResponse = await axios({
                 method: 'get',
@@ -23,9 +23,9 @@ class Temperature {
 
     async getWeather(req: express.Request, res: express.Response) {
         try {
-            const { city } = req.body;
-            const apikey: string = process.env.WEATHER_API_KEY;
-            const url: string = `http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=fr&units=metric&appid=${apikey}`;
+            const { city, api_key } = req.body;
+            // const apikey: string = process.env.WEATHER_API_KEY;
+            const url: string = `http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=fr&units=metric&appid=${api_key}`;
 
             let response: AxiosResponse = await axios({
                 method: 'get',

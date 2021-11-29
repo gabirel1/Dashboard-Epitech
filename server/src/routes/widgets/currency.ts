@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 class Currency {
     async getExchangeRate(req: express.Request, res: express.Response) {
         try {
-            const { from, to } = req.body;
+            const { from, to, api_key } = req.body;
             console.log(from, to);
             const apikey = process.env.FREE_CURRENCY_API_KEY;
             const url: string = `https://freecurrencyapi.net/api/v2/latest?base_currency=${from}&apikey=${apikey}`;
