@@ -42,7 +42,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git commit -m "CI: Automated build push" -a | exit 0
       - name: Push changes
-        if: github.ref == 'refs/heads/master'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: "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"
+        run: git push
+        env:
+          REPO_KEY: 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
+          USERNAME: github-actions[bot]
