@@ -17,7 +17,7 @@ class About {
           {
             "name": "weather",
             "display_name": "Weather",
-            "api_url": "",
+            "api_url": "http://api.openweathermap.org",
             "params": [
               {
                 "name": "api_key",
@@ -51,6 +51,7 @@ class About {
           },{
             "name": "currency",
             "display_name": "Currency Converter",
+            "api_url": "https://freecurrencyapi.net/",
             "params": [
               {
                 "name": "api_key",
@@ -76,6 +77,7 @@ class About {
           },{
             "name": "nasa",
             "display_name": "NASA",
+            "api_url": "https://api.nasa.gov/",
             "params": [
               {
                 "name": "api_key",
@@ -112,6 +114,7 @@ class About {
           },{
             "name": "intra_epitech",
             "display_name": "Intra Epitech",
+            "api_url": "https://intra.epitech.eu/",
             "params": [],
             "widgets": [
               {
