@@ -114,6 +114,15 @@ class About {
                     "type": "string",
                   }
                 ]
+              },{
+                "name": "intra_epitech_doors",
+                "description": "Open the door in epitech montpellier",
+                "params": [
+                  {
+                    "name": "autologin",
+                    "type": "string",
+                  }
+                ]
               }
             ]
           }

@@ -43,6 +43,8 @@ class Widget {
                 return await IntraEpitech.getPartners(req, res);
             case 'intra_epitech_notifications':
                 return await IntraEpitech.getNotifications(req, res);
+            case 'intra_epitech_doors':
+                return await IntraEpitech.openDoor(req, res);
             default:
                 return res.status(404).json({ error: true, message: "widget not found" });
         }
