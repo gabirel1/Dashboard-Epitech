@@ -114,8 +114,8 @@ class About {
           },{
             "name": "intra_epitech",
             "display_name": "Intra Epitech",
-            "api_url": "https://intra.epitech.eu/",
             "params": [],
+            "api_url": "https://intra.epitech.eu/",
             "widgets": [
               {
                 "name": "intra_epitech_profile",

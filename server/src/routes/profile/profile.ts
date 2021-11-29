@@ -30,9 +30,23 @@ class Profile {
                 if (result.length === 0) {
                     return res.status(404).json({ error: false, message: "user not found" });
                 } else {
-                    return res.status(200).json({ error: true, message: "user found", result: result });
+                    console.log("result == ", result);
+                    console.log("result[0] == ", result[0]);
+                    let rslt = result[0];
+                    let user = {
+                        mail: rslt['mail'],
+                        google_mail: rslt['google_mail'],
+                        facebook_mail: rslt['facebook_mail'],
+                        outlook_mail: rslt['outlook_mail'],
+                        apple_mail: rslt['apple_mail'],
+                        office_mail: rslt['office_mail'],
+                    };
+
+                    return res.status(200).json({ error: true, message: "user found", result: user });
                 }
             }
         });
     }
 }
+
+module.exports = new Profile();
