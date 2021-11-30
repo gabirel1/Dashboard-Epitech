@@ -82,6 +82,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="classes/Widget.html" data-type="entity-link" >Widget</a>
                             </li>
+                            <li class="link">
+                                <a href="classes/WidgetsDB.html" data-type="entity-link" >WidgetsDB</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="chapter">

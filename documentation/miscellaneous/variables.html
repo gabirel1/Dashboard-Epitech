@@ -62,6 +62,9 @@
                             <a href="#addUsers" title="src/database/databaseActions.ts" ><b>addUsers</b>&nbsp;&nbsp;&nbsp;(src/.../databaseActions.ts)</a>
                         </li>
                         <li>
+                            <a href="#addWidget" title="src/database/databaseActions.ts" ><b>addWidget</b>&nbsp;&nbsp;&nbsp;(src/.../databaseActions.ts)</a>
+                        </li>
+                        <li>
                             <a href="#app" title="src/index.ts" ><b>app</b>&nbsp;&nbsp;&nbsp;(src/.../index.ts)</a>
                         </li>
                         <li>
@@ -71,10 +74,19 @@
                             <a href="#db" title="src/database/database.ts" ><b>db</b>&nbsp;&nbsp;&nbsp;(src/.../database.ts)</a>
                         </li>
                         <li>
+                            <a href="#deleteWidget" title="src/database/databaseActions.ts" ><b>deleteWidget</b>&nbsp;&nbsp;&nbsp;(src/.../databaseActions.ts)</a>
+                        </li>
+                        <li>
                             <a href="#getRow" title="src/database/databaseActions.ts" ><b>getRow</b>&nbsp;&nbsp;&nbsp;(src/.../databaseActions.ts)</a>
                         </li>
                         <li>
+                            <a href="#getUserByToken" title="src/database/databaseActions.ts" ><b>getUserByToken</b>&nbsp;&nbsp;&nbsp;(src/.../databaseActions.ts)</a>
+                        </li>
+                        <li>
                             <a href="#getUsers" title="src/database/databaseActions.ts" ><b>getUsers</b>&nbsp;&nbsp;&nbsp;(src/.../databaseActions.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getWidgetsByUserId" title="src/database/databaseActions.ts" ><b>getWidgetsByUserId</b>&nbsp;&nbsp;&nbsp;(src/.../databaseActions.ts)</a>
                         </li>
                         <li>
                             <a href="#handleOAuthUsers" title="src/routes/auth/authActions.ts" ><b>handleOAuthUsers</b>&nbsp;&nbsp;&nbsp;(src/.../authActions.ts)</a>
@@ -102,6 +114,9 @@
                         </li>
                         <li>
                             <a href="#updateUserInformations" title="src/routes/profile/profileActions.ts" ><b>updateUserInformations</b>&nbsp;&nbsp;&nbsp;(src/.../profileActions.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#updateWidget" title="src/database/databaseActions.ts" ><b>updateWidget</b>&nbsp;&nbsp;&nbsp;(src/.../databaseActions.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -132,7 +147,7 @@
     try {
         if (infos.mail !&#x3D;&#x3D; undefined) {
             query +&#x3D; &quot;mail, password) VALUES (&#x27;&quot;
-                + infos.mail + &quot;&#x27;, &#x27;&quot; + infos.username + &quot;&#x27;);&quot;;
+                + infos.mail + &quot;&#x27;, &#x27;&quot; + infos.password + &quot;&#x27;);&quot;;
             wasFound &#x3D; true;
         }
         if (infos.google_mail !&#x3D;&#x3D; undefined &amp;&amp; wasFound &#x3D;&#x3D;&#x3D; false) {
@@ -180,6 +195,82 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="addWidget"></a>
+                    <span class="name">
+                        <span ><b>addWidget</b></span>
+                        <a href="#addWidget"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>async (userId: string, widget: string, callback: Function) &#x3D;&gt; {
+    let query: string &#x3D; &quot;INSERT INTO widgets (user_id, data) VALUES (&#x27;&quot; + userId + &quot;&#x27;, &#x27;&quot; + JSON.stringify(widget) + &quot;&#x27;);&quot;;
+
+    try {
+        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
+        db.query(query, (err: any, result: any) &#x3D;&gt; {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
+        callback(err);
+    }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteWidget"></a>
+                    <span class="name">
+                        <span ><b>deleteWidget</b></span>
+                        <a href="#deleteWidget"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>async (userId: string, widgetId: string, callback: Function) &#x3D;&gt; {
+    let query: string &#x3D; &quot;DELETE FROM widgets WHERE user_id &#x3D; &#x27;&quot; + userId + &quot;&#x27; AND id &#x3D; &#x27;&quot; + widgetId + &quot;&#x27;;&quot;;
+
+    try {
+        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
+        db.query(query, (err: any, result: any) &#x3D;&gt; {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
+        callback(err);
+    }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getRow"></a>
                     <span class="name">
                         <span ><b>getRow</b></span>
@@ -200,6 +291,41 @@
                 callback(err);
             } else {
                 console.debug(result);
+                callback(null, result);
+            }
+        });
+    } catch (err) {
+        callback(err);
+    }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserByToken"></a>
+                    <span class="name">
+                        <span ><b>getUserByToken</b></span>
+                        <a href="#getUserByToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>async (token: string, callback: Function) &#x3D;&gt; {
+    let query: string &#x3D; &quot;SELECT * FROM users WHERE token &#x3D; &#x27;&quot; + token + &quot;&#x27;;&quot;;
+    try {
+        db.query(query, (err: any, result: any) &#x3D;&gt; {
+            if (err) {
+                console.debug(&quot;[getUserByToken] err &quot;, err);
+                callback(err);
+            } else {
+                console.debug(&quot;[getUserByToken] success &quot;, result);
                 callback(null, result);
             }
         });
@@ -265,6 +391,44 @@
         });
 
     } catch (err) {
+        callback(err);
+    }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getWidgetsByUserId"></a>
+                    <span class="name">
+                        <span ><b>getWidgetsByUserId</b></span>
+                        <a href="#getWidgetsByUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>async (userId: string, callback: Function) &#x3D;&gt; {
+    let query: string &#x3D; &quot;SELECT * FROM widgets WHERE user_id &#x3D; &#x27;&quot; + userId + &quot;&#x27;;&quot;;
+
+    try {
+        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
+        db.query(query, (err: any, result: any) &#x3D;&gt; {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
         callback(err);
     }
 }</code>
@@ -382,6 +546,44 @@
             }
         });
     } catch (err) {
+        callback(err);
+    }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateWidget"></a>
+                    <span class="name">
+                        <span ><b>updateWidget</b></span>
+                        <a href="#updateWidget"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>async (userId: string, widgetId: string, callback: Function) &#x3D;&gt; {
+    let query: string &#x3D; &quot;UPDATE widgets SET data &#x3D; &#x27;&quot; + JSON.stringify(widgetId) + &quot;&#x27; WHERE user_id &#x3D; &#x27;&quot; + userId + &quot;&#x27; AND id &#x3D; &#x27;&quot; + widgetId + &quot;&#x27;;&quot;;
+
+    try {
+        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
+        db.query(query, (err: any, result: any) &#x3D;&gt; {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
         callback(err);
     }
 }</code>

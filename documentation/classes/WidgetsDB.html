@@ -43,7 +43,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >Authentication</li>
+  <li >WidgetsDB</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/routes/auth/OAuth.ts</code>
+            <code>src/routes/widgets/widgetsdb.ts</code>
         </p>
 
 
@@ -84,7 +84,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#post" >post</a>
+                                <a href="#get" >get</a>
                             </li>
                         </ul>
                     </td>
@@ -109,26 +109,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="post"></a>
+                    <a name="get"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>post</b></span>
-                        <a href="#post"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>get</b></span>
+                        <a href="#get"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>post(req: express.Request, res: express.Response)</code>
+                    <code>get(req: express.Request, res: express.Response)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="5"
-                            class="link-to-prism">src/routes/auth/OAuth.ts:5</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="6"
+                            class="link-to-prism">src/routes/widgets/widgetsdb.ts:6</a></div>
                 </td>
             </tr>
 
@@ -199,15 +199,77 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import express from &#x27;express&#x27;;
-import { handleOAuthUsers } from &#x27;./authActions&#x27;;
+import { getWidgetsByUserId, getUserByToken } from &#x27;../../database/databaseActions&#x27;;
+import jwt from &#x27;jsonwebtoken&#x27;;
 
-class Authentication {
-    async post(req: express.Request, res: express.Response) {
-        return handleOAuthUsers(req, res);
+class WidgetsDB {
+    async get(req: express.Request, res: express.Response) {
+        try {
+            let token: string &#x3D; req.headers.authorization;
+            let valid: boolean &#x3D; true;
+
+            if (!token) {
+                return res.status(401).json({
+                    valid: false,
+                    message: &quot;token not found&quot;
+                });
+            }
+            token &#x3D; token.split(&quot; &quot;)[1];
+            const decoded: string | jwt.JwtPayload &#x3D; jwt.verify(token, process.env.JWT_SECRET);
+
+            if (!decoded) {
+                return res.status(401).json({
+                    valid: false,
+                    message: &quot;token invalid&quot;
+                });
+            }
+            await getUserByToken(token, async(err: any, user: any) &#x3D;&gt; {
+                if (err) {
+                    console.debug(err);
+                    return res.status(500).json({
+                        valid: false,
+                        message: &quot;error&quot;
+                    });
+                } else {
+                    if (user.length &#x3D;&#x3D;&#x3D; 0) {
+                        return res.status(404).json({
+                            valid: false,
+                            message: &quot;user not found&quot;
+                        });
+                    } else {
+                        let userId &#x3D; user[0][&#x27;id&#x27;];
+                        await getWidgetsByUserId(userId, (err: any, result: any) &#x3D;&gt; {
+                            if (err) {
+                                console.debug(err);
+                                return res.status(500).json({
+                                    valid: false,
+                                    message: &quot;error&quot;
+                                });
+                            }
+                            return res.status(200).json({
+                                valid: true,
+                                message: &quot;success&quot;,
+                                data: result
+                            });
+                        });
+                    }
+                }
+            });
+        } catch (error) {
+            console.log(error);
+            return res.status(401).json({
+                valid: false,
+                message: &quot;token invalid&quot;
+            });
+        }
     }
-}
 
-module.exports &#x3D; new Authentication();</code></pre>
+    // async patch(req: express.Request, res: express.Response) {
+        // 
+    // }
+};
+
+module.exports &#x3D; new WidgetsDB();</code></pre>
     </div>
 </div>
 
@@ -244,7 +306,7 @@ module.exports &#x3D; new Authentication();</code></pre>
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Authentication.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'WidgetsDB.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

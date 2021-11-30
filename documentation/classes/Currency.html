@@ -206,8 +206,7 @@ class Currency {
         try {
             const { from, to, api_key } &#x3D; req.body;
             console.log(from, to);
-            const apikey &#x3D; process.env.FREE_CURRENCY_API_KEY;
-            const url: string &#x3D; &#x60;https://freecurrencyapi.net/api/v2/latest?base_currency&#x3D;${from}&amp;apikey&#x3D;${apikey}&#x60;;
+            const url: string &#x3D; &#x60;https://freecurrencyapi.net/api/v2/latest?base_currency&#x3D;${from}&amp;apikey&#x3D;${api_key}&#x60;;
 
             let response: AxiosResponse &#x3D; await axios({
                 method: &#x27;get&#x27;,
