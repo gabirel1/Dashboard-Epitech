@@ -32,6 +32,7 @@ jobs:
           sudo npm install -g @compodoc/compodoc
           cd server/
           npm run compodoc
+          rm -rf ../documentation
           mv documentation ../documentation
           cd ../
       - name: Commit files
