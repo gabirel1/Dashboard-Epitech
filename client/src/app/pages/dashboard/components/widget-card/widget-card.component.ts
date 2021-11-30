@@ -21,11 +21,13 @@ export class WidgetCardComponent implements OnInit {
       editMode: false,
       parameters: [...this.widget.params],
     };
-    (this.servicesService.getWidgetFunc(this.widget.name) || (() => {}))(
-      this.dataService,
-      this.servicesService,
-      this.widget
-    );
+    if (!this.hideContent) {
+      (this.servicesService.getWidgetFunc(this.widget.name) || (() => {}))(
+        this.dataService,
+        this.servicesService,
+        this.widget
+      );
+    }
   }
 
   validWidgetEditMode(widget: Widget): void {

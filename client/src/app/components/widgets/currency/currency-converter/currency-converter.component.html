@@ -1,0 +1,6 @@
+<div *ngIf="widget">
+  <div class="row" *ngIf="widget.widgetState.data">
+    <h5 class="text-dark">1 {{widget.widgetState.data.base_currency}} = {{widget.widgetState.data.rate.toFixed(2)}}
+      {{widget.widgetState.data.target_currency}}</h5>
+  </div>
+</div>

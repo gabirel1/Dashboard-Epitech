@@ -1,12 +1,12 @@
 <div *ngIf="widget">
   <div class="row" *ngIf="widget.widgetState.data">
-    <h3 class="text-dark">{{widget.widgetState.data.temp.toFixed(0)}}°C</h3>
+    <div class="d-flex justify-content-between">
+      <h3 class="text-dark">{{widget.widgetState.data.temp.toFixed(0)}}°C</h3>
+      <small class="text-muted">{{widget.widgetState.parameters[0].value}}</small>
+    </div>
     <div class="d-flex justify-content-between">
       <small class="text-muted">Max : {{widget.widgetState.data.temp_max.toFixed(0)}}°C</small>
       <small class="text-muted">Min : {{widget.widgetState.data.temp_min.toFixed(0)}}°C</small>
     </div>
-  </div>
-  <div class="row" *ngIf="widget.widgetState.parameters[0]">
-    <small class="text-muted">{{widget.widgetState.parameters[0].value}}</small>
   </div>
 </div>
