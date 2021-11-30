@@ -6,8 +6,7 @@ class Currency {
         try {
             const { from, to, api_key } = req.body;
             console.log(from, to);
-            const apikey = process.env.FREE_CURRENCY_API_KEY;
-            const url: string = `https://freecurrencyapi.net/api/v2/latest?base_currency=${from}&apikey=${apikey}`;
+            const url: string = `https://freecurrencyapi.net/api/v2/latest?base_currency=${from}&apikey=${api_key}`;
 
             let response: AxiosResponse = await axios({
                 method: 'get',
