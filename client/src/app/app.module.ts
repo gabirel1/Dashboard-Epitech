@@ -1,6 +1,6 @@
-import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
-import { WeatherTemperatureComponent } from './components/widgets/weather/weather-temperature/weather-temperature.component';
-import { SideNavComponent } from './pages/dashboard/components/side-nav/side-nav.component';
+import { ProfileModalComponent } from "./components/profile-modal/profile-modal.component";
+import { WeatherTemperatureComponent } from "./components/widgets/weather/weather-temperature/weather-temperature.component";
+import { SideNavComponent } from "./pages/dashboard/components/side-nav/side-nav.component";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { HttpClientModule } from "@angular/common/http";
 import { LoginComponent } from "./pages/login/login.component";
@@ -17,8 +17,9 @@ import {
   SocialLoginModule,
   FacebookLoginProvider,
 } from "angularx-social-login";
-import { WidgetCardComponent } from './pages/dashboard/components/widget-card/widget-card.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { WidgetCardComponent } from "./pages/dashboard/components/widget-card/widget-card.component";
+import { DragDropModule } from "@angular/cdk/drag-drop";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ProfileModalComponent,
     SideNavComponent,
     WidgetCardComponent,
-    WeatherTemperatureComponent
+    WeatherTemperatureComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule,
-    DragDropModule
+    DragDropModule,
+    NgbModule,
   ],
   providers: [
     {
@@ -64,9 +66,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider(
-              "864939734206019"
-            ),
+            provider: new FacebookLoginProvider("864939734206019"),
           },
         ],
       },
