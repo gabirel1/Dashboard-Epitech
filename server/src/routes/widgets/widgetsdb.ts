@@ -64,6 +64,9 @@ class WidgetsDB {
         }
     }
 
+    // async patch(req: express.Request, res: express.Response) {
+        // 
+    // }
 };
 
 module.exports = new WidgetsDB();

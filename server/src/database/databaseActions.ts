@@ -230,3 +230,63 @@ export const getWidgetsByUserId = async (userId: string, callback: Function) => 
         callback(err);
     }
 };
+
+export const updateWidget = async (userId: string, widgetId: string, callback: Function) => {
+    let query: string = "UPDATE widgets SET data = '" + JSON.stringify(widgetId) + "' WHERE user_id = '" + userId + "' AND id = '" + widgetId + "';";
+
+    try {
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
+        callback(err);
+    }
+}
+
+export const deleteWidget = async (userId: string, widgetId: string, callback: Function) => {
+    let query: string = "DELETE FROM widgets WHERE user_id = '" + userId + "' AND id = '" + widgetId + "';";
+
+    try {
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
+        callback(err);
+    }
+}
+
+export const addWidget = async (userId: string, widget: string, callback: Function) => {
+    let query: string = "INSERT INTO widgets (user_id, data) VALUES ('" + userId + "', '" + JSON.stringify(widget) + "');";
+
+    try {
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
+        callback(err);
+    }
+}
