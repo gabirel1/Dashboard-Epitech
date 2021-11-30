@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
       MicrosoftLoginProvider.PROVIDER_ID
     );
     this.dataService
-      .sendPostRequest("auth/OAuth/microsoft_user", {
+      .sendPostRequest("auth/OAuth/office_user", {
         access_token: userResponse.response.accessToken,
       })
       .subscribe({
