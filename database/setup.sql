@@ -20,4 +20,11 @@ CREATE TABLE IF NOT EXISTS users (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS widgets (
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  data VARCHAR(65500) NOT NULL,
+  PRIMARY KEY (id)
+);
+
 INSERT INTO users (mail, username, password) VALUES ('mail@mail.com', 'testUser1', 'password');

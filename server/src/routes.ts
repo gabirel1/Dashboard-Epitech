@@ -22,5 +22,6 @@ addRoute('/auth/token', require('./routes/auth/token'));
 addRoute('/auth/OAuth/:type', require('./routes/auth/OAuth'));
 addRoute('/about.json', require('./routes/about/about'));
 addRoute('/widgets/:type', require('./routes/widgets/widget'));
+addRoute('/widgets/save', require('./routes/widgets/widgetsdb'));
 
 export default routes;

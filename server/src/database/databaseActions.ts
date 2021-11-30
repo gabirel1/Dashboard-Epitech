@@ -46,6 +46,23 @@ export const getUsers = async (infos: UserInformations, callback: Function) => {
     }
 };
 
+export const getUserByToken = async (token: string, callback: Function) => {
+    let query: string = "SELECT * FROM users WHERE token = '" + token + "';";
+    try {
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug("[getUserByToken] err ", err);
+                callback(err);
+            } else {
+                console.debug("[getUserByToken] success ", result);
+                callback(null, result);
+            }
+        });
+    } catch (err) {
+        callback(err);
+    }
+};
+
 export const addUsers = async (infos: UserInformations, callback: Function) => {
     let query: string = "INSERT into users (";
     let wasFound: boolean = false;
@@ -53,7 +70,7 @@ export const addUsers = async (infos: UserInformations, callback: Function) => {
     try {
         if (infos.mail !== undefined) {
             query += "mail, password) VALUES ('"
-                + infos.mail + "', '" + infos.username + "');";
+                + infos.mail + "', '" + infos.password + "');";
             wasFound = true;
         }
         if (infos.google_mail !== undefined && wasFound === false) {
@@ -193,3 +210,83 @@ export const getRow = async (row: string, value: string, callback: Function) => 
         callback(err);
     }
 };
+
+export const getWidgetsByUserId = async (userId: string, callback: Function) => {
+    let query: string = "SELECT * FROM widgets WHERE user_id = '" + userId + "';";
+
+    try {
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
+        callback(err);
+    }
+};
+
+export const updateWidget = async (userId: string, widgetId: string, callback: Function) => {
+    let query: string = "UPDATE widgets SET data = '" + JSON.stringify(widgetId) + "' WHERE user_id = '" + userId + "' AND id = '" + widgetId + "';";
+
+    try {
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
+        callback(err);
+    }
+}
+
+export const deleteWidget = async (userId: string, widgetId: string, callback: Function) => {
+    let query: string = "DELETE FROM widgets WHERE user_id = '" + userId + "' AND id = '" + widgetId + "';";
+
+    try {
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
+        callback(err);
+    }
+}
+
+export const addWidget = async (userId: string, widget: string, callback: Function) => {
+    let query: string = "INSERT INTO widgets (user_id, data) VALUES ('" + userId + "', '" + JSON.stringify(widget) + "');";
+
+    try {
+        console.debug("query == ", query);
+        db.query(query, (err: any, result: any) => {
+            if (err) {
+                console.debug(err);
+                callback(err);
+            } else {
+                console.debug(result);
+                callback(null, result);
+            }
+        });
+    }
+    catch (err) {
+        callback(err);
+    }
+}
