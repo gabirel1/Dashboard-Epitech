@@ -172,6 +172,30 @@ class About {
                 ]
               }
             ]
+          },{
+            "name": "office",
+            "display_name": "Office 365",
+            "params": [],
+            "api_url": "https://graph.microsoft.com/v1.0/me/",
+            "widgets": [
+              {
+                "name": "office_calendar_events",
+                "display_name": "Calendar events",
+                "description": "Display the calendar events of an office user",
+                "params": [
+                  {
+                    "name": "start_date",
+                    "type": "string",
+                  },{
+                    "name": "end_date",
+                    "type": "string",
+                  },{
+                    "name": "office_token",
+                    "type": "string",
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

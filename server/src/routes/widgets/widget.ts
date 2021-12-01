@@ -4,6 +4,7 @@ import Currency from './currency';
 import Nasa from './nasa';
 import Temperature from './temperature';
 import IntraEpitech from './intraEpitech';
+import Office from './office';
 
 class Widget {
     async post(req: express.Request, res: express.Response) {
@@ -47,6 +48,8 @@ class Widget {
                 return await IntraEpitech.openDoor(req, res);
             case 'intra_epitech_grades':
                 return await IntraEpitech.getGrades(req, res);
+            case 'office_calendar_events':
+                return await Office.getCalendarEvents(req, res);
             default:
                 return res.status(404).json({ error: true, message: "widget not found" });
         }
