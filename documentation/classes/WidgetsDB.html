@@ -86,6 +86,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#get" >get</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#patch" >patch</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -188,6 +192,89 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="patch"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>patch</b></span>
+                        <a href="#patch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>patch(req: express.Request, res: express.Response)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/routes/widgets/widgetsdb.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                            <code>express.Request</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>res</td>
+                                    <td>
+                                            <code>express.Response</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
 
@@ -199,14 +286,13 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import express from &#x27;express&#x27;;
-import { getWidgetsByUserId, getUserByToken } from &#x27;../../database/databaseActions&#x27;;
+import { getWidgetsByUserId, getUserByToken, addWidget, updateWidget } from &#x27;../../database/databaseActions&#x27;;
 import jwt from &#x27;jsonwebtoken&#x27;;
 
 class WidgetsDB {
     async get(req: express.Request, res: express.Response) {
         try {
             let token: string &#x3D; req.headers.authorization;
-            let valid: boolean &#x3D; true;
 
             if (!token) {
                 return res.status(401).json({
@@ -264,9 +350,94 @@ class WidgetsDB {
         }
     }
 
-    // async patch(req: express.Request, res: express.Response) {
-        // 
-    // }
+    async patch(req: express.Request, res: express.Response) {
+        try {
+            let token: string &#x3D; req.headers.authorization;
+            const { widgets } &#x3D; req.body;            
+
+            if (!token) {
+                return res.status(401).json({
+                    valid: false,
+                    message: &quot;token not found&quot;
+                });
+            }
+            token &#x3D; token.split(&quot; &quot;)[1];
+            const decoded: string | jwt.JwtPayload &#x3D; jwt.verify(token, process.env.JWT_SECRET);
+
+            if (!decoded) {
+                return res.status(401).json({
+                    valid: false,
+                    message: &quot;token invalid&quot;
+                });
+            }
+            await getUserByToken(token, async(err: any, user: any) &#x3D;&gt; {
+                if (err) {
+                    console.debug(err);
+                    return res.status(500).json({
+                        valid: false,
+                        message: &quot;error&quot;
+                    });
+                } else {
+                    if (user.length &#x3D;&#x3D;&#x3D; 0) {
+                        return res.status(404).json({
+                            valid: false,
+                            message: &quot;user not found&quot;
+                        });
+                    } else {
+                        let userId &#x3D; user[0][&#x27;id&#x27;];
+                        await getWidgetsByUserId(userId, async(err: any, result: any) &#x3D;&gt; {
+                            if (err) {
+                                console.debug(err);
+                                return res.status(500).json({
+                                    valid: false,
+                                    message: &quot;error&quot;
+                                });
+                            }
+                            if (result.length &#x3D;&#x3D;&#x3D; 0) {
+                                await addWidget(userId, widgets, (err: any, result: any) &#x3D;&gt; {
+                                    if (err) {
+                                        console.debug(err);
+                                        return res.status(500).json({
+                                            valid: false,
+                                            message: &quot;error&quot;
+                                        });
+                                    }
+                                    return res.status(200).json({
+                                        valid: true,
+                                        message: &quot;success&quot;,
+                                        data: result
+                                    });
+                                });
+                            }
+                            else {
+                                await updateWidget(userId, widgets, (err: any, result: any) &#x3D;&gt; {
+                                    if (err) {
+                                        console.debug(err);
+                                        return res.status(500).json({
+                                            valid: false,
+                                            message: &quot;error&quot;
+                                        });
+                                    }
+                                    return res.status(200).json({
+                                        valid: true,
+                                        message: &quot;success&quot;,
+                                        data: result
+                                    });
+                                });
+                            }
+                        });
+                    }
+                }
+            }
+        )}
+        catch (error) {
+            console.log(error);
+            return res.status(500).json({
+                valid: false,
+                message: &quot;error&quot;
+            });
+        }
+    }
 };
 
 module.exports &#x3D; new WidgetsDB();</code></pre>

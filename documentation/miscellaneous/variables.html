@@ -568,8 +568,8 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>async (userId: string, widgetId: string, callback: Function) &#x3D;&gt; {
-    let query: string &#x3D; &quot;UPDATE widgets SET data &#x3D; &#x27;&quot; + JSON.stringify(widgetId) + &quot;&#x27; WHERE user_id &#x3D; &#x27;&quot; + userId + &quot;&#x27; AND id &#x3D; &#x27;&quot; + widgetId + &quot;&#x27;;&quot;;
+                        <i>Default value : </i><code>async (userId: string, widget: string, callback: Function) &#x3D;&gt; {
+    let query: string &#x3D; &quot;UPDATE widgets SET data &#x3D; &#x27;&quot; + widget + &quot;&#x27; WHERE user_id &#x3D; &#x27;&quot; + userId + &quot;&#x27;;&quot;;
 
     try {
         console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
