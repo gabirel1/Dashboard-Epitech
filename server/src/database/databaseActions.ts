@@ -231,8 +231,8 @@ export const getWidgetsByUserId = async (userId: string, callback: Function) => 
     }
 };
 
-export const updateWidget = async (userId: string, widgetId: string, callback: Function) => {
-    let query: string = "UPDATE widgets SET data = '" + JSON.stringify(widgetId) + "' WHERE user_id = '" + userId + "' AND id = '" + widgetId + "';";
+export const updateWidget = async (userId: string, widget: string, callback: Function) => {
+    let query: string = "UPDATE widgets SET data = '" + widget + "' WHERE user_id = '" + userId + "';";
 
     try {
         console.debug("query == ", query);
