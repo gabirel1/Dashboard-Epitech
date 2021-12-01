@@ -62,6 +62,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Nasa.html" data-type="entity-link" >Nasa</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Office.html" data-type="entity-link" >Office</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Profile.html" data-type="entity-link" >Profile</a>
                             </li>
                             <li class="link">

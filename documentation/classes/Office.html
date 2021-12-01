@@ -43,7 +43,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >Widget</li>
+  <li >Office</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/routes/widgets/widget.ts</code>
+            <code>src/routes/widgets/office.ts</code>
         </p>
 
 
@@ -84,7 +84,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#post" >post</a>
+                                <a href="#getCalendarEvents" >getCalendarEvents</a>
                             </li>
                         </ul>
                     </td>
@@ -109,26 +109,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="post"></a>
+                    <a name="getCalendarEvents"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>post</b></span>
-                        <a href="#post"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getCalendarEvents</b></span>
+                        <a href="#getCalendarEvents"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>post(req: express.Request, res: express.Response)</code>
+                    <code>getCalendarEvents(req: express.Request, res: express.Response)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/routes/widgets/widget.ts:10</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="5"
+                            class="link-to-prism">src/routes/widgets/office.ts:5</a></div>
                 </td>
             </tr>
 
@@ -199,64 +199,33 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import express from &#x27;express&#x27;;
-import jwt from &#x27;jsonwebtoken&#x27;;
-import Currency from &#x27;./currency&#x27;;
-import Nasa from &#x27;./nasa&#x27;;
-import Temperature from &#x27;./temperature&#x27;;
-import IntraEpitech from &#x27;./intraEpitech&#x27;;
-import Office from &#x27;./office&#x27;;
+import axios, { AxiosResponse } from &#x27;axios&#x27;;
 
-class Widget {
-    async post(req: express.Request, res: express.Response) {
-        let valid: boolean &#x3D; true;
-        const type: string &#x3D; req.params.type;
-        let token: string &#x3D; req.headers.authorization;
-        if (!token) {
-            return res.status(401).json({ valid: false, message: &quot;token not found&quot; });
-        }
-        token &#x3D; token.split(&quot; &quot;)[1];
-
+class Office {
+    async getCalendarEvents(req: express.Request, res: express.Response) {
         try {
-            const decoded: string | jwt.JwtPayload &#x3D; jwt.verify(token, process.env.JWT_SECRET);
+            const { start_date, office_token, end_date } &#x3D; req.body;
+            
+            const url &#x3D; &#x60;https://graph.microsoft.com/v1.0/me/calendarview?startdatetime&#x3D;${start_date}&amp;enddatetime&#x3D;${end_date}&#x60;;
     
-            if (!decoded) {
-                return res.status(401).json({ valid: false, message: &quot;token invalid&quot; });
-            }
+            let response: AxiosResponse &#x3D; await axios({
+                method: &#x27;GET&#x27;,
+                url,
+                headers: {
+                    &#x27;Authorization&#x27;: &#x60;Bearer ${office_token}&#x60;
+                }
+            });
+            return res.status(200).json(response.data);
         } catch (error) {
-            return res.status(401).json({ valid: false, message: &quot;token invalid&quot; });
-        }
-
-
-        switch (type) {
-            case &#x27;currency_converter&#x27;:
-                return await Currency.getExchangeRate(req, res);
-            case &#x27;city_temperature&#x27;:
-                return await Temperature.getTemperature(req, res);
-            case &#x27;city_weather&#x27;:
-                return await Temperature.getWeather(req, res);
-            case &#x27;apod&#x27;:
-                return await Nasa.getNasaDayImage(req, res);
-            case &#x27;curiosity_image&#x27;:
-                return await Nasa.getNasaRoverImage(req, res);
-            case &#x27;intra_epitech_profile&#x27;:
-                return await IntraEpitech.getProfile(req, res);
-            case &#x27;intra_epitech_partners&#x27;:
-                return await IntraEpitech.getPartners(req, res);
-            case &#x27;intra_epitech_notifications&#x27;:
-                return await IntraEpitech.getNotifications(req, res);
-            case &#x27;intra_epitech_doors&#x27;:
-                return await IntraEpitech.openDoor(req, res);
-            case &#x27;intra_epitech_grades&#x27;:
-                return await IntraEpitech.getGrades(req, res);
-            case &#x27;office_calendar_events&#x27;:
-                return await Office.getCalendarEvents(req, res);
-            default:
-                return res.status(404).json({ error: true, message: &quot;widget not found&quot; });
+            console.log(error);
+            return res.status(500).json({
+                error: &#x27;Internal server error&#x27;
+            });
         }
     }
 }
 
-module.exports &#x3D; new Widget();</code></pre>
+export default new Office();</code></pre>
     </div>
 </div>
 
@@ -293,7 +262,7 @@ module.exports &#x3D; new Widget();</code></pre>
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Widget.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Office.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
