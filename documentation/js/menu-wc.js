@@ -56,6 +56,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/IntraEpitech.html" data-type="entity-link" >IntraEpitech</a>
                             </li>
                             <li class="link">
+                                <a href="classes/LeagueOfLegends.html" data-type="entity-link" >LeagueOfLegends</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Login.html" data-type="entity-link" >Login</a>
                             </li>
                             <li class="link">
@@ -100,6 +103,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
                                 <a href="interfaces/IntraEpitechUser.html" data-type="entity-link" >IntraEpitechUser</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/LeagueOfLegendsGameData.html" data-type="entity-link" >LeagueOfLegendsGameData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/LeagueOfLegendsProfileData.html" data-type="entity-link" >LeagueOfLegendsProfileData</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/UserInformations.html" data-type="entity-link" >UserInformations</a>
