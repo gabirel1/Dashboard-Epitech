@@ -5,6 +5,9 @@ import { weatherTemperatureRefresh } from "src/app/components/widgets/weather/we
 import { currencyConverterRefresh } from "src/app/components/widgets/currency/currency-converter/currency-converter.component";
 import { nasaPictureOfTheDayRefresh } from "src/app/components/widgets/nasa/nasa-picture-of-the-day/nasa-picture-of-the-day.component";
 import { weatherCityRefresh } from "src/app/components/widgets/weather/weather-city/weather-city.component";
+import { nasaPictureRoverRefresh } from "src/app/components/widgets/nasa/nasa-picture-rover/nasa-picture-rover.component";
+import { intraProfileRefresh } from "src/app/components/widgets/intra/intra-profile/intra-profile.component";
+import { intraPartnersRefresh } from "src/app/components/widgets/intra/intra-partners/intra-partners.component";
 
 @Injectable({
   providedIn: "root",
@@ -17,6 +20,9 @@ export class ServicesService {
     city_weather: weatherCityRefresh,
     currency_converter: currencyConverterRefresh,
     apod: nasaPictureOfTheDayRefresh,
+    curiosity_image: nasaPictureRoverRefresh,
+    intra_epitech_profile: intraProfileRefresh,
+    intra_epitech_partners: intraPartnersRefresh
   };
 
   constructor(private dataService: DataService) {}

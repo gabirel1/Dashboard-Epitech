@@ -1,6 +1,9 @@
-import { WeatherCityComponent } from './components/widgets/weather/weather-city/weather-city.component';
-import { NasaPictureOfTheDayComponent } from './components/widgets/nasa/nasa-picture-of-the-day/nasa-picture-of-the-day.component';
-import { CurrencyConverterComponent } from './components/widgets/currency/currency-converter/currency-converter.component';
+import { IntraPartnersComponent } from './components/widgets/intra/intra-partners/intra-partners.component';
+import { IntraProfileComponent } from "./components/widgets/intra/intra-profile/intra-profile.component";
+import { NasaPictureRoverComponent } from "./components/widgets/nasa/nasa-picture-rover/nasa-picture-rover.component";
+import { WeatherCityComponent } from "./components/widgets/weather/weather-city/weather-city.component";
+import { NasaPictureOfTheDayComponent } from "./components/widgets/nasa/nasa-picture-of-the-day/nasa-picture-of-the-day.component";
+import { CurrencyConverterComponent } from "./components/widgets/currency/currency-converter/currency-converter.component";
 import { ProfileModalComponent } from "./components/profile-modal/profile-modal.component";
 import { WeatherTemperatureComponent } from "./components/widgets/weather/weather-temperature/weather-temperature.component";
 import { SideNavComponent } from "./pages/dashboard/components/side-nav/side-nav.component";
@@ -36,7 +39,10 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     WeatherTemperatureComponent,
     WeatherCityComponent,
     CurrencyConverterComponent,
-    NasaPictureOfTheDayComponent
+    NasaPictureOfTheDayComponent,
+    NasaPictureRoverComponent,
+    IntraProfileComponent,
+    IntraPartnersComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
               {
                 authority:
                   "https://login.microsoftonline.com/901cb4ca-b862-4029-9306-e5cd0f6d9f86/",
-                  scopes: ["openid", "profile", "Calendars.Read"],
+                scopes: ["openid", "profile", "Calendars.Read"],
               }
             ),
           },

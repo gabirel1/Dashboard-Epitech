@@ -1,0 +1,12 @@
+<div *ngIf="widget">
+  <div class="row" *ngIf="widget.widgetState.data">
+    <div class="d-flex justify-content-between">
+      <img style="max-width: 32px; border-radius: 12px;"
+        [src]="widget.widgetState.parameters[0].value + widget.widgetState.data.profilePicture">
+      <h5 class="text-dark">{{widget.widgetState.data.firstname}} {{widget.widgetState.data.lastname}}</h5>
+    </div>
+    <small class="text-muted">Promo {{widget.widgetState.data.promo}}</small>
+    <small class="text-muted">{{widget.widgetState.data.credits}} crédits</small>
+    <small class="text-muted">{{widget.widgetState.data.gpa}} G.P.A</small>
+  </div>
+</div>

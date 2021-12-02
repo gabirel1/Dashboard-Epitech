@@ -1,0 +1,14 @@
+<div *ngIf="widget">
+  <div class="row" *ngIf="widget.widgetState.data">
+    <div class="d-flex justify-content-between">
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let student of widget.widgetState.data.slice(0, 5)">
+          <img style="max-width: 32px; border-radius: 12px;"
+          [src]="widget.widgetState.parameters[0].value + student.picture">
+          {{student.login.split('@')[0].split('.')[0]}}
+          <span class="ms-3 me-3 badge bg-primary rounded-pill">{{student.nb_activities}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

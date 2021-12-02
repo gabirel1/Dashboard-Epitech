@@ -12,6 +12,9 @@
         <app-weather-city [widget]="widget" #widgetComponent *ngSwitchCase="'city_weather'"></app-weather-city>
         <app-currency-converter [widget]="widget" #widgetComponent *ngSwitchCase="'currency_converter'"></app-currency-converter>
         <app-nasa-picture-of-the-day [widget]="widget" #widgetComponent *ngSwitchCase="'apod'"></app-nasa-picture-of-the-day>
+        <app-nasa-picture-rover [widget]="widget" #widgetComponent *ngSwitchCase="'curiosity_image'"></app-nasa-picture-rover>
+        <app-intra-profile [widget]="widget" #widgetComponent *ngSwitchCase="'intra_epitech_profile'"></app-intra-profile>
+        <app-intra-partners [widget]="widget" #widgetComponent *ngSwitchCase="'intra_epitech_partners'"></app-intra-partners>
       </ng-container>
     </div>
   </div>
