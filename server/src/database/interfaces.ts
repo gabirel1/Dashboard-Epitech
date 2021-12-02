@@ -23,3 +23,20 @@ export interface IntraEpitechUser {
     credits: number,
     gpa: number,
 };
+
+export interface LeagueOfLegendsGameData {
+    queueType: string,
+    tier: string,
+    rank: string,
+    wins: number,
+    losses: number,
+    leaguePoints: number,
+    winRate: number,
+};
+
+export interface LeagueOfLegendsProfileData {
+    summonerName: string,
+    summonerLevel: number,
+    profileIconURL: string,
+    gameData: Array<LeagueOfLegendsGameData>;    
+};
