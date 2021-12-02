@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { weatherTemperatureRefresh } from "src/app/components/widgets/weather/weather-temperature/weather-temperature.component";
 import { currencyConverterRefresh } from "src/app/components/widgets/currency/currency-converter/currency-converter.component";
 import { nasaPictureOfTheDayRefresh } from "src/app/components/widgets/nasa/nasa-picture-of-the-day/nasa-picture-of-the-day.component";
+import { weatherCityRefresh } from "src/app/components/widgets/weather/weather-city/weather-city.component";
 
 @Injectable({
   providedIn: "root",
@@ -13,6 +14,7 @@ export class ServicesService {
 
   private _widgetsFuncs = {
     city_temperature: weatherTemperatureRefresh,
+    city_weather: weatherCityRefresh,
     currency_converter: currencyConverterRefresh,
     apod: nasaPictureOfTheDayRefresh,
   };

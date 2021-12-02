@@ -1,3 +1,4 @@
+import { WeatherCityComponent } from './components/widgets/weather/weather-city/weather-city.component';
 import { NasaPictureOfTheDayComponent } from './components/widgets/nasa/nasa-picture-of-the-day/nasa-picture-of-the-day.component';
 import { CurrencyConverterComponent } from './components/widgets/currency/currency-converter/currency-converter.component';
 import { ProfileModalComponent } from "./components/profile-modal/profile-modal.component";
@@ -33,6 +34,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     SideNavComponent,
     WidgetCardComponent,
     WeatherTemperatureComponent,
+    WeatherCityComponent,
     CurrencyConverterComponent,
     NasaPictureOfTheDayComponent
   ],

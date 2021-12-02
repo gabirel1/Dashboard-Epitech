@@ -1,0 +1,9 @@
+<div *ngIf="widget">
+  <div class="row" *ngIf="widget.widgetState.data">
+    <div class="d-flex justify-content-between">
+      <img [src]="'http://openweathermap.org/img/wn/' + widget.widgetState.data[0].icon +'.png'">
+      <small class="text-muted">{{widget.widgetState.parameters[0].value.toUpperCase()}}</small>
+    </div>
+    <small class="text-muted">{{widget.widgetState.data[0].description}}</small>
+  </div>
+</div>

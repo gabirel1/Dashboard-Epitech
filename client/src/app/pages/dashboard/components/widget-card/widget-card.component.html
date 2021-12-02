@@ -9,6 +9,7 @@
     <div class="card-body" *ngIf="!hideContent">
       <ng-container [ngSwitch]="widget.name" *ngIf="!widget.widgetState.editMode">
         <app-weather-temperature [widget]="widget" #widgetComponent *ngSwitchCase="'city_temperature'"></app-weather-temperature>
+        <app-weather-city [widget]="widget" #widgetComponent *ngSwitchCase="'city_weather'"></app-weather-city>
         <app-currency-converter [widget]="widget" #widgetComponent *ngSwitchCase="'currency_converter'"></app-currency-converter>
         <app-nasa-picture-of-the-day [widget]="widget" #widgetComponent *ngSwitchCase="'apod'"></app-nasa-picture-of-the-day>
       </ng-container>
