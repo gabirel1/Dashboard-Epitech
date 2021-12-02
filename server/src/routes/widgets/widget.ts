@@ -5,6 +5,7 @@ import Nasa from './nasa';
 import Temperature from './temperature';
 import IntraEpitech from './intraEpitech';
 import Office from './office';
+import leagueoflegends from './leagueoflegends';
 
 class Widget {
     async post(req: express.Request, res: express.Response) {
@@ -50,6 +51,8 @@ class Widget {
                 return await IntraEpitech.getGrades(req, res);
             case 'office_calendar_events':
                 return await Office.getCalendarEvents(req, res);
+            case 'league_of_legends_summoner_profile':
+                return await leagueoflegends.getUserProfile(req, res);
             default:
                 return res.status(404).json({ error: true, message: "widget not found" });
         }

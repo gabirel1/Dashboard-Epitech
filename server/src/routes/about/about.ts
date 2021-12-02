@@ -196,6 +196,35 @@ class About {
                 ]
               }
             ]
+          },{
+            "name": "league_of_legends",
+            "display_name": "League of Legends",
+            "params": [
+              {
+                "name": "api_key",
+                "type": "string",
+              }
+            ],
+            "api_url": "",
+            "widgets": [
+              {
+                "name": "league_of_legends_summoner_profile",
+                "display_name": "Summoner profile",
+                "description": "Display the summoner profile of a league of legends user",
+                "params": [
+                  {
+                    "name": "summoner_name",
+                    "type": "string",
+                  },{
+                    "name": "region",
+                    "type": "string",
+                  },{
+                    "name": "api_key",
+                    "type": "string",
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
