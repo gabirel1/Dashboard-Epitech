@@ -63,31 +63,31 @@ export default new Currency();
 
 ```ts
 {
-    "name": "currency",
-    "display_name": "Currency Converter",
-    "api_url": "https://freecurrencyapi.net/",
-    "params": [
+  "name": "currency",
+  "display_name": "Currency Converter",
+  "api_url": "https://freecurrencyapi.net/",
+  "params": [
+    {
+      "name": "api_key",
+      "type": "string",
+    }
+  ],
+  "widgets": [
+    {
+      "name": "currency_converter",
+      "display_name": "Currency Converter",
+      "description": "Display the exchange rate of a currency",
+      "params": [
         {
-        "name": "api_key",
-        "type": "string",
+          "name": "from",
+          "type": "string",
+        },{
+          "name": "to",
+          "type": "string",
         }
-    ],
-    "widgets": [
-        {
-        "name": "currency_converter",
-        "display_name": "Currency Converter",
-        "description": "Display the exchange rate of a currency",
-        "params": [
-            {
-            "name": "from",
-            "type": "string",
-            },{
-            "name": "to",
-            "type": "string",
-            }
-        ]
-        }
-    ]
+      ]
+    }
+  ]
 },
 ```
 
