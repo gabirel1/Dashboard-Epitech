@@ -33,9 +33,15 @@ export class DashboardComponent implements OnInit {
         //   "widgets",
         //   JSON.stringify(this.widgets.filter((w) => !w.widgetState.toDelete))
         // );
-        const data = JSON.stringify(
+        if (this.widgets.find((w) => w.widgetState.editMode)) return;
+        const dupData = JSON.stringify(
           this.widgets.filter((w) => !w.widgetState.toDelete)
         );
+        const widgetsDupped = JSON.parse(dupData);
+        for (const widget of widgetsDupped) {
+          delete widget.widgetState.data;
+        }
+        const data = JSON.stringify(widgetsDupped);
         if (this.widgetsSave != data) {
           this.dataService
             .sendPatchRequest("widgets/save", {

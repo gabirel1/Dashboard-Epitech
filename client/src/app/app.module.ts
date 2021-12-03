@@ -1,3 +1,4 @@
+import { LolProfileComponent } from './components/lol/lol-profile/lol-profile.component';
 import { DoorsOpenComponent } from './components/widgets/doors/doors-open/doors-open.component';
 import { IntraGradesComponent } from './components/widgets/intra/intra-grades/intra-grades.component';
 import { IntraNotificationsComponent } from './components/widgets/intra/intra-notifications/intra-notifications.component';
@@ -48,7 +49,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     IntraPartnersComponent,
     IntraNotificationsComponent,
     IntraGradesComponent,
-    DoorsOpenComponent
+    DoorsOpenComponent,
+    LolProfileComponent
   ],
   imports: [
     BrowserModule,
