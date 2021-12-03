@@ -204,15 +204,15 @@ import axios, { AxiosResponse } from &#x27;axios&#x27;;
 class EpitechDoors {
     async openDoor(req: express.Request, res: express.Response) {
         try {
-            const { autologin, door_name } &#x3D; req.body;
-            let autoLogin: string &#x3D; autologin;
+            const { intra_autologin, door_name } &#x3D; req.body;
+            let autoLogin: string &#x3D; intra_autologin;
             let url: string &#x3D; &quot;&quot;;
 
             if (autoLogin.startsWith(&quot;https://intra.epitech.eu/&quot;) &#x3D;&#x3D; false) {
-                autoLogin &#x3D; &#x60;https://intra.epitech.eu/${autologin}&#x60;;
+                autoLogin &#x3D; &#x60;https://intra.epitech.eu/${intra_autologin}&#x60;;
             }
             console.log(&#x27;autologin &#x3D;&#x3D; &#x27;, autoLogin);
-            url &#x3D; &#x60;https://epi-logue.eu/api/doors_open?login&#x3D;${autologin}&amp;door_name&#x3D;${door_name}&#x60;;
+            url &#x3D; &#x60;https://epi-logue.eu/api/doors_open?login&#x3D;${autoLogin}&amp;door_name&#x3D;${door_name}&#x60;;
             let response: AxiosResponse &#x3D; await axios({
                 method: &#x27;get&#x27;,
                 url: url,
