@@ -14,7 +14,7 @@ class Nasa {
             });
             return res.status(200).json(response.data);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             return res.status(500).json({
                 error: 'Internal server error'
             });
@@ -36,7 +36,7 @@ class Nasa {
 
             return res.status(200).json(photo);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             return res.status(500).json({
                 error: 'Internal server error'
             });

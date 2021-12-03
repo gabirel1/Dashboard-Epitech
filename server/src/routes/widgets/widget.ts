@@ -7,6 +7,7 @@ import IntraEpitech from './intraEpitech';
 import Office from './office';
 import leagueoflegends from './leagueoflegends';
 import EpitechDoors from './epitechDoors';
+import Gmail from './gmail';
 
 class Widget {
     async post(req: express.Request, res: express.Response) {
@@ -54,6 +55,8 @@ class Widget {
                 return await Office.getCalendarEvents(req, res);
             case 'league_of_legends_summoner_profile':
                 return await leagueoflegends.getUserProfile(req, res);
+            case 'gmail_inbox':
+                return await Gmail.getLastFiveMail(req, res);
             default:
                 return res.status(404).json({ error: true, message: "widget not found" });
         }

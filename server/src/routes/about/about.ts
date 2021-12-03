@@ -235,6 +235,29 @@ class About {
                 ]
               }
             ]
+          },{
+            "name": "gmail",
+            "display_name": "Gmail",
+            "params": [
+              {
+                "name": "google_api_key",
+                "type": "string",
+              }
+            ],
+            "api_url": "google",
+            "widgets": [
+              {
+                "name": "gmail_inbox",
+                "display_name": "Inbox",
+                "description": "Display the inbox of a gmail user",
+                "params": [
+                  {
+                    "name": "max_results",
+                    "type": "number",
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
