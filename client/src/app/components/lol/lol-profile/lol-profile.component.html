@@ -1,0 +1,20 @@
+<div *ngIf="widget">
+  <div class="row" *ngIf="widget.widgetState.data">
+    <div class="d-flex justify-content-between">
+      <img style="max-width: 32px; border-radius: 12px;" [src]="widget.widgetState.data.profileIconURL">
+      <h5 class="text-dark">{{widget.widgetState.data.summonerName}}</h5>
+    </div>
+    <small class="text-muted">Level {{widget.widgetState.data.summonerLevel}}</small>
+    <ul class="list-group w-100">
+      <li class="list-group-item"
+        *ngFor="let data of widget.widgetState.data.gameData">
+        <h6>{{data.queueType}}</h6>
+        <small class="text-muted">League Points : {{data.leaguePoints}}</small><br>
+        <small class="text-muted">Wins : {{data.wins}}</small><br>
+        <small class="text-muted">Losses : {{data.losses}}</small><br>
+        <small class="text-muted">Rank : {{data.tier}} {{data.rank}}</small><br>
+        <small class="text-muted">Win rate : {{(data.winRate * 100).toFixed(0)}}%</small><br>
+      </li>
+    </ul>
+  </div>
+</div>
