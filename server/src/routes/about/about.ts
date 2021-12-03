@@ -115,7 +115,7 @@ class About {
             "name": "intra_epitech",
             "display_name": "Intra Epitech",
             "params": [],
-            "api_url": "https://intra.epitech.eu/",
+            "api_url": "https://intra.epitech.eu/admin/autolog",
             "widgets": [
               {
                 "name": "intra_epitech_profile",
@@ -157,19 +157,32 @@ class About {
                     "type": "string",
                   }
                 ]
-              },{
-                "name": "intra_epitech_doors",
-                "display_name": "Open doors",
+              }
+            ]
+          },{
+            "name": "epitech_doors",
+            "display_name": "Epitech Doors",
+            "params": [
+              {
+                "name": "intra_autologin",
+                "type": "string",
+              }
+            ],
+            "api_url": "https://intra.epitech.eu/admin/autolog",
+            "widgets": [
+              {
+                "name": "epitech_doors_open_door",
+                "display_name": "Open door",
                 "description": "Open the door in epitech montpellier",
                 "params": [
                   {
-                    "name": "autologin",
-                    "type": "string",
-                  },{
                     "name": "door_name",
                     "type": "string",
+                  },{
+                    "name": "intra_autologin",
+                    "type": "string",
                   }
-                ]
+                ],
               }
             ]
           },{

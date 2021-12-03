@@ -6,6 +6,7 @@ import Temperature from './temperature';
 import IntraEpitech from './intraEpitech';
 import Office from './office';
 import leagueoflegends from './leagueoflegends';
+import EpitechDoors from './epitechDoors';
 
 class Widget {
     async post(req: express.Request, res: express.Response) {
@@ -45,8 +46,8 @@ class Widget {
                 return await IntraEpitech.getPartners(req, res);
             case 'intra_epitech_notifications':
                 return await IntraEpitech.getNotifications(req, res);
-            case 'intra_epitech_doors':
-                return await IntraEpitech.openDoor(req, res);
+            case 'epitech_doors_open_door':
+                return await EpitechDoors.openDoor(req, res);
             case 'intra_epitech_grades':
                 return await IntraEpitech.getGrades(req, res);
             case 'office_calendar_events':
