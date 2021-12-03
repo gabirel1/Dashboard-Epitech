@@ -2,6 +2,7 @@ export interface WidgetState {
   editMode?: boolean;
   parameters: any;
   data?: any;
+  toDelete?: boolean;
 }
 
 export interface Widget {
@@ -15,6 +16,7 @@ export interface Widget {
 export interface Service {
   display_name: string;
   name: string;
+  api_url: string;
   widgets: Widget[];
   params: { name: string; type: string }[];
 }

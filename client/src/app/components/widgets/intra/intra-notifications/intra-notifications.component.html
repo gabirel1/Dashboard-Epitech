@@ -1,0 +1,12 @@
+<div *ngIf="widget">
+  <div class="row" *ngIf="widget.widgetState.data">
+    <div class="d-flex justify-content-between">
+      <ul class="list-group" style="max-height: 200px; overflow-y: auto;">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+          *ngFor="let notif of widget.widgetState.data.slice(0, 5)">
+          {{parseHTML(notif.title)}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import { weatherCityRefresh } from "src/app/components/widgets/weather/weather-c
 import { nasaPictureRoverRefresh } from "src/app/components/widgets/nasa/nasa-picture-rover/nasa-picture-rover.component";
 import { intraProfileRefresh } from "src/app/components/widgets/intra/intra-profile/intra-profile.component";
 import { intraPartnersRefresh } from "src/app/components/widgets/intra/intra-partners/intra-partners.component";
+import { intraNotificationsRefresh } from "src/app/components/widgets/intra/intra-notifications/intra-notifications.component";
 
 @Injectable({
   providedIn: "root",
@@ -22,7 +23,8 @@ export class ServicesService {
     apod: nasaPictureOfTheDayRefresh,
     curiosity_image: nasaPictureRoverRefresh,
     intra_epitech_profile: intraProfileRefresh,
-    intra_epitech_partners: intraPartnersRefresh
+    intra_epitech_partners: intraPartnersRefresh,
+    intra_epitech_notifications: intraNotificationsRefresh
   };
 
   constructor(private dataService: DataService) {}

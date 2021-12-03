@@ -8,13 +8,21 @@
     </div>
     <div class="card-body" *ngIf="!hideContent">
       <ng-container [ngSwitch]="widget.name" *ngIf="!widget.widgetState.editMode">
-        <app-weather-temperature [widget]="widget" #widgetComponent *ngSwitchCase="'city_temperature'"></app-weather-temperature>
+        <app-weather-temperature [widget]="widget" #widgetComponent *ngSwitchCase="'city_temperature'">
+        </app-weather-temperature>
         <app-weather-city [widget]="widget" #widgetComponent *ngSwitchCase="'city_weather'"></app-weather-city>
-        <app-currency-converter [widget]="widget" #widgetComponent *ngSwitchCase="'currency_converter'"></app-currency-converter>
-        <app-nasa-picture-of-the-day [widget]="widget" #widgetComponent *ngSwitchCase="'apod'"></app-nasa-picture-of-the-day>
-        <app-nasa-picture-rover [widget]="widget" #widgetComponent *ngSwitchCase="'curiosity_image'"></app-nasa-picture-rover>
-        <app-intra-profile [widget]="widget" #widgetComponent *ngSwitchCase="'intra_epitech_profile'"></app-intra-profile>
-        <app-intra-partners [widget]="widget" #widgetComponent *ngSwitchCase="'intra_epitech_partners'"></app-intra-partners>
+        <app-currency-converter [widget]="widget" #widgetComponent *ngSwitchCase="'currency_converter'">
+        </app-currency-converter>
+        <app-nasa-picture-of-the-day [widget]="widget" #widgetComponent *ngSwitchCase="'apod'">
+        </app-nasa-picture-of-the-day>
+        <app-nasa-picture-rover [widget]="widget" #widgetComponent *ngSwitchCase="'curiosity_image'">
+        </app-nasa-picture-rover>
+        <app-intra-profile [widget]="widget" #widgetComponent *ngSwitchCase="'intra_epitech_profile'">
+        </app-intra-profile>
+        <app-intra-partners [widget]="widget" #widgetComponent *ngSwitchCase="'intra_epitech_partners'">
+        </app-intra-partners>
+        <app-intra-notifications [widget]="widget" #widgetComponent *ngSwitchCase="'intra_epitech_notifications'">
+        </app-intra-notifications>
       </ng-container>
     </div>
   </div>
@@ -22,8 +30,9 @@
   <div class="editCardContent" *ngIf="widget.widgetState.editMode">
     <div class="card-header bg-primary d-flex justify-content-between">
       <span>Edit {{widget.display_name}}</span>
-      <a type="button" (click)="validWidgetEditMode(widget)"><i
-          class="fas fa-check"></i></a>
+      <a type="button" (click)="validWidgetEditMode(widget)"><i class="fas fa-check"></i></a>
+      <a type="button" *ngIf="!hideContent" (click)="widget.widgetState.toDelete = true"><i
+          class="fas fa-trash ms-3"></i></a>
     </div>
     <div class="card-body">
       <div class="form-group" *ngFor="let param of widget.widgetState.parameters">

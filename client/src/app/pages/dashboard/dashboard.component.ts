@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   public widgets: Widget[] = [];
+  private widgetsSave: string = "[]";
 
   ngOnInit() {
     this.dataService.checkLogin().subscribe({
@@ -19,11 +20,28 @@ export class DashboardComponent implements OnInit {
         window.location.href = "/login";
       },
     });
-    this.widgets = JSON.parse(localStorage.getItem("widgets") || "[]");
+    // this.widgets = JSON.parse(localStorage.getItem("widgets") || "[]");
+    this.dataService.sendGetRequest("widgets/save").subscribe((data) => {
+      this.widgets = JSON.parse(data.data[0].data);
 
-    setInterval(() => {
-      localStorage.setItem("widgets", JSON.stringify(this.widgets));
-    }, 5000);
+      setInterval(() => {
+        // localStorage.setItem(
+        //   "widgets",
+        //   JSON.stringify(this.widgets.filter((w) => !w.widgetState.toDelete))
+        // );
+        const data = JSON.stringify(
+          this.widgets.filter((w) => !w.widgetState.toDelete)
+        );
+        if (this.widgetsSave != data) {
+          this.dataService
+            .sendPatchRequest("widgets/save", {
+              widgets: data,
+            })
+            .subscribe();
+          this.widgetsSave = data;
+        }
+      }, 5000);
+    });
   }
 
   drop(event: CdkDragDrop<Widget[]>) {
