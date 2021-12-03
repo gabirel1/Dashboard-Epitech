@@ -572,7 +572,7 @@
     let query: string &#x3D; &quot;UPDATE widgets SET data &#x3D; &#x27;&quot; + widget + &quot;&#x27; WHERE user_id &#x3D; &#x27;&quot; + userId + &quot;&#x27;;&quot;;
 
     try {
-        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
+        // console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
                 console.debug(err);
