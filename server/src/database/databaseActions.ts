@@ -235,7 +235,7 @@ export const updateWidget = async (userId: string, widget: string, callback: Fun
     let query: string = "UPDATE widgets SET data = '" + widget + "' WHERE user_id = '" + userId + "';";
 
     try {
-        console.debug("query == ", query);
+        // console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err) {
                 console.debug(err);

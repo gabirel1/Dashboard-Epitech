@@ -1,0 +1,5 @@
+<div *ngIf="widget">
+  <div class="row" *ngIf="widget.widgetState.parameters[0]">
+    <button class="btn btn-primary" (click)="openDoor()">Ouvrir la porte {{widget.widgetState.parameters[0].value}}</button>
+  </div>
+</div>

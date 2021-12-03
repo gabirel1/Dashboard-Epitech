@@ -315,7 +315,7 @@ class About {
             &quot;name&quot;: &quot;intra_epitech&quot;,
             &quot;display_name&quot;: &quot;Intra Epitech&quot;,
             &quot;params&quot;: [],
-            &quot;api_url&quot;: &quot;https://intra.epitech.eu/&quot;,
+            &quot;api_url&quot;: &quot;https://intra.epitech.eu/admin/autolog&quot;,
             &quot;widgets&quot;: [
               {
                 &quot;name&quot;: &quot;intra_epitech_profile&quot;,
@@ -357,19 +357,32 @@ class About {
                     &quot;type&quot;: &quot;string&quot;,
                   }
                 ]
-              },{
-                &quot;name&quot;: &quot;intra_epitech_doors&quot;,
-                &quot;display_name&quot;: &quot;Open doors&quot;,
+              }
+            ]
+          },{
+            &quot;name&quot;: &quot;epitech_doors&quot;,
+            &quot;display_name&quot;: &quot;Epitech Doors&quot;,
+            &quot;params&quot;: [
+              {
+                &quot;name&quot;: &quot;intra_autologin&quot;,
+                &quot;type&quot;: &quot;string&quot;,
+              }
+            ],
+            &quot;api_url&quot;: &quot;https://intra.epitech.eu/admin/autolog&quot;,
+            &quot;widgets&quot;: [
+              {
+                &quot;name&quot;: &quot;epitech_doors_open_door&quot;,
+                &quot;display_name&quot;: &quot;Open door&quot;,
                 &quot;description&quot;: &quot;Open the door in epitech montpellier&quot;,
                 &quot;params&quot;: [
                   {
-                    &quot;name&quot;: &quot;autologin&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  },{
                     &quot;name&quot;: &quot;door_name&quot;,
                     &quot;type&quot;: &quot;string&quot;,
+                  },{
+                    &quot;name&quot;: &quot;intra_autologin&quot;,
+                    &quot;type&quot;: &quot;string&quot;,
                   }
-                ]
+                ],
               }
             ]
           },{

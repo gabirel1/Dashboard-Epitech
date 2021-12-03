@@ -53,6 +53,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Currency.html" data-type="entity-link" >Currency</a>
                             </li>
                             <li class="link">
+                                <a href="classes/EpitechDoors.html" data-type="entity-link" >EpitechDoors</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/IntraEpitech.html" data-type="entity-link" >IntraEpitech</a>
                             </li>
                             <li class="link">

@@ -1,0 +1,18 @@
+<div *ngIf="widget">
+  <div class="row" *ngIf="widget.widgetState.data">
+    <div class="d-flex justify-content-between">
+      <ul class="list-group" style="max-height: 240px; overflow-y: auto;">
+        <li class="list-group-item" *ngFor="let notif of widget.widgetState.data">
+          <div class="row">
+            <div class="col-10">
+              <h6>{{notif.title}}</h6>
+            </div>
+            <div class="col-1">
+              <span class="text-muted ms-1">{{notif.grade}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

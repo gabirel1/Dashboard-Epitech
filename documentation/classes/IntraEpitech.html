@@ -98,10 +98,6 @@
                                     <span class="modifier">Async</span>
                                 <a href="#getProfile" >getProfile</a>
                             </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#openDoor" >openDoor</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -453,89 +449,6 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="openDoor"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>openDoor</b></span>
-                        <a href="#openDoor"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>openDoor(req: express.Request, res: express.Response)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:134</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>req</td>
-                                    <td>
-                                            <code>express.Request</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>res</td>
-                                    <td>
-                                            <code>express.Response</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>
 
 
@@ -671,30 +584,6 @@ class IntraEpitech {
                 url: url,
             });
             return res.status(200).json(response2.data[&#x27;modules&#x27;]);            
-        } catch (error) {
-            console.log(error);
-            return res.status(500).json({
-                error: &#x27;Internal server error&#x27;
-            });
-        }
-    }
-
-    async openDoor(req: express.Request, res: express.Response) {
-        try {
-            const { autologin, door_name } &#x3D; req.body;
-            let autoLogin: string &#x3D; autologin;
-            let url: string &#x3D; &quot;&quot;;
-
-            if (autoLogin.startsWith(&quot;https://intra.epitech.eu/&quot;) &#x3D;&#x3D; false) {
-                autoLogin &#x3D; &#x60;https://intra.epitech.eu/${autologin}&#x60;;
-            }
-            console.log(&#x27;autologin &#x3D;&#x3D; &#x27;, autoLogin);
-            url &#x3D; &#x60;https://epi-logue.eu/api/doors_open?login&#x3D;${autologin}&amp;door_name&#x3D;${door_name}&#x60;;
-            let response: AxiosResponse &#x3D; await axios({
-                method: &#x27;get&#x27;,
-                url: url,
-            });
-            return res.status(response.status).json(response.data);
         } catch (error) {
             console.log(error);
             return res.status(500).json({
