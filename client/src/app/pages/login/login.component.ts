@@ -1,7 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
-import { FacebookLoginProvider, GoogleLoginProvider, MicrosoftLoginProvider, SocialAuthService } from "angularx-social-login";
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  MicrosoftLoginProvider,
+  SocialAuthService,
+} from "angularx-social-login";
 import { DataService } from "src/app/services/data.service";
 
 @Component({
@@ -68,7 +73,11 @@ export class LoginComponent implements OnInit {
 
   async loginWithGoogle() {
     const userResponse = await this.socialAuthService.signIn(
-      GoogleLoginProvider.PROVIDER_ID
+      GoogleLoginProvider.PROVIDER_ID,
+      {
+        scope:
+          "https://mail.google.com/ https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.metadata",
+      }
     );
     this.dataService
       .sendPostRequest("auth/OAuth/google_user", {
