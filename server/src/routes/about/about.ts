@@ -231,9 +231,6 @@ class About {
                   },{
                     "name": "region",
                     "type": "string",
-                  },{
-                    "name": "api_key",
-                    "type": "string",
                   }
                 ]
               }
