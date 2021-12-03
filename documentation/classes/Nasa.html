@@ -301,7 +301,7 @@ class Nasa {
             });
             return res.status(200).json(response.data);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             return res.status(500).json({
                 error: &#x27;Internal server error&#x27;
             });
@@ -323,7 +323,7 @@ class Nasa {
 
             return res.status(200).json(photo);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             return res.status(500).json({
                 error: &#x27;Internal server error&#x27;
             });

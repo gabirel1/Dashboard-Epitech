@@ -56,6 +56,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EpitechDoors.html" data-type="entity-link" >EpitechDoors</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Gmail.html" data-type="entity-link" >Gmail</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/IntraEpitech.html" data-type="entity-link" >IntraEpitech</a>
                             </li>
                             <li class="link">
