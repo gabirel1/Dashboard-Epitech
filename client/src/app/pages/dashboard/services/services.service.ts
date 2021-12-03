@@ -9,6 +9,7 @@ import { nasaPictureRoverRefresh } from "src/app/components/widgets/nasa/nasa-pi
 import { intraProfileRefresh } from "src/app/components/widgets/intra/intra-profile/intra-profile.component";
 import { intraPartnersRefresh } from "src/app/components/widgets/intra/intra-partners/intra-partners.component";
 import { intraNotificationsRefresh } from "src/app/components/widgets/intra/intra-notifications/intra-notifications.component";
+import { intraGradesRefresh } from "src/app/components/widgets/intra/intra-grades/intra-grades.component";
 
 @Injectable({
   providedIn: "root",
@@ -24,7 +25,8 @@ export class ServicesService {
     curiosity_image: nasaPictureRoverRefresh,
     intra_epitech_profile: intraProfileRefresh,
     intra_epitech_partners: intraPartnersRefresh,
-    intra_epitech_notifications: intraNotificationsRefresh
+    intra_epitech_notifications: intraNotificationsRefresh,
+    intra_epitech_grades: intraGradesRefresh,
   };
 
   constructor(private dataService: DataService) {}

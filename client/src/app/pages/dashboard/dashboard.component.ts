@@ -1,3 +1,4 @@
+import { ServicesService } from "src/app/pages/dashboard/services/services.service";
 import { Widget } from "./interfaces/services";
 import { DataService } from "src/app/services/data.service";
 import { Component, OnInit } from "@angular/core";
@@ -9,7 +10,10 @@ import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private servicesService: ServicesService
+  ) {}
 
   public widgets: Widget[] = [];
   private widgetsSave: string = "[]";
@@ -40,6 +44,15 @@ export class DashboardComponent implements OnInit {
             .subscribe();
           this.widgetsSave = data;
         }
+        this.widgets.forEach((widget) => {
+          if (this.servicesService.getWidgetFunc(widget.name)) {
+            this.servicesService.getWidgetFunc(widget.name)(
+              this.dataService,
+              this.servicesService,
+              widget
+            );
+          }
+        });
       }, 5000);
     });
   }

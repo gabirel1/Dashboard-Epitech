@@ -1,3 +1,5 @@
+import { DoorsOpenComponent } from './components/widgets/doors/doors-open/doors-open.component';
+import { IntraGradesComponent } from './components/widgets/intra/intra-grades/intra-grades.component';
 import { IntraNotificationsComponent } from './components/widgets/intra/intra-notifications/intra-notifications.component';
 import { IntraPartnersComponent } from './components/widgets/intra/intra-partners/intra-partners.component';
 import { IntraProfileComponent } from "./components/widgets/intra/intra-profile/intra-profile.component";
@@ -44,7 +46,9 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     NasaPictureRoverComponent,
     IntraProfileComponent,
     IntraPartnersComponent,
-    IntraNotificationsComponent
+    IntraNotificationsComponent,
+    IntraGradesComponent,
+    DoorsOpenComponent
   ],
   imports: [
     BrowserModule,
