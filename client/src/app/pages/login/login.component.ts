@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
       GoogleLoginProvider.PROVIDER_ID,
       {
         scope:
-          "https://mail.google.com/ https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.metadata",
+          "https://mail.google.com/ https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.addons.current.message.action https://www.googleapis.com/auth/gmail.addons.current.message.readonly",
       }
     );
     this.dataService
