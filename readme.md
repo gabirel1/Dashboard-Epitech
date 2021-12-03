@@ -91,6 +91,15 @@ export default new Currency();
 },
 ```
 
+```widget.ts```
+
+```ts
+switch (type) {
+    case 'currency_converter':
+        return await Currency.getExchangeRate(req, res);
+}
+```
+
 - Add the widget component to the client too :)
 
 ## Available Services:
