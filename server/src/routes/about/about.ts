@@ -2,10 +2,16 @@ import express from 'express';
 import moment from "moment";
 
 class About {
+
+  /**
+   * retrieve general informations and a list of services and their widgets awailable in the dashboard 
+   * @param {express.Request} req 
+   * @param {express.Response} res 
+   * @returns 
+   */
   async get(req: express.Request, res: express.Response) {
     let ip: string = req.ip;
     ip = ip.split(':')[3];
-    console.log('ip == ', ip);
 
     return res.status(200).json({
       "client": {

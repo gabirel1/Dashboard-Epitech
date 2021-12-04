@@ -5,6 +5,12 @@ import jwt from 'jsonwebtoken';
 import moment from "moment";
 
 class Login {
+    /**
+     * login a basic user
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async post(req: express.Request, res: express.Response) {
         const { mail, password } = req.body;
 

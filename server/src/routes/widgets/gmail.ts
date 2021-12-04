@@ -2,6 +2,13 @@ import express from 'express';
 import axios, { AxiosResponse } from 'axios';
 
 class Gmail {
+
+    /**
+     * retrieves the last max_results emails from the user's inbox
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getLastFiveMail(req: express.Request, res: express.Response) {
         try {
             const { google_api_key, max_results } = req.body;

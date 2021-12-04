@@ -6,6 +6,13 @@ import Utils from '../../utils/utils';
 import { checkToken } from './tokenAction';
 
 class Token {
+
+    /**
+     * check if the given token is valid
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async get(req: express.Request, res: express.Response) {
         let token: string = req.headers.authorization;
         if (!token) {
@@ -16,16 +23,13 @@ class Token {
             const decoded: string | jwt.JwtPayload = jwt.verify(token, process.env.JWT_SECRET);
     
             if (!decoded) {
-                console.log("heeeeeeeeeeeeeeeeeeeeere");
                 return res.status(401).json({ valid: false, message: "token invalid" });
             }
         } catch (error) {
-            console.log("heeeeeeeeeeeeeeeeeeeeere2");
             return res.status(401).json({ valid: false, message: "token invalid" });
         }
         checkToken(token, (err: any, result: any) => {
             if (err || result === [] || result === null || result === undefined || result.length === 0) {
-                console.debug(result);
                 return res.status(401).json({ valid: false, message: "token invalid or not found" });
             } else {
                 let createdAt: moment.Moment = moment(result[0].token_created_at);
@@ -39,14 +43,18 @@ class Token {
         });
     }
 
+    /**
+     * generate a new token if the given one is valid
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async post(req: express.Request, res: express.Response) {
         let token: string = req.headers.authorization;
         if (!token) {
             return res.status(401).json({ valid: false, message: "token not found" });
         }
-        console.debug("token = ", token);
         token = token.split(" ")[1];
-        console.debug("token2 = ", token);
 
         const expiresIn: number = Number(process.env.EXPIRE_TIME) || 60 * 60;
         const payload = {
@@ -59,7 +67,6 @@ class Token {
         );
         await updateInfos(['token', 'token_created_at'], [newToken, moment().format('YYYY-MM-DD HH:mm:ss')], 'token', token, (err: any, result: any) => {
             if (err) {
-                console.debug(err);
                 return res.status(500).json({ valid: false, message: "internal server error" });
             } else {
                 if (result.affectedRows === 0) {

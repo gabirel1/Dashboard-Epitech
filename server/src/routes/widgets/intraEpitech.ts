@@ -3,6 +3,13 @@ import axios, { AxiosResponse } from 'axios';
 import { IntraEpitechUser } from '../../database/interfaces';
 
 class IntraEpitech {
+
+    /**
+     * retrieves the user's profile informations (gpa, credits, profile picture ...)
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getProfile(req: express.Request, res: express.Response) {
         try {
             const { autologin } = req.body;
@@ -40,6 +47,12 @@ class IntraEpitech {
         }
     }
 
+    /**
+     * retrieves the user's partners (the people with whom the user did a project with)
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getPartners(req: express.Request, res: express.Response) {
         try {
             const { autologin } = req.body;
@@ -71,6 +84,13 @@ class IntraEpitech {
         }
     }
 
+
+    /**
+     * retrieves user's notifications
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getNotifications(req: express.Request, res: express.Response) {
         try {
             const { autologin } = req.body;            
@@ -102,6 +122,12 @@ class IntraEpitech {
         }
     }
 
+    /**
+     * retrieves the user's grades
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getGrades(req: express.Request, res: express.Response) {
         try {
             const { autologin } = req.body;

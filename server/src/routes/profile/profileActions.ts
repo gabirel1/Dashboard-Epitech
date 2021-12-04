@@ -2,6 +2,12 @@ import express from 'express';
 import { updateInfos } from '../../database/databaseActions';
 import axios, { AxiosResponse } from 'axios';
 
+/**
+ * update a user informations
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
 export const updateUserInformations = async (req: express.Request, res: express.Response) => {
     try {
         const type: string = req.params.type;
@@ -19,7 +25,6 @@ export const updateUserInformations = async (req: express.Request, res: express.
                         'Authorization': `Bearer ${access_token}`
                     },
                 });
-                console.debug("response == ", response.data);
                 let googleUser = response.data;
                 user = { type: 'google_user', userJson: googleUser };
                 break;
@@ -42,7 +47,6 @@ export const updateUserInformations = async (req: express.Request, res: express.
                         'Authorization': `Bearer ${access_token}`
                     },
                 });
-                console.log("response == ", response.data);
                 let officeUser = response.data;
                 user = { type: 'office_user', userJson: officeUser };
                 break;
@@ -60,7 +64,6 @@ export const updateUserInformations = async (req: express.Request, res: express.
         if (user.type === 'google_user') {
             await updateInfos(['google_mail', 'google_token'], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) => {
                 if (err) {
-                    console.error("Error == ", err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
                 return res.status(200).json({ message: 'User informations updated' });
@@ -69,7 +72,6 @@ export const updateUserInformations = async (req: express.Request, res: express.
         if (user.type === 'office_user') {
             await updateInfos(['office_mail', 'office_token'], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) => {
                 if (err) {
-                    console.error("Error == ", err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
                 return res.status(200).json({ message: 'User informations updated' });
@@ -78,7 +80,6 @@ export const updateUserInformations = async (req: express.Request, res: express.
         if (user.type === 'facebook_user') {
             await updateInfos(['facebook_mail', 'facebook_token'], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) => {
                 if (err) {
-                    console.error("Error == ", err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
                 return res.status(200).json({ message: 'User informations updated' });
@@ -87,14 +88,12 @@ export const updateUserInformations = async (req: express.Request, res: express.
         if (user.type === 'plain_user') {
             await updateInfos(['mail', 'password'], [user.userJson.mail, user.userJson.password], existingInformationType, existingInformation, (err: Error, result: any) => {
                 if (err) {
-                    console.error("Error == ", err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
                 return res.status(200).json({ message: 'User informations updated' });
             });
         }
     } catch (error) {
-        console.error(error);
         return res.status(500).json({ message: 'server error' });
     }
 }

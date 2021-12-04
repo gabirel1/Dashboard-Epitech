@@ -10,6 +10,13 @@ import EpitechDoors from './epitechDoors';
 import Gmail from './gmail';
 
 class Widget {
+
+    /**
+     * handle widgets requests
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async post(req: express.Request, res: express.Response) {
         let valid: boolean = true;
         const type: string = req.params.type;

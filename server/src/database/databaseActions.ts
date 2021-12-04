@@ -29,14 +29,10 @@ export const getUsers = async (infos: UserInformations, callback: Function) => {
             wasFound = true;
         }
 
-        console.debug("query == ", query);
-
         db.query(query, (err: any, result: any) => {
             if (err) {
-                console.debug("[getUser] err ", err);
                 callback(err);
             } else {
-                console.debug("[getUser] success ", result);
                 callback(null, result);
             }
         });
@@ -51,10 +47,8 @@ export const getUserByToken = async (token: string, callback: Function) => {
     try {
         db.query(query, (err: any, result: any) => {
             if (err) {
-                console.debug("[getUserByToken] err ", err);
                 callback(err);
             } else {
-                console.debug("[getUserByToken] success ", result);
                 callback(null, result);
             }
         });
@@ -94,13 +88,10 @@ export const addUsers = async (infos: UserInformations, callback: Function) => {
             wasFound = true;
         }
 
-        console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -140,13 +131,10 @@ export const updateUserAuthToken = async (infos: UserInformations, jwtToken: str
             wasFound = true;
         }
 
-        console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err || result.affectedRows === 0) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -177,13 +165,10 @@ export const updateInfos = async (
     query += ' WHERE ' + whereRow + ' = ' + `'${whereValue}'` + ';';
 
     try {
-        console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -196,13 +181,10 @@ export const getRow = async (row: string, value: string, callback: Function) => 
     let query: string = "SELECT * FROM users WHERE " + row + " = '" + value + "' LIMIT 1;";
 
     try {
-        console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -215,13 +197,10 @@ export const getWidgetsByUserId = async (userId: string, callback: Function) => 
     let query: string = "SELECT * FROM widgets WHERE user_id = '" + userId + "';";
 
     try {
-        console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -235,7 +214,6 @@ export const updateWidget = async (userId: string, widget: string, callback: Fun
     let query: string = "UPDATE widgets SET data = '" + widget + "' WHERE user_id = '" + userId + "';";
 
     try {
-        // console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err) {
                 console.debug(err);
@@ -255,7 +233,6 @@ export const deleteWidget = async (userId: string, widgetId: string, callback: F
     let query: string = "DELETE FROM widgets WHERE user_id = '" + userId + "' AND id = '" + widgetId + "';";
 
     try {
-        console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err) {
                 console.debug(err);
@@ -275,7 +252,6 @@ export const addWidget = async (userId: string, widget: string, callback: Functi
     let query: string = "INSERT INTO widgets (user_id, data) VALUES ('" + userId + "', '" + JSON.stringify(widget) + "');";
 
     try {
-        console.debug("query == ", query);
         db.query(query, (err: any, result: any) => {
             if (err) {
                 console.debug(err);

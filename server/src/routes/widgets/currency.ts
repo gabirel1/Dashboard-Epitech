@@ -2,6 +2,13 @@ import express from 'express';
 import axios, { AxiosResponse } from 'axios';
 
 class Currency {
+
+    /**
+     * retrieve the current exchange rate for a given currency
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getExchangeRate(req: express.Request, res: express.Response) {
         try {
             const { from, to, api_key } = req.body;

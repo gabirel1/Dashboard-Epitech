@@ -3,6 +3,13 @@ import express from 'express';
 import { LeagueOfLegendsProfileData, LeagueOfLegendsGameData } from '../../database/interfaces';
 
 class LeagueOfLegends {
+
+    /**
+     * retrieves the summoner profile informations (user's icon, level, name, ranked game's rank ...)
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getUserProfile(req: express.Request, res: express.Response) {
         try {
             const { api_key, summoner_name, region } = req.body;

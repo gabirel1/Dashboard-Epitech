@@ -2,6 +2,11 @@ import express from 'express';
 import { getUsers, addUsers } from '../../database/databaseActions';
 import { UserInformations } from '../../database/interfaces';
 
+/**
+ * save a user in the database if it doesn't already exists
+ * @param {UserInformations} infos a user
+ * @returns 
+ */
 export const registerBasicUser = async (infos: UserInformations): Promise<{ error: boolean, message: string, result?: any }> => {
     return new Promise(async (resolve, reject) => {
         await getUsers(infos, async (err: any, result: any) => {

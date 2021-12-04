@@ -3,6 +3,13 @@ import { getWidgetsByUserId, getUserByToken, addWidget, updateWidget } from '../
 import jwt from 'jsonwebtoken';
 
 class WidgetsDB {
+
+    /**
+     * retrieves the user's widgets from the database
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async get(req: express.Request, res: express.Response) {
         try {
             let token: string = req.headers.authorization;
@@ -63,6 +70,12 @@ class WidgetsDB {
         }
     }
 
+    /**
+     * Update the user's widgets in database if it existed before, otherwise create a new one
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async patch(req: express.Request, res: express.Response) {
         try {
             let token: string = req.headers.authorization;

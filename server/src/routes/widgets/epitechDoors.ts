@@ -2,6 +2,13 @@ import express from 'express';
 import axios, { AxiosResponse } from 'axios';
 
 class EpitechDoors {
+
+    /**
+     * opens the given door of the Epitech campus
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async openDoor(req: express.Request, res: express.Response) {
         try {
             const { intra_autologin, door_name } = req.body;

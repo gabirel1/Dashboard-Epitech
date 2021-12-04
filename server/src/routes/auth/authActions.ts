@@ -4,6 +4,12 @@ import { addUsers, getUsers, updateInfos, updateUserAuthToken } from '../../data
 import jwt from 'jsonwebtoken';
 import axios, { AxiosResponse } from 'axios';
 
+/**
+ * handle the login or the registration of a OAuth's user (a user logged on signed in with a google/facebook/office account)
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
 export const handleOAuthUsers = async (req: express.Request, res: express.Response) => {
     try {
         const type: string = req.params.type;
@@ -101,6 +107,11 @@ export const handleOAuthUsers = async (req: express.Request, res: express.Respon
     }
 }
 
+/**
+ * save or get user from / in database
+ * @param {UserInformations} infos the user 
+ * @returns 
+ */
 export const handleOAuthUsersAction = async (infos: UserInformations): Promise<{ error: boolean, message: string, result?: any }> => {
     return new Promise(async (resolve, reject) => {
         await getUsers(infos, async (err: any, result: any) => {

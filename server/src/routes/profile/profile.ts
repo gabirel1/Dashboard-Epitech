@@ -3,6 +3,13 @@ import jwt from 'jsonwebtoken';
 import { getRow, getUsers } from '../../database/databaseActions';
 
 class Profile {
+
+    /**
+     * retrieves the user informations
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async get(req: express.Request, res: express.Response) {
         let token: string = req.headers.authorization;
         if (!token) {
@@ -14,11 +21,9 @@ class Profile {
             const decoded: string | jwt.JwtPayload = jwt.verify(token, process.env.JWT_SECRET);
     
             if (!decoded) {
-                console.log("heeeeeeeeeeeeeeeeeeeeere");
                 return res.status(401).json({ valid: false, message: "token invalid" });
             }
         } catch (error) {
-            console.log("heeeeeeeeeeeeeeeeeeeeere2");
             return res.status(401).json({ valid: false, message: "token invalid" });
         }
 

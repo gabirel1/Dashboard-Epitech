@@ -2,10 +2,16 @@ import express from 'express';
 import axios, { AxiosResponse } from 'axios';
 
 class Temperature {
+
+    /**
+     * retrieves the temperature of a city
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getTemperature(req: express.Request, res: express.Response) {
         try {
             const { city, api_key } = req.body;
-            // const apikey: string = process.env.WEATHER_API_KEY;
             const url: string = `http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=fr&units=metric&appid=${api_key}`;
 
             let response: AxiosResponse = await axios({
@@ -21,10 +27,15 @@ class Temperature {
         }
     }
 
+    /**
+     * retrieves the weather of a city
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getWeather(req: express.Request, res: express.Response) {
         try {
             const { city, api_key } = req.body;
-            // const apikey: string = process.env.WEATHER_API_KEY;
             const url: string = `http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=fr&units=metric&appid=${api_key}`;
 
             let response: AxiosResponse = await axios({
