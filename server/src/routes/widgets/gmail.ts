@@ -36,7 +36,16 @@ class Gmail {
                         'Authorization': `Bearer ${google_api_key}`
                     },
                 });
-                messages.push(response3.data);
+                let msg: any = {
+                    id: response3.data.id,
+                    threadId: response3.data.threadId,
+                    snippet: response3.data.snippet,
+                    subject: response3.data.payload.headers.find((header: any) => header.name === 'Subject').value,
+                    date: response3.data.payload.headers.find((header: any) => header.name === 'Date').value,
+                    from: response3.data.payload.headers.find((header: any) => header.name === 'From').value,
+                    to: response3.data.payload.headers.find((header: any) => header.name === 'To').value,
+                };
+                messages.push(msg);
             }
             return res.status(200).json({
                 success: true,
