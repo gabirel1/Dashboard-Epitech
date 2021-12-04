@@ -236,7 +236,16 @@ class Gmail {
                         &#x27;Authorization&#x27;: &#x60;Bearer ${google_api_key}&#x60;
                     },
                 });
-                messages.push(response3.data);
+                let msg: any &#x3D; {
+                    id: response3.data.id,
+                    threadId: response3.data.threadId,
+                    snippet: response3.data.snippet,
+                    subject: response3.data.payload.headers.find((header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &#x27;Subject&#x27;).value,
+                    date: response3.data.payload.headers.find((header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &#x27;Date&#x27;).value,
+                    from: response3.data.payload.headers.find((header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &#x27;From&#x27;).value,
+                    to: response3.data.payload.headers.find((header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &#x27;To&#x27;).value,
+                };
+                messages.push(msg);
             }
             return res.status(200).json({
                 success: true,
