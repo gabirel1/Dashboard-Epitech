@@ -131,14 +131,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="9"
-                            class="link-to-prism">src/routes/auth/token.ts:9</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/routes/auth/token.ts:16</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>check if the given token is valid</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -214,14 +216,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/routes/auth/token.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/routes/auth/token.ts:52</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>generate a new token if the given one is valid</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -293,6 +297,13 @@ import Utils from &#x27;../../utils/utils&#x27;;
 import { checkToken } from &#x27;./tokenAction&#x27;;
 
 class Token {
+
+    /**
+     * check if the given token is valid
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async get(req: express.Request, res: express.Response) {
         let token: string &#x3D; req.headers.authorization;
         if (!token) {
@@ -303,16 +314,13 @@ class Token {
             const decoded: string | jwt.JwtPayload &#x3D; jwt.verify(token, process.env.JWT_SECRET);
     
             if (!decoded) {
-                console.log(&quot;heeeeeeeeeeeeeeeeeeeeere&quot;);
                 return res.status(401).json({ valid: false, message: &quot;token invalid&quot; });
             }
         } catch (error) {
-            console.log(&quot;heeeeeeeeeeeeeeeeeeeeere2&quot;);
             return res.status(401).json({ valid: false, message: &quot;token invalid&quot; });
         }
         checkToken(token, (err: any, result: any) &#x3D;&gt; {
             if (err || result &#x3D;&#x3D;&#x3D; [] || result &#x3D;&#x3D;&#x3D; null || result &#x3D;&#x3D;&#x3D; undefined || result.length &#x3D;&#x3D;&#x3D; 0) {
-                console.debug(result);
                 return res.status(401).json({ valid: false, message: &quot;token invalid or not found&quot; });
             } else {
                 let createdAt: moment.Moment &#x3D; moment(result[0].token_created_at);
@@ -326,14 +334,18 @@ class Token {
         });
     }
 
+    /**
+     * generate a new token if the given one is valid
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async post(req: express.Request, res: express.Response) {
         let token: string &#x3D; req.headers.authorization;
         if (!token) {
             return res.status(401).json({ valid: false, message: &quot;token not found&quot; });
         }
-        console.debug(&quot;token &#x3D; &quot;, token);
         token &#x3D; token.split(&quot; &quot;)[1];
-        console.debug(&quot;token2 &#x3D; &quot;, token);
 
         const expiresIn: number &#x3D; Number(process.env.EXPIRE_TIME) || 60 * 60;
         const payload &#x3D; {
@@ -346,7 +358,6 @@ class Token {
         );
         await updateInfos([&#x27;token&#x27;, &#x27;token_created_at&#x27;], [newToken, moment().format(&#x27;YYYY-MM-DD HH:mm:ss&#x27;)], &#x27;token&#x27;, token, (err: any, result: any) &#x3D;&gt; {
             if (err) {
-                console.debug(err);
                 return res.status(500).json({ valid: false, message: &quot;internal server error&quot; });
             } else {
                 if (result.affectedRows &#x3D;&#x3D;&#x3D; 0) {

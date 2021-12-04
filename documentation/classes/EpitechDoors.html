@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="5"
-                            class="link-to-prism">src/routes/widgets/epitechDoors.ts:5</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/routes/widgets/epitechDoors.ts:12</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>opens the given door of the Epitech campus</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -202,6 +204,13 @@
 import axios, { AxiosResponse } from &#x27;axios&#x27;;
 
 class EpitechDoors {
+
+    /**
+     * opens the given door of the Epitech campus
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async openDoor(req: express.Request, res: express.Response) {
         try {
             const { intra_autologin, door_name } &#x3D; req.body;

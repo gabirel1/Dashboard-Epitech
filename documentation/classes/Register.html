@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="6"
-                            class="link-to-prism">src/routes/auth/register.ts:6</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/routes/auth/register.ts:13</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>register a basic user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -203,6 +205,13 @@ import { UserInformations } from &quot;../../database/interfaces&quot;;
 import { registerBasicUser } from &quot;./registerActions&quot;;
 
 class Register {
+
+    /**
+     * register a basic user
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async post(req: express.Request, res: express.Response) {
         const { mail, password } &#x3D; req.body;
 

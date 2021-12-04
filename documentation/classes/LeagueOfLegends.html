@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="6"
-                            class="link-to-prism">src/routes/widgets/leagueoflegends.ts:6</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/routes/widgets/leagueoflegends.ts:13</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the summoner profile informations (user&#39;s icon, level, name, ranked game&#39;s rank ...)</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -203,6 +205,13 @@ import express from &#x27;express&#x27;;
 import { LeagueOfLegendsProfileData, LeagueOfLegendsGameData } from &#x27;../../database/interfaces&#x27;;
 
 class LeagueOfLegends {
+
+    /**
+     * retrieves the summoner profile informations (user&#x27;s icon, level, name, ranked game&#x27;s rank ...)
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getUserProfile(req: express.Request, res: express.Response) {
         try {
             const { api_key, summoner_name, region } &#x3D; req.body;

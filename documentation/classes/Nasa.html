@@ -131,14 +131,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="5"
-                            class="link-to-prism">src/routes/widgets/nasa.ts:5</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/routes/widgets/nasa.ts:11</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the image of the day from the nasa API</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -149,6 +151,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -163,6 +166,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>express request</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -175,6 +182,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>express response</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -214,14 +225,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/routes/widgets/nasa.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/routes/widgets/nasa.ts:34</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the curiosity rover image of the day from the nasa API</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -232,6 +245,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -246,6 +260,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>express request</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -258,6 +276,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>express response</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -289,10 +311,15 @@
 import axios, { AxiosResponse } from &quot;axios&quot;;
 
 class Nasa {
+    /**
+     * retrieves the image of the day from the nasa API
+     * @param req express request
+     * @param res express response
+     * @returns
+     */
     async getNasaDayImage(req: express.Request, res: express.Response) {
         try {
             const { date, api_key } &#x3D; req.body;
-            // const apiKey: string &#x3D; process.env.NASA_API_KEY;
             const url &#x3D; &#x60;https://api.nasa.gov/planetary/apod?api_key&#x3D;${api_key}&amp;date&#x3D;${date}&#x60;;
 
             let response: AxiosResponse &#x3D; await axios({
@@ -301,17 +328,21 @@ class Nasa {
             });
             return res.status(200).json(response.data);
         } catch (error) {
-            // console.log(error);
             return res.status(500).json({
                 error: &#x27;Internal server error&#x27;
             });
         }
     }
 
+    /**
+     * retrieves the curiosity rover image of the day from the nasa API
+     * @param req express request
+     * @param res express response
+     * @returns 
+     */
     async getNasaRoverImage(req: express.Request, res: express.Response) {
         try {
             const { date, camera, api_key } &#x3D; req.body;
-            // const apiKey: string &#x3D; process.env.NASA_API_KEY;
             const url &#x3D; &#x60;https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date&#x3D;${date}&amp;camera&#x3D;${camera}&amp;api_key&#x3D;${api_key}&#x60;;
 
             let response: AxiosResponse &#x3D; await axios({
@@ -323,7 +354,6 @@ class Nasa {
 
             return res.status(200).json(photo);
         } catch (error) {
-            // console.log(error);
             return res.status(500).json({
                 error: &#x27;Internal server error&#x27;
             });

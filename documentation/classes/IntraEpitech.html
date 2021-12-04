@@ -139,14 +139,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:131</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the user&#39;s grades</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -222,14 +224,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:94</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves user&#39;s notifications</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -305,14 +309,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:56</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the user&#39;s partners (the people with whom the user did a project with)</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -388,14 +394,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="6"
-                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:6</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:13</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the user&#39;s profile informations (gpa, credits, profile picture ...)</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -464,6 +472,13 @@ import axios, { AxiosResponse } from &#x27;axios&#x27;;
 import { IntraEpitechUser } from &#x27;../../database/interfaces&#x27;;
 
 class IntraEpitech {
+
+    /**
+     * retrieves the user&#x27;s profile informations (gpa, credits, profile picture ...)
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getProfile(req: express.Request, res: express.Response) {
         try {
             const { autologin } &#x3D; req.body;
@@ -501,6 +516,12 @@ class IntraEpitech {
         }
     }
 
+    /**
+     * retrieves the user&#x27;s partners (the people with whom the user did a project with)
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getPartners(req: express.Request, res: express.Response) {
         try {
             const { autologin } &#x3D; req.body;
@@ -532,6 +553,13 @@ class IntraEpitech {
         }
     }
 
+
+    /**
+     * retrieves user&#x27;s notifications
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getNotifications(req: express.Request, res: express.Response) {
         try {
             const { autologin } &#x3D; req.body;            
@@ -563,6 +591,12 @@ class IntraEpitech {
         }
     }
 
+    /**
+     * retrieves the user&#x27;s grades
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getGrades(req: express.Request, res: express.Response) {
         try {
             const { autologin } &#x3D; req.body;

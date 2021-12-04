@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="6"
-                            class="link-to-prism">src/routes/profile/profileUpdate.ts:6</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/routes/profile/profileUpdate.ts:13</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>update a user informations if the given token is valid</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -203,6 +205,13 @@ import jwt from &quot;jsonwebtoken&quot;;
 import { updateUserInformations } from &quot;./profileActions&quot;;
 
 class ProfileUpdate {
+
+    /**
+     * update a user informations if the given token is valid
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async patch(req: express.Request, res: express.Response) {
         let token: string &#x3D; req.headers.authorization;
         if (!token) {
@@ -214,11 +223,9 @@ class ProfileUpdate {
             const decoded: string | jwt.JwtPayload &#x3D; jwt.verify(token, process.env.JWT_SECRET);
     
             if (!decoded) {
-                console.log(&quot;heeeeeeeeeeeeeeeeeeeeere&quot;);
                 return res.status(401).json({ valid: false, message: &quot;token invalid&quot; });
             }
         } catch (error) {
-            console.log(&quot;heeeeeeeeeeeeeeeeeeeeere2&quot;);
             return res.status(401).json({ valid: false, message: &quot;token invalid&quot; });
         }
 

@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="5"
-                            class="link-to-prism">src/routes/widgets/gmail.ts:5</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/routes/widgets/gmail.ts:12</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the last max_results emails from the user&#39;s inbox</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -202,6 +204,13 @@
 import axios, { AxiosResponse } from &#x27;axios&#x27;;
 
 class Gmail {
+
+    /**
+     * retrieves the last max_results emails from the user&#x27;s inbox
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getLastFiveMail(req: express.Request, res: express.Response) {
         try {
             const { google_api_key, max_results } &#x3D; req.body;

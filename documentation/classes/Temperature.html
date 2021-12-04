@@ -131,14 +131,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="5"
-                            class="link-to-prism">src/routes/widgets/temperature.ts:5</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/routes/widgets/temperature.ts:12</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the temperature of a city</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -214,14 +216,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/routes/widgets/temperature.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/routes/widgets/temperature.ts:36</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the weather of a city</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -289,10 +293,16 @@
 import axios, { AxiosResponse } from &#x27;axios&#x27;;
 
 class Temperature {
+
+    /**
+     * retrieves the temperature of a city
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getTemperature(req: express.Request, res: express.Response) {
         try {
             const { city, api_key } &#x3D; req.body;
-            // const apikey: string &#x3D; process.env.WEATHER_API_KEY;
             const url: string &#x3D; &#x60;http://api.openweathermap.org/data/2.5/weather?q&#x3D;${city}&amp;lang&#x3D;fr&amp;units&#x3D;metric&amp;appid&#x3D;${api_key}&#x60;;
 
             let response: AxiosResponse &#x3D; await axios({
@@ -308,10 +318,15 @@ class Temperature {
         }
     }
 
+    /**
+     * retrieves the weather of a city
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getWeather(req: express.Request, res: express.Response) {
         try {
             const { city, api_key } &#x3D; req.body;
-            // const apikey: string &#x3D; process.env.WEATHER_API_KEY;
             const url: string &#x3D; &#x60;http://api.openweathermap.org/data/2.5/weather?q&#x3D;${city}&amp;lang&#x3D;fr&amp;units&#x3D;metric&amp;appid&#x3D;${api_key}&#x60;;
 
             let response: AxiosResponse &#x3D; await axios({

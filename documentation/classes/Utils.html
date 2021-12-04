@@ -124,14 +124,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="2"
-                            class="link-to-prism">src/utils/utils.ts:2</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="7"
+                            class="link-to-prism">src/utils/utils.ts:7</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>generate a random string with a length equal to the given length argument</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -142,6 +144,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -156,6 +159,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the length of the generated string</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -167,7 +174,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>a random string of length {length}</p>
+
                     </div>
                 </td>
             </tr>
@@ -184,6 +192,11 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">class Utils {
+    /**
+     * generate a random string with a length equal to the given length argument
+     * @param {number} length the length of the generated string 
+     * @returns {string} a random string of length {length}
+     */
     getRandomString(length: number): string {
         let text: string &#x3D; &quot;&quot;;
         let possible: string &#x3D; &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!$&amp;#@.&quot;;

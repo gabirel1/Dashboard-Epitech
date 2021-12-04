@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/routes/widgets/widget.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/routes/widgets/widget.ts:20</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>handle widgets requests</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -210,6 +212,13 @@ import EpitechDoors from &#x27;./epitechDoors&#x27;;
 import Gmail from &#x27;./gmail&#x27;;
 
 class Widget {
+
+    /**
+     * handle widgets requests
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async post(req: express.Request, res: express.Response) {
         let valid: boolean &#x3D; true;
         const type: string &#x3D; req.params.type;

@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="5"
-                            class="link-to-prism">src/routes/widgets/office.ts:5</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/routes/widgets/office.ts:12</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the office calendar events from start to end date from the office api</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -202,6 +204,13 @@
 import axios, { AxiosResponse } from &#x27;axios&#x27;;
 
 class Office {
+
+    /**
+     * retrieves the office calendar events from start to end date from the office api
+     * @param {express.Request} req
+     * @param {express.Response} res 
+     * @returns 
+     */
     async getCalendarEvents(req: express.Request, res: express.Response) {
         try {
             const { start_date, office_token, end_date } &#x3D; req.body;

@@ -131,14 +131,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="6"
-                            class="link-to-prism">src/routes/widgets/widgetsdb.ts:6</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/routes/widgets/widgetsdb.ts:13</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieves the user&#39;s widgets from the database</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -214,14 +216,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/routes/widgets/widgetsdb.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/routes/widgets/widgetsdb.ts:79</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Update the user&#39;s widgets in database if it existed before, otherwise create a new one</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -290,6 +294,13 @@ import { getWidgetsByUserId, getUserByToken, addWidget, updateWidget } from &#x2
 import jwt from &#x27;jsonwebtoken&#x27;;
 
 class WidgetsDB {
+
+    /**
+     * retrieves the user&#x27;s widgets from the database
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async get(req: express.Request, res: express.Response) {
         try {
             let token: string &#x3D; req.headers.authorization;
@@ -350,6 +361,12 @@ class WidgetsDB {
         }
     }
 
+    /**
+     * Update the user&#x27;s widgets in database if it existed before, otherwise create a new one
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async patch(req: express.Request, res: express.Response) {
         try {
             let token: string &#x3D; req.headers.authorization;

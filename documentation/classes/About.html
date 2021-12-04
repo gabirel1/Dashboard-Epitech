@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="5"
-                            class="link-to-prism">src/routes/about/about.ts:5</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/routes/about/about.ts:12</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>retrieve general informations and a list of services and their widgets awailable in the dashboard</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -202,10 +204,16 @@
 import moment from &quot;moment&quot;;
 
 class About {
+
+  /**
+   * retrieve general informations and a list of services and their widgets awailable in the dashboard 
+   * @param {express.Request} req 
+   * @param {express.Response} res 
+   * @returns 
+   */
   async get(req: express.Request, res: express.Response) {
     let ip: string &#x3D; req.ip;
     ip &#x3D; ip.split(&#x27;:&#x27;)[3];
-    console.log(&#x27;ip &#x3D;&#x3D; &#x27;, ip);
 
     return res.status(200).json({
       &quot;client&quot;: {

@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="8"
-                            class="link-to-prism">src/routes/auth/login.ts:8</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/routes/auth/login.ts:14</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>login a basic user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -205,6 +207,12 @@ import jwt from &#x27;jsonwebtoken&#x27;;
 import moment from &quot;moment&quot;;
 
 class Login {
+    /**
+     * login a basic user
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async post(req: express.Request, res: express.Response) {
         const { mail, password } &#x3D; req.body;
 

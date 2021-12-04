@@ -171,13 +171,10 @@
             wasFound &#x3D; true;
         }
 
-        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -208,7 +205,6 @@
     let query: string &#x3D; &quot;INSERT INTO widgets (user_id, data) VALUES (&#x27;&quot; + userId + &quot;&#x27;, &#x27;&quot; + JSON.stringify(widget) + &quot;&#x27;);&quot;;
 
     try {
-        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
                 console.debug(err);
@@ -246,7 +242,6 @@
     let query: string &#x3D; &quot;DELETE FROM widgets WHERE user_id &#x3D; &#x27;&quot; + userId + &quot;&#x27; AND id &#x3D; &#x27;&quot; + widgetId + &quot;&#x27;;&quot;;
 
     try {
-        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
                 console.debug(err);
@@ -284,13 +279,10 @@
     let query: string &#x3D; &quot;SELECT * FROM users WHERE &quot; + row + &quot; &#x3D; &#x27;&quot; + value + &quot;&#x27; LIMIT 1;&quot;;
 
     try {
-        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -322,10 +314,8 @@
     try {
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
-                console.debug(&quot;[getUserByToken] err &quot;, err);
                 callback(err);
             } else {
-                console.debug(&quot;[getUserByToken] success &quot;, result);
                 callback(null, result);
             }
         });
@@ -378,14 +368,10 @@
             wasFound &#x3D; true;
         }
 
-        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
-
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
-                console.debug(&quot;[getUser] err &quot;, err);
                 callback(err);
             } else {
-                console.debug(&quot;[getUser] success &quot;, result);
                 callback(null, result);
             }
         });
@@ -417,13 +403,10 @@
     let query: string &#x3D; &quot;SELECT * FROM widgets WHERE user_id &#x3D; &#x27;&quot; + userId + &quot;&#x27;;&quot;;
 
     try {
-        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -465,13 +448,10 @@
     query +&#x3D; &#x27; WHERE &#x27; + whereRow + &#x27; &#x3D; &#x27; + &#x60;&#x27;${whereValue}&#x27;&#x60; + &#x27;;&#x27;;
 
     try {
-        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -535,13 +515,10 @@
             wasFound &#x3D; true;
         }
 
-        console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err || result.affectedRows &#x3D;&#x3D;&#x3D; 0) {
-                console.debug(err);
                 callback(err);
             } else {
-                console.debug(result);
                 callback(null, result);
             }
         });
@@ -572,7 +549,6 @@
     let query: string &#x3D; &quot;UPDATE widgets SET data &#x3D; &#x27;&quot; + widget + &quot;&#x27; WHERE user_id &#x3D; &#x27;&quot; + userId + &quot;&#x27;;&quot;;
 
     try {
-        // console.debug(&quot;query &#x3D;&#x3D; &quot;, query);
         db.query(query, (err: any, result: any) &#x3D;&gt; {
             if (err) {
                 console.debug(err);
@@ -658,7 +634,6 @@
         if (err) {
             callback(err);
         } else {
-            console.log(&quot;res &#x3D;&#x3D; &quot;, result);
             callback(null, result);
         }
     });
@@ -666,6 +641,12 @@
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>check if the given token correspond to a user&#39;s token</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -812,6 +793,12 @@
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>handle the login or the registration of a OAuth&#39;s user (a user logged on signed in with a google/facebook/office account)</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -864,6 +851,12 @@
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>save or get user from / in database</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -919,6 +912,12 @@
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>save a user in the database if it doesn&#39;t already exists</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1007,7 +1006,6 @@
                         &#x27;Authorization&#x27;: &#x60;Bearer ${access_token}&#x60;
                     },
                 });
-                console.debug(&quot;response &#x3D;&#x3D; &quot;, response.data);
                 let googleUser &#x3D; response.data;
                 user &#x3D; { type: &#x27;google_user&#x27;, userJson: googleUser };
                 break;
@@ -1030,7 +1028,6 @@
                         &#x27;Authorization&#x27;: &#x60;Bearer ${access_token}&#x60;
                     },
                 });
-                console.log(&quot;response &#x3D;&#x3D; &quot;, response.data);
                 let officeUser &#x3D; response.data;
                 user &#x3D; { type: &#x27;office_user&#x27;, userJson: officeUser };
                 break;
@@ -1048,7 +1045,6 @@
         if (user.type &#x3D;&#x3D;&#x3D; &#x27;google_user&#x27;) {
             await updateInfos([&#x27;google_mail&#x27;, &#x27;google_token&#x27;], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) &#x3D;&gt; {
                 if (err) {
-                    console.error(&quot;Error &#x3D;&#x3D; &quot;, err);
                     return res.status(500).json({ message: &#x27;Internal server error&#x27; });
                 }
                 return res.status(200).json({ message: &#x27;User informations updated&#x27; });
@@ -1057,7 +1053,6 @@
         if (user.type &#x3D;&#x3D;&#x3D; &#x27;office_user&#x27;) {
             await updateInfos([&#x27;office_mail&#x27;, &#x27;office_token&#x27;], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) &#x3D;&gt; {
                 if (err) {
-                    console.error(&quot;Error &#x3D;&#x3D; &quot;, err);
                     return res.status(500).json({ message: &#x27;Internal server error&#x27; });
                 }
                 return res.status(200).json({ message: &#x27;User informations updated&#x27; });
@@ -1066,7 +1061,6 @@
         if (user.type &#x3D;&#x3D;&#x3D; &#x27;facebook_user&#x27;) {
             await updateInfos([&#x27;facebook_mail&#x27;, &#x27;facebook_token&#x27;], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) &#x3D;&gt; {
                 if (err) {
-                    console.error(&quot;Error &#x3D;&#x3D; &quot;, err);
                     return res.status(500).json({ message: &#x27;Internal server error&#x27; });
                 }
                 return res.status(200).json({ message: &#x27;User informations updated&#x27; });
@@ -1075,20 +1069,24 @@
         if (user.type &#x3D;&#x3D;&#x3D; &#x27;plain_user&#x27;) {
             await updateInfos([&#x27;mail&#x27;, &#x27;password&#x27;], [user.userJson.mail, user.userJson.password], existingInformationType, existingInformation, (err: Error, result: any) &#x3D;&gt; {
                 if (err) {
-                    console.error(&quot;Error &#x3D;&#x3D; &quot;, err);
                     return res.status(500).json({ message: &#x27;Internal server error&#x27; });
                 }
                 return res.status(200).json({ message: &#x27;User informations updated&#x27; });
             });
         }
     } catch (error) {
-        console.error(error);
         return res.status(500).json({ message: &#x27;server error&#x27; });
     }
 }</code>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>update a user informations</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>

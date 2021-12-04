@@ -127,14 +127,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="5"
-                            class="link-to-prism">src/routes/auth/OAuth.ts:5</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/routes/auth/OAuth.ts:12</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>login / register a OAuth user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -202,6 +204,13 @@
 import { handleOAuthUsers } from &#x27;./authActions&#x27;;
 
 class Authentication {
+    
+    /**
+     * login / register a OAuth user
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @returns 
+     */
     async post(req: express.Request, res: express.Response) {
         return handleOAuthUsers(req, res);
     }
