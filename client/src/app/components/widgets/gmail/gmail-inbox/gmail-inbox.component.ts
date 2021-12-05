@@ -21,6 +21,7 @@ export async function gmailInboxRefresh(
   widget: Widget
 ): Promise<any> {
   const params = servicesService.prepareParamsForRequest(widget);
+  params["max_results"] = parseInt(params["max_results"]) || 10;
   dataService
     .sendPostRequest(`widgets/${widget.name}`, {
       google_api_key: servicesService.getServiceParameter(

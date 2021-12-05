@@ -26,7 +26,9 @@ export class DashboardComponent implements OnInit {
     });
     // this.widgets = JSON.parse(localStorage.getItem("widgets") || "[]");
     this.dataService.sendGetRequest("widgets/save").subscribe((data) => {
-      this.widgets = JSON.parse(data.data[0].data);
+      if (data.data[0]) {
+        this.widgets = JSON.parse(data.data[0].data);
+      }
 
       setInterval(() => {
         this.widgets.forEach((widget) => {

@@ -1,3 +1,17 @@
-<p>
-  gmail-inbox works!
-</p>
+<div *ngIf="widget">
+  <div class="row" *ngIf="widget.widgetState.data">
+    <div class="d-flex justify-content-between">
+      <ul class="list-group" style="max-height: 240px; overflow-y: auto;">
+        <li class="list-group-item" *ngFor="let event of widget.widgetState.data.messages">
+          <h6>{{event.subject}}</h6>
+          <div class="d-flex justify-content-between">
+            <span class="text-muted">{{event.from}}</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span class="text-muted">{{event.date | date}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

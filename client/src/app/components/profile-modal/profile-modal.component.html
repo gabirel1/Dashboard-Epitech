@@ -35,7 +35,7 @@
                   *ngIf="getServiceParameter(service.name, 'google_api_key')">Déjà
                   connecté</button>
               </ng-container>
-              <ng-container *ngElse>
+              <ng-container *ngIf="service.name != 'office' && service.name != 'gmail'">
                 <input type="text" class="form-control" id="name" [placeholder]="param.name"
                   (change)="onServiceParameterEdit($event, service.name, param.name)"
                   [value]="getServiceParameter(service.name, param.name)">
