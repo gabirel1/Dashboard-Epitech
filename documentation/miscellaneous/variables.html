@@ -992,7 +992,9 @@
                         <i>Default value : </i><code>async (req: express.Request, res: express.Response) &#x3D;&gt; {
     try {
         const type: string &#x3D; req.params.type;
-        const { access_token, existingInformation, existingInformationType } &#x3D; req.body;
+        const { access_token } &#x3D; req.body;
+        let token: string &#x3D; req.headers.authorization;
+        token &#x3D; token.split(&quot; &quot;)[1];
         let response: AxiosResponse;
         let user: { type: string, userJson: any } &#x3D; { type: &#x27;&#x27;, userJson: {} };
 
@@ -1043,31 +1045,33 @@
         };
 
         if (user.type &#x3D;&#x3D;&#x3D; &#x27;google_user&#x27;) {
-            await updateInfos([&#x27;google_mail&#x27;, &#x27;google_token&#x27;], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) &#x3D;&gt; {
+            console.log(&quot;heeeeerererere&quot;);
+            await updateInfos([&#x27;google_mail&#x27;, &#x27;google_token&#x27;], [user.userJson.email, access_token], &quot;token&quot;, token, (err: Error, result: any) &#x3D;&gt; {
                 if (err) {
+                    console.log(&quot;heeeeerererere2 &quot;, err);
                     return res.status(500).json({ message: &#x27;Internal server error&#x27; });
                 }
-                return res.status(200).json({ message: &#x27;User informations updated&#x27; });
+                return res.status(200).json({ message: &#x27;User informations updated&#x27;, google_token: access_token });
             });
         }
         if (user.type &#x3D;&#x3D;&#x3D; &#x27;office_user&#x27;) {
-            await updateInfos([&#x27;office_mail&#x27;, &#x27;office_token&#x27;], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) &#x3D;&gt; {
+            await updateInfos([&#x27;office_mail&#x27;, &#x27;office_token&#x27;], [user.userJson.email, access_token], &quot;token&quot;, token, (err: Error, result: any) &#x3D;&gt; {
                 if (err) {
                     return res.status(500).json({ message: &#x27;Internal server error&#x27; });
                 }
-                return res.status(200).json({ message: &#x27;User informations updated&#x27; });
+                return res.status(200).json({ message: &#x27;User informations updated&#x27;, office_token: access_token });
             });
         }
         if (user.type &#x3D;&#x3D;&#x3D; &#x27;facebook_user&#x27;) {
-            await updateInfos([&#x27;facebook_mail&#x27;, &#x27;facebook_token&#x27;], [user.userJson.email, access_token], existingInformationType, existingInformation, (err: Error, result: any) &#x3D;&gt; {
+            await updateInfos([&#x27;facebook_mail&#x27;, &#x27;facebook_token&#x27;], [user.userJson.email, access_token], &quot;token&quot;, token, (err: Error, result: any) &#x3D;&gt; {
                 if (err) {
                     return res.status(500).json({ message: &#x27;Internal server error&#x27; });
                 }
-                return res.status(200).json({ message: &#x27;User informations updated&#x27; });
+                return res.status(200).json({ message: &#x27;User informations updated&#x27;, facebook_token: access_token });
             });
         }
         if (user.type &#x3D;&#x3D;&#x3D; &#x27;plain_user&#x27;) {
-            await updateInfos([&#x27;mail&#x27;, &#x27;password&#x27;], [user.userJson.mail, user.userJson.password], existingInformationType, existingInformation, (err: Error, result: any) &#x3D;&gt; {
+            await updateInfos([&#x27;mail&#x27;, &#x27;password&#x27;], [user.userJson.mail, user.userJson.password], &quot;token&quot;, token, (err: Error, result: any) &#x3D;&gt; {
                 if (err) {
                     return res.status(500).json({ message: &#x27;Internal server error&#x27; });
                 }
