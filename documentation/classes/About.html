@@ -127,8 +127,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/routes/about/about.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/routes/about/about.ts:11</a></div>
                 </td>
             </tr>
 
@@ -200,280 +200,299 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import express from &#x27;express&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import express from &quot;express&quot;;
 import moment from &quot;moment&quot;;
 
 class About {
-
   /**
-   * retrieve general informations and a list of services and their widgets awailable in the dashboard 
-   * @param {express.Request} req 
-   * @param {express.Response} res 
-   * @returns 
+   * retrieve general informations and a list of services and their widgets awailable in the dashboard
+   * @param {express.Request} req
+   * @param {express.Response} res
+   * @returns
    */
   async get(req: express.Request, res: express.Response) {
     let ip: string &#x3D; req.ip;
-    ip &#x3D; ip.split(&#x27;:&#x27;)[3];
+    ip &#x3D; ip.split(&quot;:&quot;)[3];
 
     return res.status(200).json({
-      &quot;client&quot;: {
-        &quot;host&quot;: ip,
+      client: {
+        host: ip,
       },
-      &quot;server&quot;: {
-        &quot;current_time&quot;: moment().unix(),
-        &quot;services&quot;: [
+      server: {
+        current_time: moment().unix(),
+        services: [
           {
-            &quot;name&quot;: &quot;weather&quot;,
-            &quot;display_name&quot;: &quot;Weather&quot;,
-            &quot;api_url&quot;: &quot;http://api.openweathermap.org&quot;,
-            &quot;params&quot;: [
+            name: &quot;weather&quot;,
+            display_name: &quot;Weather&quot;,
+            api_url: &quot;http://api.openweathermap.org&quot;,
+            params: [
               {
-                &quot;name&quot;: &quot;api_key&quot;,
-                &quot;type&quot;: &quot;string&quot;,
-              }
-            ],
-            &quot;widgets&quot;: [
-              {
-                &quot;name&quot;: &quot;city_temperature&quot;,
-                &quot;display_name&quot;: &quot;City temperature&quot;,
-                &quot;description&quot;: &quot;Display temperature for a city&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;city&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
+                name: &quot;api_key&quot;,
+                type: &quot;string&quot;,
               },
-              {
-                &quot;name&quot;: &quot;city_weather&quot;,
-                &quot;display_name&quot;: &quot;City weather&quot;,
-                &quot;description&quot;: &quot;Display weather for a city&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;city&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              }
-            ]
-          },{
-            &quot;name&quot;: &quot;currency&quot;,
-            &quot;display_name&quot;: &quot;Currency Converter&quot;,
-            &quot;api_url&quot;: &quot;https://freecurrencyapi.net/&quot;,
-            &quot;params&quot;: [
-              {
-                &quot;name&quot;: &quot;api_key&quot;,
-                &quot;type&quot;: &quot;string&quot;,
-              }
             ],
-            &quot;widgets&quot;: [
+            widgets: [
               {
-                &quot;name&quot;: &quot;currency_converter&quot;,
-                &quot;display_name&quot;: &quot;Currency Converter&quot;,
-                &quot;description&quot;: &quot;Display the exchange rate of a currency&quot;,
-                &quot;params&quot;: [
+                name: &quot;city_temperature&quot;,
+                display_name: &quot;City temperature&quot;,
+                description: &quot;Display temperature for a city&quot;,
+                params: [
                   {
-                    &quot;name&quot;: &quot;from&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  },{
-                    &quot;name&quot;: &quot;to&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              }
-            ]
-          },{
-            &quot;name&quot;: &quot;nasa&quot;,
-            &quot;display_name&quot;: &quot;NASA&quot;,
-            &quot;api_url&quot;: &quot;https://api.nasa.gov/&quot;,
-            &quot;params&quot;: [
-              {
-                &quot;name&quot;: &quot;api_key&quot;,
-                &quot;type&quot;: &quot;string&quot;,
-              }
-            ],
-            &quot;widgets&quot;: [
-              {
-                &quot;name&quot;: &quot;apod&quot;,
-                &quot;display_name&quot;: &quot;Astronomy Picture of the Day&quot;,
-                &quot;description&quot;: &quot;Display the Astronomy Picture of the Day&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;date&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              },
-              {
-                &quot;name&quot;: &quot;curiosity_image&quot;,
-                &quot;display_name&quot;: &quot;Curiosity Rover Image&quot;,
-                &quot;description&quot;: &quot;Display an image from a curiosity&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;date&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  },{
-                    &quot;name&quot;: &quot;camera&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              }
-            ]
-          },{
-            &quot;name&quot;: &quot;intra_epitech&quot;,
-            &quot;display_name&quot;: &quot;Intra Epitech&quot;,
-            &quot;params&quot;: [],
-            &quot;api_url&quot;: &quot;https://intra.epitech.eu/admin/autolog&quot;,
-            &quot;widgets&quot;: [
-              {
-                &quot;name&quot;: &quot;intra_epitech_profile&quot;,
-                &quot;display_name&quot;: &quot;Profile&quot;,
-                &quot;description&quot;: &quot;Display the profile of an intra epitech user&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;autologin&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              },{
-                &quot;name&quot;: &quot;intra_epitech_partners&quot;,
-                &quot;display_name&quot;: &quot;Partners&quot;,
-                &quot;description&quot;: &quot;Display the partners of an intra epitech user&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;autologin&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              },{
-                &quot;name&quot;: &quot;intra_epitech_notifications&quot;,
-                &quot;display_name&quot;: &quot;Notifications&quot;,
-                &quot;description&quot;: &quot;Display the notifications of an intra epitech user&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;autologin&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              },{
-                &quot;name&quot;: &quot;intra_epitech_grades&quot;,
-                &quot;display_name&quot;: &quot;Grades&quot;,
-                &quot;description&quot;: &quot;Display the grades of an intra epitech user&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;autologin&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              }
-            ]
-          },{
-            &quot;name&quot;: &quot;epitech_doors&quot;,
-            &quot;display_name&quot;: &quot;Epitech Doors&quot;,
-            &quot;params&quot;: [
-              {
-                &quot;name&quot;: &quot;intra_autologin&quot;,
-                &quot;type&quot;: &quot;string&quot;,
-              }
-            ],
-            &quot;api_url&quot;: &quot;https://intra.epitech.eu/admin/autolog&quot;,
-            &quot;widgets&quot;: [
-              {
-                &quot;name&quot;: &quot;epitech_doors_open_door&quot;,
-                &quot;display_name&quot;: &quot;Open door&quot;,
-                &quot;description&quot;: &quot;Open the door in epitech montpellier&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;door_name&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  },{
-                    &quot;name&quot;: &quot;intra_autologin&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
+                    name: &quot;city&quot;,
+                    type: &quot;string&quot;,
+                  },
                 ],
-              }
-            ]
-          },{
-            &quot;name&quot;: &quot;office&quot;,
-            &quot;display_name&quot;: &quot;Office 365&quot;,
-            &quot;params&quot;: [],
-            &quot;api_url&quot;: &quot;https://graph.microsoft.com/v1.0/me/&quot;,
-            &quot;widgets&quot;: [
+              },
               {
-                &quot;name&quot;: &quot;office_calendar_events&quot;,
-                &quot;display_name&quot;: &quot;Calendar events&quot;,
-                &quot;description&quot;: &quot;Display the calendar events of an office user&quot;,
-                &quot;params&quot;: [
+                name: &quot;city_weather&quot;,
+                display_name: &quot;City weather&quot;,
+                description: &quot;Display weather for a city&quot;,
+                params: [
                   {
-                    &quot;name&quot;: &quot;start_date&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  },{
-                    &quot;name&quot;: &quot;end_date&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  },{
-                    &quot;name&quot;: &quot;office_token&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              }
-            ]
-          },{
-            &quot;name&quot;: &quot;league_of_legends&quot;,
-            &quot;display_name&quot;: &quot;League of Legends&quot;,
-            &quot;params&quot;: [
-              {
-                &quot;name&quot;: &quot;api_key&quot;,
-                &quot;type&quot;: &quot;string&quot;,
-              }
+                    name: &quot;city&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
             ],
-            &quot;api_url&quot;: &quot;&quot;,
-            &quot;widgets&quot;: [
+          },
+          {
+            name: &quot;currency&quot;,
+            display_name: &quot;Currency Converter&quot;,
+            api_url: &quot;https://freecurrencyapi.net/&quot;,
+            params: [
               {
-                &quot;name&quot;: &quot;league_of_legends_summoner_profile&quot;,
-                &quot;display_name&quot;: &quot;Summoner profile&quot;,
-                &quot;description&quot;: &quot;Display the summoner profile of a league of legends user&quot;,
-                &quot;params&quot;: [
-                  {
-                    &quot;name&quot;: &quot;summoner_name&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  },{
-                    &quot;name&quot;: &quot;region&quot;,
-                    &quot;type&quot;: &quot;string&quot;,
-                  }
-                ]
-              }
-            ]
-          },{
-            &quot;name&quot;: &quot;gmail&quot;,
-            &quot;display_name&quot;: &quot;Gmail&quot;,
-            &quot;params&quot;: [
-              {
-                &quot;name&quot;: &quot;google_api_key&quot;,
-                &quot;type&quot;: &quot;string&quot;,
-              }
+                name: &quot;api_key&quot;,
+                type: &quot;string&quot;,
+              },
             ],
-            &quot;api_url&quot;: &quot;google&quot;,
-            &quot;widgets&quot;: [
+            widgets: [
               {
-                &quot;name&quot;: &quot;gmail_inbox&quot;,
-                &quot;display_name&quot;: &quot;Inbox&quot;,
-                &quot;description&quot;: &quot;Display the inbox of a gmail user&quot;,
-                &quot;params&quot;: [
+                name: &quot;currency_converter&quot;,
+                display_name: &quot;Currency Converter&quot;,
+                description: &quot;Display the exchange rate of a currency&quot;,
+                params: [
                   {
-                    &quot;name&quot;: &quot;max_results&quot;,
-                    &quot;type&quot;: &quot;number&quot;,
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    name: &quot;from&quot;,
+                    type: &quot;string&quot;,
+                  },
+                  {
+                    name: &quot;to&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: &quot;nasa&quot;,
+            display_name: &quot;NASA&quot;,
+            api_url: &quot;https://api.nasa.gov/&quot;,
+            params: [
+              {
+                name: &quot;api_key&quot;,
+                type: &quot;string&quot;,
+              },
+            ],
+            widgets: [
+              {
+                name: &quot;apod&quot;,
+                display_name: &quot;Astronomy Picture of the Day&quot;,
+                description: &quot;Display the Astronomy Picture of the Day&quot;,
+                params: [
+                  {
+                    name: &quot;date&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+              {
+                name: &quot;curiosity_image&quot;,
+                display_name: &quot;Curiosity Rover Image&quot;,
+                description: &quot;Display an image from a curiosity&quot;,
+                params: [
+                  {
+                    name: &quot;date&quot;,
+                    type: &quot;string&quot;,
+                  },
+                  {
+                    name: &quot;camera&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: &quot;intra_epitech&quot;,
+            display_name: &quot;Intra Epitech&quot;,
+            params: [],
+            api_url: &quot;https://intra.epitech.eu/admin/autolog&quot;,
+            widgets: [
+              {
+                name: &quot;intra_epitech_profile&quot;,
+                display_name: &quot;Profile&quot;,
+                description: &quot;Display the profile of an intra epitech user&quot;,
+                params: [
+                  {
+                    name: &quot;autologin&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+              {
+                name: &quot;intra_epitech_partners&quot;,
+                display_name: &quot;Partners&quot;,
+                description: &quot;Display the partners of an intra epitech user&quot;,
+                params: [
+                  {
+                    name: &quot;autologin&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+              {
+                name: &quot;intra_epitech_notifications&quot;,
+                display_name: &quot;Notifications&quot;,
+                description:
+                  &quot;Display the notifications of an intra epitech user&quot;,
+                params: [
+                  {
+                    name: &quot;autologin&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+              {
+                name: &quot;intra_epitech_grades&quot;,
+                display_name: &quot;Grades&quot;,
+                description: &quot;Display the grades of an intra epitech user&quot;,
+                params: [
+                  {
+                    name: &quot;autologin&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: &quot;epitech_doors&quot;,
+            display_name: &quot;Epitech Doors&quot;,
+            params: [
+              {
+                name: &quot;intra_autologin&quot;,
+                type: &quot;string&quot;,
+              },
+            ],
+            api_url: &quot;https://intra.epitech.eu/admin/autolog&quot;,
+            widgets: [
+              {
+                name: &quot;epitech_doors_open_door&quot;,
+                display_name: &quot;Open door&quot;,
+                description: &quot;Open the door in epitech montpellier&quot;,
+                params: [
+                  {
+                    name: &quot;door_name&quot;,
+                    type: &quot;string&quot;,
+                  },
+                  {
+                    name: &quot;intra_autologin&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: &quot;office&quot;,
+            display_name: &quot;Office 365&quot;,
+            params: [
+              {
+                name: &quot;office_token&quot;,
+                type: &quot;string&quot;,
+              },
+            ],
+            api_url: &quot;https://graph.microsoft.com/v1.0/me/&quot;,
+            widgets: [
+              {
+                name: &quot;office_calendar_events&quot;,
+                display_name: &quot;Calendar events&quot;,
+                description: &quot;Display the calendar events of an office user&quot;,
+                params: [
+                  {
+                    name: &quot;start_date&quot;,
+                    type: &quot;string&quot;,
+                  },
+                  {
+                    name: &quot;end_date&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: &quot;league_of_legends&quot;,
+            display_name: &quot;League of Legends&quot;,
+            params: [
+              {
+                name: &quot;api_key&quot;,
+                type: &quot;string&quot;,
+              },
+            ],
+            api_url: &quot;&quot;,
+            widgets: [
+              {
+                name: &quot;league_of_legends_summoner_profile&quot;,
+                display_name: &quot;Summoner profile&quot;,
+                description:
+                  &quot;Display the summoner profile of a league of legends user&quot;,
+                params: [
+                  {
+                    name: &quot;summoner_name&quot;,
+                    type: &quot;string&quot;,
+                  },
+                  {
+                    name: &quot;region&quot;,
+                    type: &quot;string&quot;,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: &quot;gmail&quot;,
+            display_name: &quot;Gmail&quot;,
+            params: [
+              {
+                name: &quot;google_api_key&quot;,
+                type: &quot;string&quot;,
+              },
+            ],
+            api_url: &quot;google&quot;,
+            widgets: [
+              {
+                name: &quot;gmail_inbox&quot;,
+                display_name: &quot;Inbox&quot;,
+                description: &quot;Display the inbox of a gmail user&quot;,
+                params: [
+                  {
+                    name: &quot;max_results&quot;,
+                    type: &quot;number&quot;,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     });
   }
-};
+}
 
-module.exports &#x3D; new About();</code></pre>
+module.exports &#x3D; new About();
+</code></pre>
     </div>
 </div>
 
