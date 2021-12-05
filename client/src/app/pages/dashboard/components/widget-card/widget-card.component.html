@@ -29,6 +29,10 @@
         </app-doors-open>
         <app-lol-profile [widget]="widget" #widgetComponent *ngSwitchCase="'league_of_legends_summoner_profile'">
         </app-lol-profile>
+        <app-office-calendar-events [widget]="widget" #widgetComponent *ngSwitchCase="'office_calendar_events'">
+        </app-office-calendar-events>
+        <app-gmail-inbox [widget]="widget" #widgetComponent *ngSwitchCase="'gmail_inbox'">
+        </app-gmail-inbox>
       </ng-container>
     </div>
   </div>

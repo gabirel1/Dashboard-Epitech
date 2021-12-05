@@ -29,11 +29,27 @@ export class DashboardComponent implements OnInit {
       this.widgets = JSON.parse(data.data[0].data);
 
       setInterval(() => {
-        // localStorage.setItem(
-        //   "widgets",
-        //   JSON.stringify(this.widgets.filter((w) => !w.widgetState.toDelete))
-        // );
-        if (this.widgets.find((w) => w.widgetState.editMode)) return;
+        this.widgets.forEach((widget) => {
+          if (this.servicesService.getWidgetFunc(widget.name)) {
+            this.servicesService
+              .getWidgetFunc(widget.name)(
+                this.dataService,
+                this.servicesService,
+                widget
+              )
+              .catch((e) => {
+                console.error("Unable to refresh widget", e);
+              });
+          }
+        });
+      }, 5000);
+      setInterval(() => {
+        if (
+          this.widgets.find(
+            (w) => w.widgetState.editMode == true && !w.widgetState.toDelete
+          )
+        )
+          return;
         const dupData = JSON.stringify(
           this.widgets.filter((w) => !w.widgetState.toDelete)
         );
@@ -50,15 +66,6 @@ export class DashboardComponent implements OnInit {
             .subscribe();
           this.widgetsSave = data;
         }
-        this.widgets.forEach((widget) => {
-          if (this.servicesService.getWidgetFunc(widget.name)) {
-            this.servicesService.getWidgetFunc(widget.name)(
-              this.dataService,
-              this.servicesService,
-              widget
-            );
-          }
-        });
       }, 5000);
     });
   }

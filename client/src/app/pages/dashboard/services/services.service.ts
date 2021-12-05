@@ -11,6 +11,8 @@ import { intraPartnersRefresh } from "src/app/components/widgets/intra/intra-par
 import { intraNotificationsRefresh } from "src/app/components/widgets/intra/intra-notifications/intra-notifications.component";
 import { intraGradesRefresh } from "src/app/components/widgets/intra/intra-grades/intra-grades.component";
 import { lolProfileRefresh } from "src/app/components/lol/lol-profile/lol-profile.component";
+import { officeCalendarEventsRefresh } from "src/app/components/widgets/office/office-calendar-events/office-calendar-events.component";
+import { gmailInboxRefresh } from "src/app/components/widgets/gmail/gmail-inbox/gmail-inbox.component";
 
 @Injectable({
   providedIn: "root",
@@ -29,6 +31,8 @@ export class ServicesService {
     intra_epitech_notifications: intraNotificationsRefresh,
     intra_epitech_grades: intraGradesRefresh,
     league_of_legends_summoner_profile: lolProfileRefresh,
+    office_calendar_events: officeCalendarEventsRefresh,
+    gmail_inbox: gmailInboxRefresh,
   };
 
   constructor(private dataService: DataService) {}

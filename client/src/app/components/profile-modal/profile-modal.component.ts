@@ -3,6 +3,11 @@ import { ServicesService } from "./../../pages/dashboard/services/services.servi
 import { DataService } from "./../../services/data.service";
 import { Component, OnInit } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import {
+  GoogleLoginProvider,
+  MicrosoftLoginProvider,
+  SocialAuthService,
+} from "angularx-social-login";
 
 export interface Profile {
   mail: string;
@@ -27,7 +32,8 @@ export class ProfileModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private servicesService: ServicesService,
-    private dataService: DataService
+    private dataService: DataService,
+    private socialAuthService: SocialAuthService
   ) {}
 
   ngOnInit() {
@@ -70,5 +76,47 @@ export class ProfileModalComponent implements OnInit {
       servicesEnabled.splice(servicesEnabled.indexOf(serviceName), 1);
     }
     localStorage.setItem("servicesEnabled", JSON.stringify(servicesEnabled));
+  }
+
+  async loginWithMicrosoft() {
+    const userResponse = await this.socialAuthService.signIn(
+      MicrosoftLoginProvider.PROVIDER_ID
+    );
+    this.dataService
+      .sendPostRequest("auth/OAuth/office_user", {
+        access_token: userResponse.response.accessToken,
+      })
+      .subscribe({
+        next: (data) => {
+          this.servicesService.saveServiceParameter(
+            "office",
+            "office_token",
+            data.result[0].office_token
+          );
+        },
+      });
+  }
+
+  async loginWithGoogle() {
+    const userResponse = await this.socialAuthService.signIn(
+      GoogleLoginProvider.PROVIDER_ID,
+      {
+        scope:
+          "https://mail.google.com/ https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.addons.current.message.action https://www.googleapis.com/auth/gmail.addons.current.message.readonly",
+      }
+    );
+    this.dataService
+      .sendPostRequest("auth/OAuth/google_user", {
+        access_token: userResponse.response.access_token,
+      })
+      .subscribe({
+        next: (data) => {
+          this.servicesService.saveServiceParameter(
+            "gmail",
+            "google_api_key",
+            data.token
+          );
+        },
+      });
   }
 }

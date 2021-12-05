@@ -1,3 +1,5 @@
+import { GmailInboxComponent } from './components/widgets/gmail/gmail-inbox/gmail-inbox.component';
+import { OfficeCalendarEventsComponent } from './components/widgets/office/office-calendar-events/office-calendar-events.component';
 import { LolProfileComponent } from './components/lol/lol-profile/lol-profile.component';
 import { DoorsOpenComponent } from './components/widgets/doors/doors-open/doors-open.component';
 import { IntraGradesComponent } from './components/widgets/intra/intra-grades/intra-grades.component';
@@ -50,7 +52,9 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     IntraNotificationsComponent,
     IntraGradesComponent,
     DoorsOpenComponent,
-    LolProfileComponent
+    LolProfileComponent,
+    OfficeCalendarEventsComponent,
+    GmailInboxComponent
   ],
   imports: [
     BrowserModule,
