@@ -91,7 +91,7 @@ export class ProfileModalComponent implements OnInit {
           this.servicesService.saveServiceParameter(
             "office",
             "office_token",
-            data.result[0].office_token
+            data.office_token
           );
         },
       });
@@ -114,7 +114,7 @@ export class ProfileModalComponent implements OnInit {
           this.servicesService.saveServiceParameter(
             "gmail",
             "google_api_key",
-            data.token
+            data.google_token
           );
         },
       });
