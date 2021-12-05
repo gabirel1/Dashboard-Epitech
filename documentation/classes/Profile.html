@@ -237,8 +237,6 @@ class Profile {
                 if (result.length &#x3D;&#x3D;&#x3D; 0) {
                     return res.status(404).json({ error: false, message: &quot;user not found&quot; });
                 } else {
-                    console.log(&quot;result &#x3D;&#x3D; &quot;, result);
-                    console.log(&quot;result[0] &#x3D;&#x3D; &quot;, result[0]);
                     let rslt &#x3D; result[0];
                     let user &#x3D; {
                         mail: rslt[&#x27;mail&#x27;],
