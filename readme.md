@@ -5,10 +5,28 @@ Dashboard is a project which allow users to connect to several services and use 
 ____
 ## Summary
 
+- ### Dependencies
+- ### How to run
 - ### How to implement a widget
 - ### Available Services
 - ### Available Widgets
 
+
+### Dependencies
+
+- ```docker-compose```
+- ```docker```
+
+### How to run
+
+```
+docker-compose build
+docker-compose up dashboard-database
+docker-compose up
+```
+once dashboard-database displays the following press : Ctrl+C and start the next command
+
+```dashboard-database    | Version: '5.7.36'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)```
 
 ### How to implement a widget (server)
 
@@ -110,6 +128,7 @@ switch (type) {
 - League Of Legends
 - Office 365
 - Weather
+- Gmail
 
 ## Available Widgets:
 
@@ -131,4 +150,6 @@ switch (type) {
 - Weather
   - City's temperature
   - City's weather
+- Gmail
+  - Gmail Inbox
 
