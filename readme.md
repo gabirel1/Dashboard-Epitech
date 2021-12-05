@@ -5,30 +5,31 @@ Dashboard is a project which allow users to connect to several services and use 
 ____
 ## Summary
 
-- ### Dependencies
-- ### How to run
-- ### How to implement a widget
-- ### Available Services
-- ### Available Widgets
+- ### [Dependencies](#Dependencies)
+- ### [How to run](#Howtorun)
+- ### [How to implement a widget](#Howtoimplementawidget)
+- ### [Documentations](#Documentations)
+- ### [Available Services](#AvailableServices)
+- ### [Available Widgets](#AvailableWidgets)
 
 
-### Dependencies
+### <a name="Dependencies"></a> Dependencies
 
 - ```docker-compose```
 - ```docker```
 
-### How to run
+### <a name="Howtorun"></a> How to run
 
 ```
 docker-compose build
 docker-compose up dashboard-database
 docker-compose up
 ```
-once dashboard-database displays the following press : Ctrl+C and start the next command
+Once dashboard-database displays the following press : Ctrl+C and start the next command
 
 ```dashboard-database    | Version: '5.7.36'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)```
 
-### How to implement a widget (server)
+### <a name="Howtoimplementawidget"></a> How to implement a widget (server)
 
 Create a new file :
 
@@ -120,7 +121,12 @@ switch (type) {
 
 - Add the widget component to the client too :)
 
-## Available Services:
+### <a name="Documentations"></a> Documentations
+- Postman : https://documenter.getpostman.com/view/12393581/UVJhEFRd
+- [Server Technical Documentation](documentation/)
+
+
+## <a name="AvailableServices"></a> Available Services:
 
 - Intranet Epitech
 - Nasa
@@ -130,7 +136,7 @@ switch (type) {
 - Weather
 - Gmail
 
-## Available Widgets:
+## <a name="AvailableWidgets"></a> Available Widgets:
 
 - Intranet Epitech:
   - Intranet Profile
