@@ -35,8 +35,6 @@ class Profile {
                 if (result.length === 0) {
                     return res.status(404).json({ error: false, message: "user not found" });
                 } else {
-                    console.log("result == ", result);
-                    console.log("result[0] == ", result[0]);
                     let rslt = result[0];
                     let user = {
                         mail: rslt['mail'],

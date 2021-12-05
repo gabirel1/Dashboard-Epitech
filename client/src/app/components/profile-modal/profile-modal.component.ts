@@ -83,7 +83,7 @@ export class ProfileModalComponent implements OnInit {
       MicrosoftLoginProvider.PROVIDER_ID
     );
     this.dataService
-      .sendPostRequest("auth/OAuth/office_user", {
+      .sendPatchRequest("profile/update/office_user", {
         access_token: userResponse.response.accessToken,
       })
       .subscribe({
@@ -106,7 +106,7 @@ export class ProfileModalComponent implements OnInit {
       }
     );
     this.dataService
-      .sendPostRequest("auth/OAuth/google_user", {
+      .sendPatchRequest("profile/update/google_user", {
         access_token: userResponse.response.access_token,
       })
       .subscribe({
