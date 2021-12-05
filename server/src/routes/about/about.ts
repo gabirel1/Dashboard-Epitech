@@ -283,6 +283,25 @@ class About {
               },
             ],
           },
+          {
+            name: "spotify",
+            display_name: "Spotify",
+            params: [],
+            api_url: "spoitfy.com",
+            widgets: [
+              {
+                name: "spotify_tracklist",
+                display_name: "Tracklist",
+                description: "Display the tracklist of a spotify playlist",
+                params: [
+                  {
+                    name: "playlist_id",
+                    type: "string",
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
     });

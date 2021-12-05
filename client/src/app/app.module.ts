@@ -1,3 +1,5 @@
+import { SafePipe } from './pipes/safe.pipe';
+import { SpotifyTracklistComponent } from './components/widgets/spotify/spotify-tracklist/spotify-tracklist.component';
 import { GmailInboxComponent } from './components/widgets/gmail/gmail-inbox/gmail-inbox.component';
 import { OfficeCalendarEventsComponent } from './components/widgets/office/office-calendar-events/office-calendar-events.component';
 import { LolProfileComponent } from './components/lol/lol-profile/lol-profile.component';
@@ -40,6 +42,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     NavbarComponent,
     DashboardComponent,
     ProfileModalComponent,
+    SafePipe,
     SideNavComponent,
     WidgetCardComponent,
     WeatherTemperatureComponent,
@@ -54,7 +57,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     DoorsOpenComponent,
     LolProfileComponent,
     OfficeCalendarEventsComponent,
-    GmailInboxComponent
+    GmailInboxComponent,
+    SpotifyTracklistComponent
   ],
   imports: [
     BrowserModule,

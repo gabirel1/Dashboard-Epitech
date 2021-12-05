@@ -13,6 +13,7 @@ import { intraGradesRefresh } from "src/app/components/widgets/intra/intra-grade
 import { lolProfileRefresh } from "src/app/components/lol/lol-profile/lol-profile.component";
 import { officeCalendarEventsRefresh } from "src/app/components/widgets/office/office-calendar-events/office-calendar-events.component";
 import { gmailInboxRefresh } from "src/app/components/widgets/gmail/gmail-inbox/gmail-inbox.component";
+import { spotifyTracklistRefresh } from "src/app/components/widgets/spotify/spotify-tracklist/spotify-tracklist.component";
 
 @Injectable({
   providedIn: "root",
@@ -33,6 +34,7 @@ export class ServicesService {
     league_of_legends_summoner_profile: lolProfileRefresh,
     office_calendar_events: officeCalendarEventsRefresh,
     gmail_inbox: gmailInboxRefresh,
+    spotify_tracklist: spotifyTracklistRefresh
   };
 
   constructor(private dataService: DataService) {}
