@@ -127,8 +127,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/routes/widgets/gmail.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/routes/widgets/gmail.ts:11</a></div>
                 </td>
             </tr>
 
@@ -200,77 +200,88 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import express from &#x27;express&#x27;;
-import axios, { AxiosResponse } from &#x27;axios&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import express from &quot;express&quot;;
+import axios, { AxiosResponse } from &quot;axios&quot;;
 
 class Gmail {
+  /**
+   * retrieves the last max_results emails from the user&#x27;s inbox
+   * @param {express.Request} req
+   * @param {express.Response} res
+   * @returns
+   */
+  async getLastFiveMail(req: express.Request, res: express.Response) {
+    try {
+      const { google_api_key, max_results } &#x3D; req.body;
+      let mail: string &#x3D; &quot;&quot;;
 
-    /**
-     * retrieves the last max_results emails from the user&#x27;s inbox
-     * @param {express.Request} req 
-     * @param {express.Response} res 
-     * @returns 
-     */
-    async getLastFiveMail(req: express.Request, res: express.Response) {
+      let response: AxiosResponse &#x3D; await axios({
+        method: &quot;GET&quot;,
+        url: &quot;https://www.googleapis.com/oauth2/v1/userinfo?alt&#x3D;json&quot;,
+        headers: {
+          Authorization: &#x60;Bearer ${google_api_key}&#x60;,
+        },
+      });
+      mail &#x3D; response.data.email;
+      const url &#x3D; &#x60;https://gmail.googleapis.com/gmail/v1/users/${mail}/messages?maxResults&#x3D;${max_results}&#x60;;
+      let response2: AxiosResponse &#x3D; await axios({
+        method: &quot;GET&quot;,
+        url: url,
+        headers: {
+          Authorization: &#x60;Bearer ${google_api_key}&#x60;,
+        },
+      });
+      let messageIds: Array&lt;string&gt; &#x3D; [];
+      response2.data.messages.forEach((message: any) &#x3D;&gt; {
+        messageIds.push(message.id);
+      });
+      let messages: Array&lt;any&gt; &#x3D; [];
+      for (let i &#x3D; 0; i &lt; messageIds.length; i++) {
         try {
-            const { google_api_key, max_results } &#x3D; req.body;
-            let mail: string &#x3D; &quot;&quot;;
-
-            let response: AxiosResponse &#x3D;  await axios({
-                method: &#x27;GET&#x27;,
-                url: &#x27;https://www.googleapis.com/oauth2/v1/userinfo?alt&#x3D;json&#x27;,
-                headers: {
-                    &#x27;Authorization&#x27;: &#x60;Bearer ${google_api_key}&#x60;
-                },
-            });
-            mail &#x3D; response.data.email;
-            const url &#x3D; &#x60;https://gmail.googleapis.com/gmail/v1/users/${mail}/messages?maxResults&#x3D;${max_results}&#x60;;
-            let response2: AxiosResponse &#x3D; await axios({
-                method: &#x27;GET&#x27;,
-                url: url,
-                headers: {
-                    &#x27;Authorization&#x27;: &#x60;Bearer ${google_api_key}&#x60;
-                },
-            });
-            let messageIds: Array&lt;string&gt; &#x3D; [];
-            response2.data.messages.forEach((message: any) &#x3D;&gt; {
-                messageIds.push(message.id);
-            });
-            let messages: Array&lt;any&gt; &#x3D; [];
-            for (let i &#x3D; 0; i &lt; messageIds.length; i++) {
-                let response3: AxiosResponse &#x3D; await axios({
-                    method: &#x27;GET&#x27;,
-                    url: &#x60;https://gmail.googleapis.com/gmail/v1/users/${mail}/messages/${messageIds[i]}&#x60;,
-                    headers: {
-                        &#x27;Authorization&#x27;: &#x60;Bearer ${google_api_key}&#x60;
-                    },
-                });
-                let msg: any &#x3D; {
-                    id: response3.data.id,
-                    threadId: response3.data.threadId,
-                    snippet: response3.data.snippet,
-                    subject: response3.data.payload.headers.find((header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &#x27;Subject&#x27;).value,
-                    date: response3.data.payload.headers.find((header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &#x27;Date&#x27;).value,
-                    from: response3.data.payload.headers.find((header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &#x27;From&#x27;).value,
-                    to: response3.data.payload.headers.find((header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &#x27;To&#x27;).value,
-                };
-                messages.push(msg);
-            }
-            return res.status(200).json({
-                success: true,
-                messages: messages
-            });
-
+          let response3: AxiosResponse &#x3D; await axios({
+            method: &quot;GET&quot;,
+            url: &#x60;https://gmail.googleapis.com/gmail/v1/users/${mail}/messages/${messageIds[i]}&#x60;,
+            headers: {
+              Authorization: &#x60;Bearer ${google_api_key}&#x60;,
+            },
+          });
+          let msg: any &#x3D; {
+            id: response3.data.id,
+            threadId: response3.data.threadId,
+            snippet: response3.data.snippet,
+            subject: response3.data.payload.headers.find(
+              (header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &quot;Subject&quot;
+            ).value,
+            date: response3.data.payload.headers.find(
+              (header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &quot;Date&quot;
+            ).value,
+            from: response3.data.payload.headers.find(
+              (header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &quot;From&quot;
+            ).value,
+            to: response3.data.payload.headers.find(
+              (header: any) &#x3D;&gt; header.name &#x3D;&#x3D;&#x3D; &quot;To&quot;
+            ).value,
+          };
+          messages.push(msg);
         } catch (error) {
-            console.log(error);
-            return res.status(500).json({
-                message: &#x27;Internal Server Error&#x27;
-            });
+          console.error(&quot;Test&quot;, error.response.data);
         }
+      }
+      return res.status(200).json({
+        success: true,
+        messages: messages,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        message: &quot;Internal Server Error&quot;,
+      });
     }
+  }
 }
 
-export default new Gmail();</code></pre>
+export default new Gmail();
+</code></pre>
     </div>
 </div>
 
