@@ -139,8 +139,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="131"
-                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:131</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/routes/widgets/intraEpitech.ts:136</a></div>
                 </td>
             </tr>
 
@@ -562,7 +562,7 @@ class IntraEpitech {
      */
     async getNotifications(req: express.Request, res: express.Response) {
         try {
-            const { autologin } &#x3D; req.body;            
+            const { autologin, max_results } &#x3D; req.body;            
             let autoLogin: string &#x3D; autologin;
             let url: string &#x3D; &quot;&quot;;
 
@@ -582,7 +582,12 @@ class IntraEpitech {
                 method: &#x27;get&#x27;,
                 url: url,
             });
-            return res.status(200).json(response2.data);
+            let result &#x3D; [];
+
+            for (let i: number &#x3D; 0; i &lt; max_results &amp;&amp; i &lt; response2.data.length; i++) {
+                result.push(response2.data[i]);
+            }
+            return res.status(200).json(result);
         } catch (error) {
             console.log(error);
             return res.status(500).json({
@@ -599,7 +604,7 @@ class IntraEpitech {
      */
     async getGrades(req: express.Request, res: express.Response) {
         try {
-            const { autologin } &#x3D; req.body;
+            const { autologin, semester_code } &#x3D; req.body;
             let autoLogin: string &#x3D; autologin;
             let url: string &#x3D; &quot;&quot;;
 
@@ -617,7 +622,16 @@ class IntraEpitech {
                 method: &#x27;get&#x27;,
                 url: url,
             });
-            return res.status(200).json(response2.data[&#x27;modules&#x27;]);            
+            let result &#x3D; [];
+
+            for (let i: number &#x3D; 0; i &lt; response2.data[&#x27;modules&#x27;].length; i++) {
+                if (response2.data[&#x27;modules&#x27;][i][&#x27;title&#x27;].startsWith(semester_code)) {
+                    result.push(response2.data[&#x27;modules&#x27;][i]);
+                }
+            }
+            // console.log(&#x27;modules: &#x27;, response2.data[&#x27;modules&#x27;]);
+            // return res.status(200).json(response2.data[&#x27;modules&#x27;]);            
+            return res.status(200).json(result);            
         } catch (error) {
             console.log(error);
             return res.status(500).json({

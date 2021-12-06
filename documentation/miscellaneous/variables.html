@@ -1045,7 +1045,6 @@
         };
 
         if (user.type &#x3D;&#x3D;&#x3D; &#x27;google_user&#x27;) {
-            console.log(&quot;heeeeerererere&quot;);
             await updateInfos([&#x27;google_mail&#x27;, &#x27;google_token&#x27;], [user.userJson.email, access_token], &quot;token&quot;, token, (err: Error, result: any) &#x3D;&gt; {
                 if (err) {
                     console.log(&quot;heeeeerererere2 &quot;, err);
