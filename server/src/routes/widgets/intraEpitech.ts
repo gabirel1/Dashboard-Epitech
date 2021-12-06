@@ -93,7 +93,7 @@ class IntraEpitech {
      */
     async getNotifications(req: express.Request, res: express.Response) {
         try {
-            const { autologin } = req.body;            
+            const { autologin, max_results } = req.body;            
             let autoLogin: string = autologin;
             let url: string = "";
 
@@ -113,7 +113,12 @@ class IntraEpitech {
                 method: 'get',
                 url: url,
             });
-            return res.status(200).json(response2.data);
+            let result = [];
+
+            for (let i: number = 0; i < max_results && i < response2.data.length; i++) {
+                result.push(response2.data[i]);
+            }
+            return res.status(200).json(result);
         } catch (error) {
             console.log(error);
             return res.status(500).json({
@@ -130,7 +135,7 @@ class IntraEpitech {
      */
     async getGrades(req: express.Request, res: express.Response) {
         try {
-            const { autologin } = req.body;
+            const { autologin, semester_code } = req.body;
             let autoLogin: string = autologin;
             let url: string = "";
 
@@ -148,7 +153,16 @@ class IntraEpitech {
                 method: 'get',
                 url: url,
             });
-            return res.status(200).json(response2.data['modules']);            
+            let result = [];
+
+            for (let i: number = 0; i < response2.data['modules'].length; i++) {
+                if (response2.data['modules'][i]['title'].startsWith(semester_code)) {
+                    result.push(response2.data['modules'][i]);
+                }
+            }
+            // console.log('modules: ', response2.data['modules']);
+            // return res.status(200).json(response2.data['modules']);            
+            return res.status(200).json(result);            
         } catch (error) {
             console.log(error);
             return res.status(500).json({

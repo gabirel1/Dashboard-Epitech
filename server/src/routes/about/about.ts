@@ -158,7 +158,10 @@ class About {
                   {
                     name: "autologin",
                     type: "string",
-                  },
+                  },{
+                    name: "max_results",
+                    type: "number",
+                  }
                 ],
               },
               {
@@ -169,7 +172,10 @@ class About {
                   {
                     name: "autologin",
                     type: "string",
-                  },
+                  },{
+                    name: "semester_code",
+                    type: "string",
+                  }
                 ],
               },
             ],

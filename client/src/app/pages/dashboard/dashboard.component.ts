@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
 
       setInterval(() => {
         this.widgets.forEach((widget) => {
-          if (this.servicesService.getWidgetFunc(widget.name)) {
+          if (!widget.widgetState.toDelete && this.servicesService.getWidgetFunc(widget.name)) {
             this.servicesService
               .getWidgetFunc(widget.name)(
                 this.dataService,

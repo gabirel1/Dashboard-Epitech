@@ -64,7 +64,6 @@ export const updateUserInformations = async (req: express.Request, res: express.
         };
 
         if (user.type === 'google_user') {
-            console.log("heeeeerererere");
             await updateInfos(['google_mail', 'google_token'], [user.userJson.email, access_token], "token", token, (err: Error, result: any) => {
                 if (err) {
                     console.log("heeeeerererere2 ", err);
