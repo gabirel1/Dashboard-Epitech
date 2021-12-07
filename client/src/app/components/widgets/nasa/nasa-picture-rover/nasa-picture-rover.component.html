@@ -1,7 +1,7 @@
 <div *ngIf="widget">
   <div class="row" *ngIf="widget.widgetState.data">
-    <h6 class="text-black">{{widget.widgetState.data.title}}</h6>
-    <img [src]="widget.widgetState.data.url">
-    <small class="text-muted">© {{widget.widgetState.data.copyright}}</small>
+    <h6 class="text-black">{{widget.widgetState.data.name}}</h6>
+    <img [src]="widget.widgetState.data.img_src">
+    <small class="text-muted">Sol {{widget.widgetState.data.sol}}</small>
   </div>
 </div>
