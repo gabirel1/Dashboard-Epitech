@@ -2,6 +2,9 @@
 
 Dashboard is a project which allow users to connect to several services and use widgets linked to them, on one web app.
 
+## Authors :
+- [Léo Sarochar](https://github.com/LeoSarochar)
+- [Gabriel Knies](https://github.com/gabirel1)
 ____
 ## Summary
 
